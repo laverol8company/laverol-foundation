@@ -1,4 +1,4 @@
-import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X } from "lucide-react";
+import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X, XCircle } from "lucide-react";
 import { useState } from "react";
 
 const translations = {
@@ -50,6 +50,21 @@ const translations = {
       f3Desc: "Автоматичне створення угод без помилок",
       f4Title: "Календар та покази",
       f4Desc: "Миттєве бронювання зустрічей"
+    },
+    ecoJustify: {
+      title: "Економіка: Люди проти Системи",
+      subtitle: "Чому інвестиція в Laverol окупується в перший же місяць",
+      humanTitle: "Живий відділ продажу (3 людини)",
+      humanPoint1: "Зарплата: ~$3,000/міс",
+      humanPoint2: "Податки та робочі місця",
+      humanPoint3: "Сплять, хворіють, вигорають",
+      humanTotal: "Витрати: ~$46,800 / рік",
+      aiTitle: "Нашa AI система",
+      aiPoint1: "Єдиноразова оплата за впровадження",
+      aiPoint2: "0 податків, 0 лікарняних",
+      aiPoint3: "Відповідає за 5 секунд, 24/7",
+      aiTotal: "Витрати: від $699 (Разово)",
+      ecoBadge: "Окупається в перший же місяць"
     },
     pricing: {
       title: "Прозорі тарифи",
@@ -134,6 +149,21 @@ const translations = {
       f4Title: "Calendar & Viewings",
       f4Desc: "Instant meeting booking"
     },
+    ecoJustify: {
+      title: "Economics: Humans vs System",
+      subtitle: "Why investing in Laverol pays for itself in the first month",
+      humanTitle: "Live sales team (3 people)",
+      humanPoint1: "Salary: ~$3,000/mo",
+      humanPoint2: "Taxes and office space",
+      humanPoint3: "Sleep, get sick, burn out",
+      humanTotal: "Cost: ~$46,800 / year",
+      aiTitle: "Our AI System",
+      aiPoint1: "One-time implementation fee",
+      aiPoint2: "0 taxes, 0 sick days",
+      aiPoint3: "Responds in 5 seconds, 24/7",
+      aiTotal: "Cost: from $699 (One-time)",
+      ecoBadge: "Pays for itself in the first month"
+    },
     pricing: {
       title: "Transparent Pricing",
       btn: "Choose Plan",
@@ -216,6 +246,21 @@ const translations = {
       f3Desc: "Creare automată a tranzacțiilor fără erori",
       f4Title: "Calendar & Vizionări",
       f4Desc: "Programare instantanee a întâlnirilor"
+    },
+    ecoJustify: {
+      title: "Economie: Oameni vs Sistem",
+      subtitle: "De ce investiția în Laverol se amortizează în prima lună",
+      humanTitle: "Echipă de vânzări (3 persoane)",
+      humanPoint1: "Salariu: ~$3.000/lună",
+      humanPoint2: "Taxe și spațiu de birou",
+      humanPoint3: "Dorm, se îmbolnăvesc, se epuizează",
+      humanTotal: "Cost: ~$46.800 / an",
+      aiTitle: "Sistemul nostru AI",
+      aiPoint1: "Plată unică pentru implementare",
+      aiPoint2: "0 taxe, 0 zile de concediu medical",
+      aiPoint3: "Răspunde în 5 secunde, 24/7",
+      aiTotal: "Cost: de la $699 (O singură dată)",
+      ecoBadge: "Se amortizează în prima lună"
     },
     pricing: {
       title: "Prețuri Transparente",
@@ -473,6 +518,53 @@ const Index = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Economic Justification Section */}
+      <section className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
+            {t.ecoJustify.title}
+          </h2>
+          <p className="text-gray-400 text-center text-lg mb-16">{t.ecoJustify.subtitle}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+            {/* Human Card */}
+            <div className="bg-white/5 border border-red-500/20 rounded-2xl p-8 relative">
+              <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.humanTitle}</h3>
+              <ul className="space-y-4">
+                {[t.ecoJustify.humanPoint1, t.ecoJustify.humanPoint2, t.ecoJustify.humanPoint3].map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 text-zinc-300">
+                    <XCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-red-400 text-xl font-bold mt-6">{t.ecoJustify.humanTotal}</p>
+            </div>
+
+            {/* AI Card */}
+            <div className="bg-white/5 border border-cyan-500/40 shadow-[0_0_20px_rgba(34,211,238,0.1)] rounded-2xl p-8 scale-105 z-10 relative">
+              <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.aiTitle}</h3>
+              <ul className="space-y-4">
+                {[t.ecoJustify.aiPoint1, t.ecoJustify.aiPoint2, t.ecoJustify.aiPoint3].map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 text-zinc-300">
+                    <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-cyan-400 text-2xl font-bold mt-6">{t.ecoJustify.aiTotal}</p>
+            </div>
+          </div>
+
+          {/* Savings Badge */}
+          <div className="flex justify-center mt-[-20px] relative z-20">
+            <span className="bg-emerald-500 text-black px-6 py-2 rounded-full font-bold shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+              {t.ecoJustify.ecoBadge}
+            </span>
           </div>
         </div>
       </section>
