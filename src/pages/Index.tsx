@@ -421,6 +421,14 @@ const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [navVisible, setNavVisible] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
+  const [econRef, econVis] = useScrollReveal();
+  const [featRef, featVis] = useScrollReveal();
+  const [justRef, justVis] = useScrollReveal();
+  const [priceRef, priceVis] = useScrollReveal();
+  const [caseRef, caseVis] = useScrollReveal();
+  const [faqRef, faqVis] = useScrollReveal();
+  const [secRef, secVis] = useScrollReveal();
+  const [ctaRef, ctaVis] = useScrollReveal();
 
   useEffect(() => {
     const t1 = setTimeout(() => setNavVisible(true), 100);
