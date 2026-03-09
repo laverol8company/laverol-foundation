@@ -577,6 +577,8 @@ const Index = () => {
   const [justRef, justVis] = useScrollReveal();
   const [priceRef, priceVis] = useScrollReveal();
   const [caseRef, caseVis] = useScrollReveal();
+  const [journeyRef, journeyVis] = useScrollReveal();
+  const [dashRef, dashVis] = useScrollReveal();
   const [faqRef, faqVis] = useScrollReveal();
   const [secRef, secVis] = useScrollReveal();
   const [ctaRef, ctaVis] = useScrollReveal();
