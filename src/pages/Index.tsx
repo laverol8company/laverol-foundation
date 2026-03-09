@@ -509,6 +509,7 @@ const Index = () => {
   const [language, setLanguage] = useState<Language>('UA');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
   const [navVisible, setNavVisible] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const [econRef, econVis] = useScrollReveal();
@@ -741,27 +742,80 @@ const Index = () => {
         </div>
       </section>
 
-      {/* System Features Section */}
+      {/* System Features — Interactive Deep-Dive */}
       <section id="how-it-works" ref={featRef} className={`py-24 px-6 relative bg-zinc-950/50 transition-all duration-700 ${featVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.features.title}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Smartphone, title: t.features.f1Title, desc: t.features.f1Desc },
-              { icon: Brain, title: t.features.f2Title, desc: t.features.f2Desc },
-              { icon: Database, title: t.features.f3Title, desc: t.features.f3Desc },
-              { icon: Calendar, title: t.features.f4Title, desc: t.features.f4Desc }
-            ].map((feature, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)] group">
-                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <feature.icon className="w-5 h-5 text-cyan-400" />
+          
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left: Tab Cards */}
+            <div className="flex flex-row lg:flex-col gap-3 lg:w-80 shrink-0 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+              {t.deepDive.map((item, i) => {
+                const icons = [Smartphone, Brain, Database, Calendar];
+                const Icon = icons[i];
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setActiveTab(i)}
+                    className={`flex items-center gap-3 px-5 py-4 rounded-xl backdrop-blur-xl border text-left transition-all duration-300 hover:-translate-y-1 min-w-[200px] lg:min-w-0 ${
+                      activeTab === i
+                        ? 'bg-cyan-500/10 border-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.25)]'
+                        : 'bg-white/5 border-white/10 hover:border-cyan-500/40 hover:shadow-[0_0_15px_rgba(34,211,238,0.1)]'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                      activeTab === i ? 'bg-cyan-500/20 border border-cyan-400/40' : 'bg-white/5 border border-white/10'
+                    }`}>
+                      <Icon className={`w-5 h-5 transition-colors ${activeTab === i ? 'text-cyan-400' : 'text-zinc-400'}`} />
+                    </div>
+                    <span className={`font-medium text-sm transition-colors ${activeTab === i ? 'text-white' : 'text-zinc-400'}`}>
+                      {item.tab}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right: Detail Panel */}
+            <div className="flex-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 lg:p-10 relative overflow-hidden">
+              {/* Glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+              
+              {t.deepDive.map((item, i) => (
+                <div
+                  key={i}
+                  className={`transition-all duration-500 ${
+                    activeTab === i ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 absolute inset-0 pointer-events-none'
+                  }`}
+                  style={{ display: activeTab === i ? 'block' : 'none' }}
+                >
+                  {/* How it works */}
+                  <div className="mb-8">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-4">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                      </span>
+                      {item.howTitle}
+                    </div>
+                    <p className="text-lg text-zinc-300 leading-relaxed">{item.how}</p>
+                  </div>
+
+                  {/* Math / Profit Box */}
+                  <div className="bg-black/40 border border-emerald-500/20 rounded-xl p-6 relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-32 h-32 bg-emerald-500/10 blur-[60px] rounded-full pointer-events-none"></div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
+                      📊 {item.mathTitle}
+                    </div>
+                    <p className="text-zinc-300 leading-relaxed mb-4 relative z-10">{item.math}</p>
+                    <div className="flex items-center gap-2 relative z-10">
+                      <TrendingUp className="w-5 h-5 text-emerald-400" />
+                      <span className="text-emerald-400 font-bold text-lg">{item.profit}</span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                  <p className="text-sm text-zinc-400">{feature.desc}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
