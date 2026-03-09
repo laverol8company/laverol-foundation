@@ -692,7 +692,7 @@ const Index = () => {
                 {t.pricing.popular}
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">{t.pricing.tier2Name}</h3>
-              <div className="text-3xl font-bold text-white mb-6">{t.pricing.tier2Price} <span className="text-lg text-zinc-500 font-normal">{t.pricing.tier2Freq}</span></div>
+              <div className="text-3xl font-bold text-white mb-6 whitespace-nowrap">{t.pricing.tier2Price} <span className="text-lg text-zinc-500 font-normal">{t.pricing.tier2Freq}</span></div>
               <ul className="space-y-3 mb-8 flex-1">
                 {[t.pricing.tier2F1, t.pricing.tier2F2, t.pricing.tier2F3, t.pricing.tier2F4].map((f, i) => (
                   <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
