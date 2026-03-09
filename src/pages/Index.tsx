@@ -873,7 +873,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24 px-6 relative">
+      <section ref={ctaRef} className={`py-24 px-6 relative transition-all duration-700 ${ctaVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-5xl">
           <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-black to-black border border-white/10 rounded-3xl p-12 md:p-20 text-center flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
