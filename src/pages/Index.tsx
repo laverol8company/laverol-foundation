@@ -1,5 +1,6 @@
 import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X, XCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { useState, useEffect, useRef, type RefObject } from "react";
+import { ProfitCalculator } from "@/components/ProfitCalculator";
 
 function useScrollReveal(): [RefObject<HTMLDivElement>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
@@ -197,6 +198,16 @@ const translations = {
       agency: "Назва агентства",
       contact: "Телефон або Telegram",
       submit: "Надіслати заявку"
+    },
+    calculator: {
+      title: "Розрахуйте свій прибуток з Laverol",
+      sub: "Введіть реальні показники вашого агентства та побачте математику втрат і росту.",
+      leads: "Ліди за місяць",
+      comm: "Середня комісія",
+      conv: "Поточна конверсія (%)",
+      gain: "Додатковий прибуток:",
+      loss: "Втрати зараз:",
+      roi: "Окупність"
     }
   },
   EN: {
@@ -378,6 +389,16 @@ const translations = {
       agency: "Agency Name",
       contact: "Phone or Telegram",
       submit: "Submit Application"
+    },
+    calculator: {
+      title: "Calculate your profit with Laverol",
+      sub: "Enter your agency's real metrics and see the math of loss and growth.",
+      leads: "Leads per month",
+      comm: "Average commission",
+      conv: "Current conversion (%)",
+      gain: "Extra Profit:",
+      loss: "Current Loss:",
+      roi: "Payback"
     }
   },
   RO: {
@@ -559,6 +580,16 @@ const translations = {
       agency: "Numele Agenției",
       contact: "Telefon sau Telegram",
       submit: "Trimite Aplicația"
+    },
+    calculator: {
+      title: "Calculează-ți profitul cu Laverol",
+      sub: "Introdu valorile reale ale agenției tale și vezi matematica pierderilor și a creșterii.",
+      leads: "Lead-uri pe lună",
+      comm: "Comision mediu",
+      conv: "Conversie curentă (%)",
+      gain: "Profit suplimentar:",
+      loss: "Pierderi curente:",
+      roi: "Amortizare"
     }
   }
 };
@@ -928,6 +959,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Profit Calculator Section */}
+      <ProfitCalculator t={t} />
 
       {/* Pricing Section */}
       <section id="pricing" ref={priceRef} className={`py-24 px-6 relative transition-all duration-700 ${priceVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
