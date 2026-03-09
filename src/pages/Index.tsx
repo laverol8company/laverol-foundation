@@ -509,8 +509,8 @@ const translations = {
     journey: {
       title: "Călătoria Lead-ului în 5 Secunde",
       steps: [
-        { time: "03:15 noaptea", label: "Captură", desc: "Lead-ul scrie pe Instagram" },
-        { time: "5 sec", label: "Răspuns Instant", desc: "Laverol trimite prezentarea proprietăților" },
+        { time: "24/7", label: "Captură", desc: "Lead-ul scrie pe site sau în messenger" },
+        { time: "5 sec", label: "Răspuns Instant", desc: "Sistemul trimite prezentarea proprietăților" },
         { time: "2 min", label: "Calificare", desc: "AI identifică bugetul și termenele" },
         { time: "5 min", label: "Gata de Vizionare", desc: "Tranzacție în CRM, brokerul primește notificare" }
       ]
