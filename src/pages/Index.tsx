@@ -1,5 +1,5 @@
 import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X, XCircle, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const translations = {
   UA: {
@@ -403,22 +403,44 @@ const Index = () => {
   const [language, setLanguage] = useState<Language>('UA');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [navVisible, setNavVisible] = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setNavVisible(true), 100);
+    const t2 = setTimeout(() => setHeroVisible(true), 400);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
   
   const t = translations[language];
 
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-cyan-500/30">
       {/* Sticky Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
+      <nav className={`fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10 transition-all duration-700 ${navVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <a href="#" className="text-2xl font-bold text-cyan-400 tracking-tight">
-              Laverol solutions
+            <a href="#" className="text-2xl font-bold tracking-tight group relative">
+              <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-violet-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-shift_3s_ease-in-out_infinite]">
+                Laverol solutions
+              </span>
+              <span className="absolute -inset-2 bg-cyan-400/20 blur-xl rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
             </a>
             <div className="hidden md:flex items-center gap-1 text-sm font-medium">
-              <a href="#how-it-works" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.howItWorks}</a>
-              <a href="#economics" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.economics}</a>
-              <a href="#pricing" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.pricing}</a>
+              {[
+                { href: "#how-it-works", label: t.nav.howItWorks },
+                { href: "#economics", label: t.nav.economics },
+                { href: "#pricing", label: t.nav.pricing },
+              ].map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-300 hover:shadow-[0_0_15px_rgba(34,211,238,0.15)]"
+                  style={{ transitionDelay: `${i * 80}ms` }}
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
           
@@ -429,7 +451,7 @@ const Index = () => {
                 <span key={lang} className="flex items-center gap-2">
                   <button 
                     onClick={() => setLanguage(lang)}
-                    className={`transition-colors ${language === lang ? 'text-cyan-400 font-bold' : 'text-gray-500 hover:text-white'}`}
+                    className={`transition-all duration-300 hover:scale-110 ${language === lang ? 'text-cyan-400 font-bold' : 'text-gray-500 hover:text-white'}`}
                   >
                     {lang}
                   </button>
@@ -439,9 +461,10 @@ const Index = () => {
             </div>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="px-5 py-2.5 rounded-lg border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-colors"
+              className="relative px-5 py-2.5 rounded-lg border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:scale-105 overflow-hidden group"
             >
-              {t.nav.demoCall}
+              <span className="relative z-10">{t.nav.demoCall}</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
             </button>
           </div>
         </div>
@@ -450,7 +473,7 @@ const Index = () => {
       {/* Hero Section */}
       <main className="pt-32 pb-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className={`flex flex-col lg:flex-row items-center gap-16 transition-all duration-1000 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             
             {/* Hero Content */}
             <div className="flex-1 text-center lg:text-left">
