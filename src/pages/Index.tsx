@@ -415,10 +415,10 @@ const Index = () => {
             <a href="#" className="text-2xl font-bold text-cyan-400 tracking-tight">
               Laverol
             </a>
-            <div className="hidden md:flex items-center gap-6 text-sm font-medium text-zinc-400">
-              <a href="#how-it-works" className="hover:text-white transition-colors">{t.nav.howItWorks}</a>
-              <a href="#economics" className="hover:text-white transition-colors">{t.nav.economics}</a>
-              <a href="#pricing" className="hover:text-white transition-colors">{t.nav.pricing}</a>
+            <div className="hidden md:flex items-center gap-1 text-sm font-medium">
+              <a href="#how-it-works" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.howItWorks}</a>
+              <a href="#economics" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.economics}</a>
+              <a href="#pricing" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.pricing}</a>
             </div>
           </div>
           
