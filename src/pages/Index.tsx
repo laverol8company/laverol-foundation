@@ -687,7 +687,7 @@ const Index = () => {
             </div>
 
             {/* Tier 2: Quantum Broker (HOT) */}
-            <div className="bg-white/5 backdrop-blur-xl border border-cyan-400 rounded-2xl p-8 flex flex-col relative shadow-[0_0_30px_rgba(34,211,238,0.2)] scale-105 z-10">
+            <div className="bg-gradient-to-b from-cyan-950/40 to-cyan-900/20 backdrop-blur-xl border-2 border-cyan-400 rounded-2xl p-8 flex flex-col relative shadow-[0_0_40px_rgba(34,211,238,0.25)] scale-105 z-10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-cyan-500 text-black text-xs font-bold uppercase tracking-wider rounded-full whitespace-nowrap">
                 {t.pricing.popular}
               </div>
