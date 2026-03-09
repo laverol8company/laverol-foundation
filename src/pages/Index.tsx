@@ -601,21 +601,22 @@ const translations = {
     },
     calculator: {
       title: "Calculează-ți profitul cu Laverol",
-      sub: "Introdu valorile reale ale agenției tale și vezi matematica pierderilor și a creșterii.",
+      sub: "Chiar și 5 lead-uri de noapte salvate pe lună plătesc complet sistemul.",
       leads: "Lead-uri pe lună",
       comm: "Comision mediu",
       rentPrice: "Preț chirie",
       conv: "Conversie curentă (%)",
       gain: "Profit suplimentar:",
-      loss: "Pierderi curente:",
+      loss: "Pierzi acum:",
       roi: "Amortizare",
       sale: "Vânzare",
       rent: "Închiriere",
       saleHint: "Mod vânzare: 30% lead-uri pierdute noaptea, boost conversie 1.3x",
       rentHint: "Mod închiriere: 40% lead-uri pierdute (chiriașii se mișcă mai rapid), boost 1.5x",
-      savedLeads: "Lead-uri salvate",
+      savedLeads: "Tranzacții salvate",
       perMonth: "/lună",
-      aiAdmin: "Admin AI"
+      aiAdmin: "Admin AI",
+      clients: "clienți"
     }
   }
 };
