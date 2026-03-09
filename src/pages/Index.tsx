@@ -812,23 +812,23 @@ const Index = () => {
                   </div>
 
                   {/* Chat Mockup */}
-                  <div className="flex-1 flex flex-col gap-4">
+                  <div className="flex-1 flex flex-col gap-3 overflow-hidden min-h-0">
                     {/* User message */}
-                    <div className="flex items-end gap-2.5">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10 flex items-center justify-center shrink-0 shadow-lg">
-                        <MessageSquare className="w-3.5 h-3.5 text-zinc-300" />
+                    <div className="flex items-end gap-2 min-w-0">
+                      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10 flex items-center justify-center shrink-0 shadow-lg">
+                        <MessageSquare className="w-3 h-3 md:w-3.5 md:h-3.5 text-zinc-300" />
                       </div>
-                      <div className="bg-white/[0.07] border border-white/10 rounded-2xl rounded-bl-sm px-4 py-3 text-sm text-zinc-200 max-w-[85%] leading-relaxed">
+                      <div className="bg-white/[0.07] border border-white/10 rounded-2xl rounded-bl-sm px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-zinc-200 max-w-[80%] leading-relaxed break-words overflow-hidden">
                         {t.chat.msgUser}
                       </div>
                     </div>
                     
                     {/* AI message */}
-                    <div className="flex items-end gap-2.5 flex-row-reverse">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/30">
-                        <span className="text-white text-xs font-bold">L</span>
+                    <div className="flex items-end gap-2 flex-row-reverse min-w-0">
+                      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/30">
+                        <span className="text-white text-[10px] md:text-xs font-bold">L</span>
                       </div>
-                      <div className="bg-gradient-to-br from-cyan-500/15 to-violet-500/10 border border-cyan-500/20 rounded-2xl rounded-br-sm px-4 py-3 text-sm text-white/90 max-w-[85%] leading-relaxed">
+                      <div className="bg-gradient-to-br from-cyan-500/15 to-violet-500/10 border border-cyan-500/20 rounded-2xl rounded-br-sm px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-white/90 max-w-[80%] leading-relaxed break-words overflow-hidden">
                         {t.chat.msgAi}
                       </div>
                     </div>
