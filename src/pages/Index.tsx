@@ -51,6 +51,21 @@ const translations = {
       f4Title: "Календар та покази",
       f4Desc: "Миттєве бронювання зустрічей"
     },
+    ecoJustify: {
+      title: "Економіка: Люди проти Системи",
+      subtitle: "Чому інвестиція в Laverol окупується в перший же місяць",
+      humanTitle: "Живий відділ продажу (3 людини)",
+      humanPoint1: "Зарплата: ~$3,000/міс",
+      humanPoint2: "Податки та робочі місця",
+      humanPoint3: "Сплять, хворіють, вигорають",
+      humanTotal: "Витрати: ~$46,800 / рік",
+      aiTitle: "Нашa AI система",
+      aiPoint1: "Єдиноразова оплата за впровадження",
+      aiPoint2: "0 податків, 0 лікарняних",
+      aiPoint3: "Відповідає за 5 секунд, 24/7",
+      aiTotal: "Витрати: від $699 (Разово)",
+      ecoBadge: "Окупається в перший же місяць"
+    },
     pricing: {
       title: "Прозорі тарифи",
       btn: "Обрати тариф",
@@ -133,6 +148,21 @@ const translations = {
       f3Desc: "Automatic deal creation without errors",
       f4Title: "Calendar & Viewings",
       f4Desc: "Instant meeting booking"
+    },
+    ecoJustify: {
+      title: "Economics: Humans vs System",
+      subtitle: "Why investing in Laverol pays for itself in the first month",
+      humanTitle: "Live sales team (3 people)",
+      humanPoint1: "Salary: ~$3,000/mo",
+      humanPoint2: "Taxes and office space",
+      humanPoint3: "Sleep, get sick, burn out",
+      humanTotal: "Cost: ~$46,800 / year",
+      aiTitle: "Our AI System",
+      aiPoint1: "One-time implementation fee",
+      aiPoint2: "0 taxes, 0 sick days",
+      aiPoint3: "Responds in 5 seconds, 24/7",
+      aiTotal: "Cost: from $699 (One-time)",
+      ecoBadge: "Pays for itself in the first month"
     },
     pricing: {
       title: "Transparent Pricing",
