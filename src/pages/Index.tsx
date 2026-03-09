@@ -204,10 +204,18 @@ const translations = {
       sub: "Введіть реальні показники вашого агентства та побачте математику втрат і росту.",
       leads: "Ліди за місяць",
       comm: "Середня комісія",
+      rentPrice: "Вартість оренди",
       conv: "Поточна конверсія (%)",
       gain: "Додатковий прибуток:",
       loss: "Втрати зараз:",
-      roi: "Окупність"
+      roi: "Окупність",
+      sale: "Продаж",
+      rent: "Оренда",
+      saleHint: "Режим продажу: втрата 30% нічних лідів, буст конверсії 1.3x",
+      rentHint: "Режим оренди: втрата 40% лідів (орендарі швидше йдуть), буст 1.5x",
+      savedLeads: "Врятовано лідів",
+      perMonth: "/міс",
+      aiAdmin: "AI-адміністратор"
     }
   },
   EN: {
@@ -395,10 +403,18 @@ const translations = {
       sub: "Enter your agency's real metrics and see the math of loss and growth.",
       leads: "Leads per month",
       comm: "Average commission",
+      rentPrice: "Rent price",
       conv: "Current conversion (%)",
       gain: "Extra Profit:",
       loss: "Current Loss:",
-      roi: "Payback"
+      roi: "Payback",
+      sale: "Sale",
+      rent: "Rent",
+      saleHint: "Sale mode: 30% night leads lost, 1.3x conversion boost",
+      rentHint: "Rent mode: 40% leads lost (renters move faster), 1.5x boost",
+      savedLeads: "Leads saved",
+      perMonth: "/mo",
+      aiAdmin: "AI Admin"
     }
   },
   RO: {
@@ -586,10 +602,18 @@ const translations = {
       sub: "Introdu valorile reale ale agenției tale și vezi matematica pierderilor și a creșterii.",
       leads: "Lead-uri pe lună",
       comm: "Comision mediu",
+      rentPrice: "Preț chirie",
       conv: "Conversie curentă (%)",
       gain: "Profit suplimentar:",
       loss: "Pierderi curente:",
-      roi: "Amortizare"
+      roi: "Amortizare",
+      sale: "Vânzare",
+      rent: "Închiriere",
+      saleHint: "Mod vânzare: 30% lead-uri pierdute noaptea, boost conversie 1.3x",
+      rentHint: "Mod închiriere: 40% lead-uri pierdute (chiriașii se mișcă mai rapid), boost 1.5x",
+      savedLeads: "Lead-uri salvate",
+      perMonth: "/lună",
+      aiAdmin: "Admin AI"
     }
   }
 };
