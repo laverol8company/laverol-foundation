@@ -31,7 +31,7 @@ const translations = {
       statConv: "Conversion"
     },
     economics: {
-      title: "Ваше агентство втрачає гроші щоночі.",
+      title: "Ваше агентство втрачає клієнтів у неробочий час.",
       probStat: "30% заявок",
       probText: " приходять у неробочий час. В середньому це ",
       probLoss: "$4,500 втраченої комісії",
@@ -159,7 +159,7 @@ const translations = {
       statConv: "Conversion"
     },
     economics: {
-      title: "Your agency is losing money every night.",
+      title: "Your agency loses clients outside working hours.",
       probStat: "30% of inquiries",
       probText: " arrive during non-working hours. On average, this is ",
       probLoss: "$4,500 in lost commission",
@@ -287,7 +287,7 @@ const translations = {
       statConv: "Conversie"
     },
     economics: {
-      title: "Agenția ta pierde bani în fiecare noapte.",
+      title: "Agenția ta pierde clienți în afara orelor de lucru.",
       probStat: "30% din cereri",
       probText: " sosesc în afara orelor de program. În medie, asta înseamnă ",
       probLoss: "4.500$ comision pierdut",
