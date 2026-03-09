@@ -1,5 +1,21 @@
 import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X, XCircle, ChevronDown, ChevronUp } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, type RefObject } from "react";
+
+function useScrollReveal(): [RefObject<HTMLDivElement>, boolean] {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return [ref, visible];
+}
 
 const translations = {
   UA: {
@@ -405,6 +421,14 @@ const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [navVisible, setNavVisible] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
+  const [econRef, econVis] = useScrollReveal();
+  const [featRef, featVis] = useScrollReveal();
+  const [justRef, justVis] = useScrollReveal();
+  const [priceRef, priceVis] = useScrollReveal();
+  const [caseRef, caseVis] = useScrollReveal();
+  const [faqRef, faqVis] = useScrollReveal();
+  const [secRef, secVis] = useScrollReveal();
+  const [ctaRef, ctaVis] = useScrollReveal();
 
   useEffect(() => {
     const t1 = setTimeout(() => setNavVisible(true), 100);
@@ -599,7 +623,7 @@ const Index = () => {
       </main>
 
       {/* Cost of Inaction Section */}
-      <section id="economics" className="py-24 px-6 relative">
+      <section id="economics" ref={econRef} className={`py-24 px-6 relative transition-all duration-700 ${econVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.economics.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -628,7 +652,7 @@ const Index = () => {
       </section>
 
       {/* System Features Section */}
-      <section id="how-it-works" className="py-24 px-6 relative bg-zinc-950/50">
+      <section id="how-it-works" ref={featRef} className={`py-24 px-6 relative bg-zinc-950/50 transition-all duration-700 ${featVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.features.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -653,7 +677,7 @@ const Index = () => {
       </section>
 
       {/* Economic Justification Section */}
-      <section className="py-24 px-6 relative">
+      <section ref={justRef} className={`py-24 px-6 relative transition-all duration-700 ${justVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
             {t.ecoJustify.title}
@@ -700,7 +724,7 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-6 relative">
+      <section id="pricing" ref={priceRef} className={`py-24 px-6 relative transition-all duration-700 ${priceVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.pricing.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
@@ -773,7 +797,7 @@ const Index = () => {
       </section>
 
       {/* Case Study Banner */}
-      <section className="px-6 relative">
+      <section ref={caseRef} className={`px-6 relative transition-all duration-700 ${caseVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <div className="bg-gradient-to-r from-cyan-900/30 to-violet-900/30 border-y border-white/10 py-12 px-8 rounded-2xl my-12 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-cyan-500/5 animate-pulse rounded-2xl"></div>
@@ -788,7 +812,7 @@ const Index = () => {
       </section>
 
       {/* Interactive FAQ Section */}
-      <section className="py-24 px-6 relative">
+      <section ref={faqRef} className={`py-24 px-6 relative transition-all duration-700 ${faqVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.faq.title}</h2>
           <div className="space-y-4">
@@ -826,7 +850,7 @@ const Index = () => {
       </section>
 
       {/* Security & Guarantee Section */}
-      <section className="py-24 px-6 relative bg-black">
+      <section ref={secRef} className={`py-24 px-6 relative bg-black transition-all duration-700 ${secVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.security.title}</h2>
           
@@ -849,7 +873,7 @@ const Index = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24 px-6 relative">
+      <section ref={ctaRef} className={`py-24 px-6 relative transition-all duration-700 ${ctaVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-5xl">
           <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-black to-black border border-white/10 rounded-3xl p-12 md:p-20 text-center flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
