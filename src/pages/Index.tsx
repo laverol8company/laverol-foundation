@@ -797,7 +797,7 @@ const Index = () => {
       </section>
 
       {/* Case Study Banner */}
-      <section className="px-6 relative">
+      <section ref={caseRef} className={`px-6 relative transition-all duration-700 ${caseVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <div className="bg-gradient-to-r from-cyan-900/30 to-violet-900/30 border-y border-white/10 py-12 px-8 rounded-2xl my-12 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-cyan-500/5 animate-pulse rounded-2xl"></div>
