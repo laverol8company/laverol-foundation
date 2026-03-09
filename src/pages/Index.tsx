@@ -91,6 +91,19 @@ const translations = {
       tier3F3: "Кастомне навчання AI",
       tier3F4: "Виділений сервер"
     },
+    caseStudy: {
+      title: "Кейси: +42% до конверсії в перший місяць",
+      text: "Середній результат наших клієнтів після впровадження Laverol AI. Жодного втраченого нічного ліда."
+    },
+    faq: {
+      title: "Часті запитання",
+      q1: "Чи буде AI вигадувати неіснуючі квартири?",
+      a1: "Ні. Система працює суворо по вашій базі об'єктів (XML/API) і не фантазує. Якщо квартири немає — вона запропонує альтернативу.",
+      q2: "Скільки часу займає впровадження?",
+      a2: "Від 3 до 7 днів. Ми самі підключаємо ваші месенджери та CRM, ви отримуєте готовий інструмент.",
+      q3: "Чи потрібно мені змінювати мою CRM?",
+      a3: "Ні, Laverol безшовно інтегрується з amoCRM, Bitrix24, Zoho та іншими популярними системами."
+    },
     security: {
       title: "Криптографічна безпека та гарантії",
       t1: "100% GDPR Compliance",
@@ -206,6 +219,19 @@ const translations = {
       tier3F3: "Custom AI training",
       tier3F4: "Dedicated server"
     },
+    caseStudy: {
+      title: "Case Studies: +42% Conversion in the First Month",
+      text: "Average results for our clients after implementing Laverol AI. Zero missed night leads."
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+      q1: "Will the AI make up non-existent apartments?",
+      a1: "No. The system works strictly based on your property database (XML/API) and does not hallucinate. If an apartment doesn't exist, it will suggest an alternative.",
+      q2: "How long does implementation take?",
+      a2: "3 to 7 days. We connect your messengers and CRM ourselves; you receive a ready-to-use tool.",
+      q3: "Do I need to change my CRM?",
+      a3: "No, Laverol seamlessly integrates with amoCRM, Bitrix24, Zoho, and other popular systems."
+    },
     security: {
       title: "Cryptographic Security & Guarantees",
       t1: "100% GDPR Compliance",
@@ -320,6 +346,19 @@ const translations = {
       tier3F2: "Site premium la cheie",
       tier3F3: "Antrenament AI personalizat",
       tier3F4: "Server dedicat"
+    },
+    caseStudy: {
+      title: "Studii de caz: +42% conversie în prima lună",
+      text: "Rezultatele medii ale clienților noștri după implementarea Laverol AI. Zero lead-uri de noapte pierdute."
+    },
+    faq: {
+      title: "Întrebări frecvente",
+      q1: "Va inventa AI apartamente inexistente?",
+      a1: "Nu. Sistemul funcționează strict pe baza bazei de date a proprietăților (XML/API) și nu halucinează. Dacă un apartament nu există, va sugera o alternativă.",
+      q2: "Cât durează implementarea?",
+      a2: "De la 3 la 7 zile. Noi conectăm mesageria și CRM-ul; primești un instrument gata de utilizare.",
+      q3: "Trebuie să îmi schimb CRM-ul?",
+      a3: "Nu, Laverol se integrează perfect cu amoCRM, Bitrix24, Zoho și alte sisteme populare."
     },
     security: {
       title: "Securitate Criptografică & Garanții",
