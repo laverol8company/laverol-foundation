@@ -7,7 +7,7 @@ interface ProfitCalculatorProps {
   onBookDemo?: () => void;
 }
 
-function useAnimatedCounter(target: number, duration: number = 500) {
+function useAnimatedCounter(target: number, duration: number = 300) {
   const [value, setValue] = useState(0);
   const prev = useRef(target);
   useEffect(() => {
@@ -26,7 +26,7 @@ function useAnimatedCounter(target: number, duration: number = 500) {
 }
 
 function ProfitParticles({ active }: { active: boolean }) {
-  const dots = useMemo(() => Array.from({ length: 10 }, (_, i) => ({
+  const dots = useMemo(() => Array.from({ length: 8 }, (_, i) => ({
     id: i, left: Math.random() * 100, delay: Math.random() * 2, dur: 2 + Math.random() * 2, size: 2 + Math.random() * 3,
   })), []);
   if (!active) return null;
@@ -36,12 +36,11 @@ function ProfitParticles({ active }: { active: boolean }) {
         <div key={p.id} className="absolute rounded-full bg-emerald-400/40"
           style={{ left: `${p.left}%`, bottom: -4, width: p.size, height: p.size, animation: `floatUp ${p.dur}s ease-out ${p.delay}s infinite` }} />
       ))}
-      <style>{`@keyframes floatUp { 0% { transform:translateY(0) scale(1); opacity:.7 } 100% { transform:translateY(-180px) scale(.2); opacity:0 } }`}</style>
+      <style>{`@keyframes floatUp{0%{transform:translateY(0) scale(1);opacity:.7}100%{transform:translateY(-180px) scale(.2);opacity:0}}`}</style>
     </div>
   );
 }
 
-// Compact numeric input
 function NumInput({ value, onChange, min, max, step, prefix, suffix }: {
   value: number; onChange: (v: number) => void; min: number; max: number; step: number; prefix?: string; suffix?: string;
 }) {
@@ -53,16 +52,16 @@ function NumInput({ value, onChange, min, max, step, prefix, suffix }: {
     else setText(String(value));
   };
   return (
-    <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-2 py-1 min-w-[90px] max-w-[120px] focus-within:border-cyan-500/50 transition-colors">
-      {prefix && <span className="text-cyan-400/70 text-xs mr-1">{prefix}</span>}
+    <div className="flex items-center bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 min-w-[80px] max-w-[110px] focus-within:border-cyan-500/50 transition-colors">
+      {prefix && <span className="text-cyan-400/70 text-xs mr-1 shrink-0">{prefix}</span>}
       <input
-        type="text" value={text}
+        type="text" inputMode="numeric" value={text}
         onChange={e => setText(e.target.value)}
         onBlur={commit}
         onKeyDown={e => e.key === 'Enter' && commit()}
-        className="bg-transparent text-cyan-400 font-bold text-sm w-full outline-none text-right"
+        className="bg-transparent text-cyan-400 font-bold text-sm w-full outline-none text-right min-w-0"
       />
-      {suffix && <span className="text-cyan-400/70 text-xs ml-1">{suffix}</span>}
+      {suffix && <span className="text-cyan-400/70 text-xs ml-1 shrink-0">{suffix}</span>}
     </div>
   );
 }
@@ -119,9 +118,9 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
   useEffect(() => {
     if (extraProfit > prevExtra.current) {
       setParticles(true);
-      const t = setTimeout(() => setParticles(false), 2500);
+      const timer = setTimeout(() => setParticles(false), 2500);
       prevExtra.current = extraProfit;
-      return () => clearTimeout(t);
+      return () => clearTimeout(timer);
     }
     prevExtra.current = extraProfit;
   }, [extraProfit]);
@@ -151,22 +150,23 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
   };
 
   return (
-    <section ref={containerRef} className="py-20 px-6 relative bg-zinc-950/50 border-t border-white/5 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-50"
+    <section ref={containerRef} className="py-12 md:py-20 px-4 md:px-6 relative bg-zinc-950/50 border-t border-white/5 overflow-hidden">
+      {/* Mouse spotlight - desktop only */}
+      <div className="absolute inset-0 pointer-events-none opacity-50 hidden md:block"
         style={{ background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, rgba(34,211,238,0.07), transparent 40%)` }} />
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
+        <h2 className="text-lg md:text-3xl lg:text-4xl font-bold text-center mb-1 md:mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
           {t.calculator.title}
         </h2>
-        <p className="text-zinc-500 text-center text-sm mb-8">{t.calculator.sub}</p>
+        <p className="text-zinc-500 text-center text-xs md:text-sm mb-5 md:mb-8">{t.calculator.sub}</p>
 
-        {/* Controls Header */}
-        <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
-          <div className="bg-white/5 border border-white/10 rounded-full p-1 flex gap-0.5">
+        {/* Controls Header - compact on mobile */}
+        <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3 mb-5 md:mb-8">
+          <div className="bg-white/5 border border-white/10 rounded-full p-0.5 md:p-1 flex gap-0.5">
             {(['Sale', 'Rent'] as const).map(m => (
               <button key={m} onClick={() => setMode(m)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
                   mode === m
                     ? m === 'Sale' ? 'bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/20' : 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/20'
                     : 'text-zinc-500 hover:text-white'
@@ -178,7 +178,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
           <div className="bg-white/5 border border-white/10 rounded-full p-0.5 flex">
             {(['$', '₴'] as const).map(c => (
               <button key={c} onClick={() => setCurrency(c)}
-                className={`w-9 h-9 rounded-full text-sm font-bold transition-all duration-300 ${
+                className={`w-8 h-8 md:w-9 md:h-9 rounded-full text-xs md:text-sm font-bold transition-all duration-300 ${
                   currency === c
                     ? c === '$' ? 'bg-cyan-500/30 text-cyan-300 border border-cyan-500/40' : 'bg-yellow-500/30 text-yellow-300 border border-yellow-500/40'
                     : 'text-zinc-500 hover:text-zinc-300'
@@ -189,80 +189,80 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* LEFT: Inputs */}
-          <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-cyan-500/20 space-y-5">
-            <div className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-1">{t.calculator.inputLabel}</div>
+          <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 md:p-6 transition-all duration-300 hover:border-cyan-500/20 space-y-4 md:space-y-5">
+            <div className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-wider font-medium">{t.calculator.inputLabel}</div>
 
             {/* Leads */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex justify-between items-center gap-2">
-                <label className="text-zinc-400 text-sm flex items-center gap-1.5">
-                  <Users className="w-3.5 h-3.5 text-cyan-400" /> {t.calculator.leads}
+                <label className="text-zinc-400 text-xs md:text-sm flex items-center gap-1.5 shrink-0">
+                  <Users className="w-3 h-3 md:w-3.5 md:h-3.5 text-cyan-400" /> {t.calculator.leads}
                 </label>
                 <NumInput value={leads} onChange={setLeads} min={5} max={1000} step={5} suffix={t.calculator.perMonth} />
               </div>
-              <Slider value={[leads]} onValueChange={v => setLeads(v[0])} min={5} max={1000} step={5} className="w-full" />
+              <Slider value={[leads]} onValueChange={v => setLeads(v[0])} min={5} max={1000} step={5} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
             </div>
 
             {/* Price */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex justify-between items-center gap-2">
-                <label className="text-zinc-400 text-sm">{mode === 'Sale' ? t.calculator.comm : t.calculator.rentPrice}</label>
+                <label className="text-zinc-400 text-xs md:text-sm shrink-0">{mode === 'Sale' ? t.calculator.comm : t.calculator.rentPrice}</label>
                 <NumInput value={price} onChange={v => setPrice(v)} min={pMin} max={pMax} step={pStep} prefix={currency} />
               </div>
-              <Slider value={[price]} onValueChange={v => setPrice(v[0])} min={pMin} max={pMax} step={pStep} className="w-full" />
+              <Slider value={[price]} onValueChange={v => setPrice(v[0])} min={pMin} max={pMax} step={pStep} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
             </div>
 
             {/* Conv */}
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <div className="flex justify-between items-center gap-2">
-                <label className="text-zinc-400 text-sm">{t.calculator.conv}</label>
+                <label className="text-zinc-400 text-xs md:text-sm shrink-0">{t.calculator.conv}</label>
                 <NumInput value={conv} onChange={setConv} min={1} max={mode === 'Sale' ? 15 : 25} step={1} suffix="%" />
               </div>
-              <Slider value={[conv]} onValueChange={v => setConv(v[0])} min={1} max={mode === 'Sale' ? 15 : 25} step={1} className="w-full" />
+              <Slider value={[conv]} onValueChange={v => setConv(v[0])} min={1} max={mode === 'Sale' ? 15 : 25} step={1} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
             </div>
 
-            <div className={`p-3 rounded-lg border text-xs ${mode === 'Sale' ? 'bg-violet-500/10 border-violet-500/20 text-violet-300' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'}`}>
+            <div className={`p-2.5 md:p-3 rounded-lg border text-[11px] md:text-xs ${mode === 'Sale' ? 'bg-violet-500/10 border-violet-500/20 text-violet-300' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'}`}>
               {mode === 'Sale' ? t.calculator.saleHint : t.calculator.rentHint}
             </div>
           </div>
 
           {/* RIGHT: Results */}
-          <div className="flex flex-col gap-4">
-            {/* Hero Profit */}
-            <div className="bg-emerald-500/10 border-2 border-emerald-500/30 rounded-2xl p-6 relative overflow-hidden transition-all duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] group flex-1">
+          <div className="flex flex-col gap-3 md:gap-4">
+            {/* Hero Profit - always first */}
+            <div className="bg-emerald-500/10 border-2 border-emerald-500/30 rounded-2xl px-4 py-4 md:p-6 relative overflow-hidden transition-all duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] group">
               <ProfitParticles active={particles} />
-              <div className="absolute -right-16 -top-16 w-48 h-48 bg-emerald-500/15 blur-[70px] rounded-full group-hover:bg-emerald-500/25 transition-all duration-700"></div>
+              <div className="absolute -right-16 -top-16 w-48 h-48 bg-emerald-500/15 blur-[70px] rounded-full group-hover:bg-emerald-500/25 transition-all duration-700" />
 
               <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="w-5 h-5 text-emerald-400 animate-pulse" />
-                  <span className="text-emerald-400/70 font-medium text-sm uppercase tracking-wide">{t.calculator.yourProfit}</span>
+                <div className="flex items-center gap-2 mb-2 md:mb-3">
+                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 animate-pulse" />
+                  <span className="text-emerald-400/70 font-medium text-xs md:text-sm uppercase tracking-wide">{t.calculator.yourProfit}</span>
                 </div>
-                <div className="text-4xl md:text-6xl font-black text-emerald-400 drop-shadow-[0_0_25px_rgba(16,185,129,0.5)] mb-1">
+                <div className="text-2xl md:text-4xl lg:text-6xl font-black text-emerald-400 drop-shadow-[0_0_25px_rgba(16,185,129,0.5)] mb-1">
                   {fmt(aTotal)}
-                  <span className="text-lg text-emerald-400/50 font-medium ml-1">{t.calculator.perMonth}</span>
+                  <span className="text-sm md:text-lg text-emerald-400/50 font-medium ml-1">{t.calculator.perMonth}</span>
                 </div>
-                <div className="flex items-center gap-2 mt-2">
-                  <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">
+                <div className="flex items-center gap-2 mt-1.5 md:mt-2">
+                  <span className="bg-emerald-500/20 text-emerald-300 text-[11px] md:text-xs font-bold px-2 md:px-2.5 py-0.5 md:py-1 rounded-full">
                     +{aGrowth}% {t.calculator.growthSuffix}
                   </span>
                 </div>
 
                 {/* Progress bar */}
-                <div className="mt-4">
-                  <div className="flex justify-between text-[10px] text-zinc-500 mb-1">
+                <div className="mt-3 md:mt-4">
+                  <div className="flex justify-between text-[9px] md:text-[10px] text-zinc-500 mb-1">
                     <span>{t.calculator.currentResult}</span>
                     <span className="text-emerald-400">+ Laverol</span>
                   </div>
-                  <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
+                  <div className="h-1.5 md:h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
                     <div className="h-full flex rounded-full overflow-hidden transition-all duration-700">
                       <div className="bg-zinc-500/60 transition-all duration-700" style={{ width: `${barRatio}%` }} />
                       <div className="bg-gradient-to-r from-emerald-500 to-cyan-400 transition-all duration-700" style={{ width: `${100 - barRatio}%` }} />
                     </div>
                   </div>
-                  <div className="flex justify-between text-[10px] mt-0.5">
+                  <div className="flex justify-between text-[9px] md:text-[10px] mt-0.5">
                     <span className="text-zinc-600">{fmt(toD(currentProfit))}</span>
                     <span className="text-emerald-400">+{fmt(aExtra)}</span>
                   </div>
@@ -270,7 +270,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
               </div>
 
               {/* SVG Wave bg */}
-              <div className="absolute bottom-0 left-0 w-full h-12 opacity-25 pointer-events-none">
+              <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 opacity-20 pointer-events-none">
                 <svg viewBox="0 0 100 20" preserveAspectRatio="none" className="w-full h-full">
                   <defs><linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#8b5cf6"/><stop offset="100%" stopColor="#22d3ee"/></linearGradient></defs>
                   <path d={`M0,20 Q25,${Math.max(2, 20 - (extraProfit / 15000) * 14)} 50,${Math.max(2, 16 - (extraProfit / 15000) * 10)} T100,${Math.max(2, 12 - (extraProfit / 15000) * 6)}`} fill="none" stroke="url(#wg)" strokeWidth="1.2" className="transition-all duration-500"/>
@@ -278,49 +278,47 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
               </div>
             </div>
 
-            {/* Mini cards row */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-xl p-4 transition-all duration-300 hover:border-cyan-500/40 hover:-translate-y-0.5 group relative overflow-hidden">
-                <div className="text-cyan-400/70 text-xs font-medium mb-1 flex items-center gap-1"><Users className="w-3 h-3"/>{t.calculator.savedLeads}</div>
-                <div className="text-xl font-bold text-cyan-400">+{aSaved} {t.calculator.clients}</div>
+            {/* 2x2 Mini cards grid */}
+            <div className="grid grid-cols-2 gap-2 md:gap-3">
+              <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-cyan-500/40">
+                <div className="text-cyan-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1"><Users className="w-2.5 h-2.5 md:w-3 md:h-3"/>{t.calculator.savedLeads}</div>
+                <div className="text-base md:text-xl font-bold text-cyan-400">+{aSaved} {t.calculator.clients}</div>
               </div>
-              <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl p-4 transition-all duration-300 hover:border-rose-500/40 hover:-translate-y-0.5 group relative overflow-hidden">
-                <div className="text-rose-400/70 text-xs font-medium mb-1 flex items-center gap-1"><AlertTriangle className="w-3 h-3"/>{t.calculator.loss}</div>
-                <div className="text-xl font-bold text-rose-400">{fmt(aLoss)}{t.calculator.perMonth}</div>
+              <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-rose-500/40">
+                <div className="text-rose-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1"><AlertTriangle className="w-2.5 h-2.5 md:w-3 md:h-3"/>{t.calculator.loss}</div>
+                <div className="text-base md:text-xl font-bold text-rose-400">{fmt(aLoss)}{t.calculator.perMonth}</div>
               </div>
-            </div>
-
-            {/* ROI + Actions */}
-            <div className="flex gap-3">
-              <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl p-4 flex-1 flex items-center justify-between transition-all duration-300 hover:border-violet-500/40">
-                <div>
-                  <div className="text-violet-400/70 text-xs font-medium mb-0.5">ROI</div>
-                  <div className="text-xl font-bold text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.4)]">{roi}x</div>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Bot className="w-4 h-4 text-violet-400" />
-                  <span className="text-violet-400 text-sm font-medium">24/7</span>
+              <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-violet-500/40">
+                <div className="text-violet-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1">ROI</div>
+                <div className="text-base md:text-xl font-bold text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.4)]">{roi}x</div>
+              </div>
+              <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-violet-500/40">
+                <div className="text-violet-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1"><Bot className="w-2.5 h-2.5 md:w-3 md:h-3"/>{t.calculator.aiAdmin}</div>
+                <div className="text-base md:text-xl font-bold text-violet-400 flex items-center gap-1">
+                  24/7
                   <span className="relative flex h-2 w-2 ml-0.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                   </span>
                 </div>
               </div>
+            </div>
+
+            {/* Actions row */}
+            <div className="flex gap-2 md:gap-3">
               <button onClick={copyResult}
-                className="bg-white/5 border border-white/10 rounded-xl px-4 flex items-center gap-2 text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm">
+                className="bg-white/5 border border-white/10 rounded-xl px-3 md:px-4 py-2.5 flex items-center gap-2 text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-xs md:text-sm shrink-0">
                 <Copy className="w-3.5 h-3.5" />
                 {copied ? '✓' : t.calculator.copy}
               </button>
+              {onBookDemo && (
+                <button onClick={onBookDemo}
+                  className="flex-1 bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold py-2.5 md:py-3 rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 hover:-translate-y-0.5 text-sm md:text-base">
+                  <Phone className="w-4 h-4" />
+                  {t.calculator.bookDemo}
+                </button>
+              )}
             </div>
-
-            {/* CTA */}
-            {onBookDemo && (
-              <button onClick={onBookDemo}
-                className="w-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 hover:-translate-y-0.5">
-                <Phone className="w-4 h-4" />
-                {t.calculator.bookDemo}
-              </button>
-            )}
           </div>
         </div>
       </div>
