@@ -338,7 +338,7 @@ const translations = {
       title: "Control & Transparency",
       subtitle: "Full control in your pocket. Manage AI logic and analyze every broker's performance in real time.",
       managerDashboard: "Manager Dashboard",
-      stat1Label: "Night lead conversion",
+      stat1Label: "NEW LEAD CONVERSION",
       stat1Value: "98%",
       stat2Label: "Time saved",
       stat2Value: "120+ hrs/mo",
