@@ -677,7 +677,7 @@ const Index = () => {
       </section>
 
       {/* Economic Justification Section */}
-      <section className="py-24 px-6 relative">
+      <section ref={justRef} className={`py-24 px-6 relative transition-all duration-700 ${justVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
             {t.ecoJustify.title}
