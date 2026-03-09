@@ -673,7 +673,7 @@ const Index = () => {
               <ul className="space-y-3 mb-8 flex-1">
                 {[t.pricing.tier1F1, t.pricing.tier1F2, t.pricing.tier1F3, t.pricing.tier1F4].map((f, i) => (
                   <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
-                    <CheckCircle2 className="w-4 h-4 text-zinc-500 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
                     {f}
                   </li>
                 ))}
