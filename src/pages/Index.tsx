@@ -1045,7 +1045,7 @@ const Index = () => {
           <p className="text-zinc-400 text-lg text-center max-w-2xl mx-auto mb-16">{t.dashboard.subtitle}</p>
 
           {/* Dashboard Mockup */}
-          <div className="animate-[float_6s_ease-in-out_infinite] relative">
+          <div className="animate-float relative">
             {/* Glow behind */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-cyan-500/15 blur-[80px] rounded-full pointer-events-none"></div>
             
