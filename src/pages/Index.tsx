@@ -812,7 +812,7 @@ const Index = () => {
       </section>
 
       {/* Interactive FAQ Section */}
-      <section className="py-24 px-6 relative">
+      <section ref={faqRef} className={`py-24 px-6 relative transition-all duration-700 ${faqVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.faq.title}</h2>
           <div className="space-y-4">
