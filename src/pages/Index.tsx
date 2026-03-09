@@ -69,10 +69,27 @@ const translations = {
     pricing: {
       title: "Прозорі тарифи",
       btn: "Обрати тариф",
-      popular: "Найпопулярніший",
-      freq1: "разово",
-      freq2: "+ $200/міс",
-      freq3: "+ $500/міс"
+      popular: "Хіт продажу",
+      tier1Name: "Core Capture",
+      tier1Price: "$699 разово",
+      tier1F1: "1 месенджер (Insta/TG)",
+      tier1F2: "Відповідь 5 сек",
+      tier1F3: "Базова кваліфікація",
+      tier1F4: "Сповіщення в Telegram",
+      tier2Name: "Quantum Broker",
+      tier2Price: "$2,299",
+      tier2Freq: "+ $200/міс",
+      tier2F1: "Омніканальність",
+      tier2F2: "Синхронізація з CRM",
+      tier2F3: "Розпізнавання аудіо",
+      tier2F4: "Календар показів",
+      tier3Name: "Omni Matrix",
+      tier3Price: "$4,999",
+      tier3Freq: "+ $500/міс",
+      tier3F1: "Все з Quantum",
+      tier3F2: "Преміум-сайт під ключ",
+      tier3F3: "Кастомне навчання AI",
+      tier3F4: "Виділений сервер"
     },
     security: {
       title: "Криптографічна безпека та гарантії",
@@ -167,10 +184,27 @@ const translations = {
     pricing: {
       title: "Transparent Pricing",
       btn: "Choose Plan",
-      popular: "Most Popular",
-      freq1: "one-time",
-      freq2: "+ $200/mo",
-      freq3: "+ $500/mo"
+      popular: "Best Seller",
+      tier1Name: "Core Capture",
+      tier1Price: "$699 one-time",
+      tier1F1: "1 messenger (Insta/TG)",
+      tier1F2: "5-second response",
+      tier1F3: "Basic qualification",
+      tier1F4: "Telegram notifications",
+      tier2Name: "Quantum Broker",
+      tier2Price: "$2,299",
+      tier2Freq: "+ $200/mo",
+      tier2F1: "Omnichannel",
+      tier2F2: "CRM synchronization",
+      tier2F3: "Audio recognition",
+      tier2F4: "Viewing calendar",
+      tier3Name: "Omni Matrix",
+      tier3Price: "$4,999",
+      tier3Freq: "+ $500/mo",
+      tier3F1: "Everything in Quantum",
+      tier3F2: "Premium turnkey website",
+      tier3F3: "Custom AI training",
+      tier3F4: "Dedicated server"
     },
     security: {
       title: "Cryptographic Security & Guarantees",
@@ -265,10 +299,27 @@ const translations = {
     pricing: {
       title: "Prețuri Transparente",
       btn: "Alege Planul",
-      popular: "Cel mai popular",
-      freq1: "o singură dată",
-      freq2: "+ 200$/lună",
-      freq3: "+ 500$/lună"
+      popular: "Cel mai vândut",
+      tier1Name: "Core Capture",
+      tier1Price: "$699 o singură dată",
+      tier1F1: "1 messenger (Insta/TG)",
+      tier1F2: "Răspuns în 5 secunde",
+      tier1F3: "Calificare de bază",
+      tier1F4: "Notificări Telegram",
+      tier2Name: "Quantum Broker",
+      tier2Price: "$2.299",
+      tier2Freq: "+ $200/lună",
+      tier2F1: "Omnicanal",
+      tier2F2: "Sincronizare CRM",
+      tier2F3: "Recunoaștere audio",
+      tier2F4: "Calendar vizionări",
+      tier3Name: "Omni Matrix",
+      tier3Price: "$4.999",
+      tier3Freq: "+ $500/lună",
+      tier3F1: "Tot din Quantum",
+      tier3F2: "Site premium la cheie",
+      tier3F3: "Antrenament AI personalizat",
+      tier3F4: "Server dedicat"
     },
     security: {
       title: "Securitate Criptografică & Garanții",
@@ -508,7 +559,7 @@ const Index = () => {
               { icon: Database, title: t.features.f3Title, desc: t.features.f3Desc },
               { icon: Calendar, title: t.features.f4Title, desc: t.features.f4Desc }
             ].map((feature, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-cyan-500/30 transition-colors group">
+              <div key={i} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)] group">
                 <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                   <feature.icon className="w-5 h-5 text-cyan-400" />
                 </div>
@@ -532,7 +583,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
             {/* Human Card */}
-            <div className="bg-white/5 border border-red-500/20 rounded-2xl p-8 relative">
+            <div className="bg-white/5 border border-red-500/20 rounded-2xl p-8 relative transition-all duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-[0_0_25px_rgba(239,68,68,0.15)]">
               <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.humanTitle}</h3>
               <ul className="space-y-4">
                 {[t.ecoJustify.humanPoint1, t.ecoJustify.humanPoint2, t.ecoJustify.humanPoint3].map((point, i) => (
@@ -546,7 +597,7 @@ const Index = () => {
             </div>
 
             {/* AI Card */}
-            <div className="bg-white/5 border border-cyan-500/40 shadow-[0_0_20px_rgba(34,211,238,0.1)] rounded-2xl p-8 scale-105 z-10 relative">
+            <div className="bg-white/5 border border-cyan-500/40 shadow-[0_0_20px_rgba(34,211,238,0.1)] rounded-2xl p-8 scale-105 z-10 relative transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(34,211,238,0.2)]">
               <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.aiTitle}</h3>
               <ul className="space-y-4">
                 {[t.ecoJustify.aiPoint1, t.ecoJustify.aiPoint2, t.ecoJustify.aiPoint3].map((point, i) => (
@@ -575,10 +626,18 @@ const Index = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.pricing.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
             
-            {/* Base Capture */}
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col">
-              <h3 className="text-xl font-semibold text-white mb-2">Base Capture</h3>
-              <div className="text-3xl font-bold text-white mb-6">$699 <span className="text-lg text-zinc-500 font-normal">{t.pricing.freq1}</span></div>
+            {/* Tier 1: Core Capture */}
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]">
+              <h3 className="text-xl font-semibold text-white mb-2">{t.pricing.tier1Name}</h3>
+              <div className="text-3xl font-bold text-white mb-6">{t.pricing.tier1Price}</div>
+              <ul className="space-y-3 mb-8 flex-1">
+                {[t.pricing.tier1F1, t.pricing.tier1F2, t.pricing.tier1F3, t.pricing.tier1F4].map((f, i) => (
+                  <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-zinc-500 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
               <button 
                 onClick={() => setIsModalOpen(true)}
                 className="w-full py-3 rounded-xl border border-cyan-500 text-cyan-400 font-medium hover:bg-cyan-500/10 transition-colors"
@@ -587,13 +646,21 @@ const Index = () => {
               </button>
             </div>
 
-            {/* Smart Agent (Featured) */}
-            <div className="bg-white/5 backdrop-blur-xl border border-cyan-400 rounded-2xl p-8 flex flex-col relative shadow-[0_0_20px_rgba(34,211,238,0.2)] md:-translate-y-4">
+            {/* Tier 2: Quantum Broker (HOT) */}
+            <div className="bg-white/5 backdrop-blur-xl border border-cyan-400 rounded-2xl p-8 flex flex-col relative shadow-[0_0_30px_rgba(34,211,238,0.2)] scale-105 z-10">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-cyan-500 text-black text-xs font-bold uppercase tracking-wider rounded-full whitespace-nowrap">
                 {t.pricing.popular}
               </div>
-              <h3 className="text-xl font-semibold text-white mb-2">Smart Agent</h3>
-              <div className="text-3xl font-bold text-white mb-6">$2,299 <span className="text-lg text-zinc-500 font-normal">{t.pricing.freq2}</span></div>
+              <h3 className="text-xl font-semibold text-white mb-2">{t.pricing.tier2Name}</h3>
+              <div className="text-3xl font-bold text-white mb-6">{t.pricing.tier2Price} <span className="text-lg text-zinc-500 font-normal">{t.pricing.tier2Freq}</span></div>
+              <ul className="space-y-3 mb-8 flex-1">
+                {[t.pricing.tier2F1, t.pricing.tier2F2, t.pricing.tier2F3, t.pricing.tier2F4].map((f, i) => (
+                  <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
               <button 
                 onClick={() => setIsModalOpen(true)}
                 className="w-full py-3 rounded-xl bg-cyan-400 text-black font-semibold hover:bg-cyan-300 transition-colors"
@@ -602,13 +669,21 @@ const Index = () => {
               </button>
             </div>
 
-            {/* Pro Eco */}
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col">
-              <h3 className="text-xl font-semibold text-white mb-2">Pro Eco</h3>
-              <div className="text-3xl font-bold text-white mb-6">$4,999 <span className="text-lg text-zinc-500 font-normal">{t.pricing.freq3}</span></div>
+            {/* Tier 3: Omni Matrix */}
+            <div className="bg-white/5 backdrop-blur-xl border border-violet-500/30 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.2)]">
+              <h3 className="text-xl font-semibold text-white mb-2">{t.pricing.tier3Name}</h3>
+              <div className="text-3xl font-bold text-white mb-6">{t.pricing.tier3Price} <span className="text-lg text-zinc-500 font-normal">{t.pricing.tier3Freq}</span></div>
+              <ul className="space-y-3 mb-8 flex-1">
+                {[t.pricing.tier3F1, t.pricing.tier3F2, t.pricing.tier3F3, t.pricing.tier3F4].map((f, i) => (
+                  <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-violet-400 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="w-full py-3 rounded-xl border border-cyan-500 text-cyan-400 font-medium hover:bg-cyan-500/10 transition-colors"
+                className="w-full py-3 rounded-xl border border-violet-500 text-violet-400 font-medium hover:bg-violet-500/10 transition-colors"
               >
                 {t.pricing.btn}
               </button>
@@ -625,15 +700,15 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {/* Tech Cards */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]">
               <Shield className="w-8 h-8 text-cyan-400" />
               <span className="text-white font-medium">{t.security.t1}</span>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]">
               <Lock className="w-8 h-8 text-cyan-400" />
               <span className="text-white font-medium">{t.security.t2}</span>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]">
               <Server className="w-8 h-8 text-cyan-400" />
               <span className="text-white font-medium">{t.security.t3}</span>
             </div>
