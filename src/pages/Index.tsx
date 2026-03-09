@@ -201,21 +201,22 @@ const translations = {
     },
     calculator: {
       title: "Розрахуйте свій прибуток з Laverol",
-      sub: "Введіть реальні показники вашого агентства та побачте математику втрат і росту.",
+      sub: "Навіть 5 врятованих нічних лідів на місяць повністю окупають систему.",
       leads: "Ліди за місяць",
       comm: "Середня комісія",
       rentPrice: "Вартість оренди",
       conv: "Поточна конверсія (%)",
       gain: "Додатковий прибуток:",
-      loss: "Втрати зараз:",
+      loss: "Ви втрачаєте зараз:",
       roi: "Окупність",
       sale: "Продаж",
       rent: "Оренда",
       saleHint: "Режим продажу: втрата 30% нічних лідів, буст конверсії 1.3x",
-      rentHint: "Режим оренди: втрата 40% лідів (орендарі швидше йдуть), буст 1.5x",
-      savedLeads: "Врятовано лідів",
+      rentHint: "Режим оренди: втрата 40% лідів (орендарі швидші), буст 1.5x",
+      savedLeads: "Врятовано угод",
       perMonth: "/міс",
-      aiAdmin: "AI-адміністратор"
+      aiAdmin: "AI-адміністратор",
+      clients: "клієнтів"
     }
   },
   EN: {
@@ -400,21 +401,22 @@ const translations = {
     },
     calculator: {
       title: "Calculate your profit with Laverol",
-      sub: "Enter your agency's real metrics and see the math of loss and growth.",
+      sub: "Even 5 saved night leads per month fully pay for the system.",
       leads: "Leads per month",
       comm: "Average commission",
       rentPrice: "Rent price",
       conv: "Current conversion (%)",
       gain: "Extra Profit:",
-      loss: "Current Loss:",
+      loss: "You're losing now:",
       roi: "Payback",
       sale: "Sale",
       rent: "Rent",
       saleHint: "Sale mode: 30% night leads lost, 1.3x conversion boost",
       rentHint: "Rent mode: 40% leads lost (renters move faster), 1.5x boost",
-      savedLeads: "Leads saved",
+      savedLeads: "Deals saved",
       perMonth: "/mo",
-      aiAdmin: "AI Admin"
+      aiAdmin: "AI Admin",
+      clients: "clients"
     }
   },
   RO: {
@@ -599,21 +601,22 @@ const translations = {
     },
     calculator: {
       title: "Calculează-ți profitul cu Laverol",
-      sub: "Introdu valorile reale ale agenției tale și vezi matematica pierderilor și a creșterii.",
+      sub: "Chiar și 5 lead-uri de noapte salvate pe lună plătesc complet sistemul.",
       leads: "Lead-uri pe lună",
       comm: "Comision mediu",
       rentPrice: "Preț chirie",
       conv: "Conversie curentă (%)",
       gain: "Profit suplimentar:",
-      loss: "Pierderi curente:",
+      loss: "Pierzi acum:",
       roi: "Amortizare",
       sale: "Vânzare",
       rent: "Închiriere",
       saleHint: "Mod vânzare: 30% lead-uri pierdute noaptea, boost conversie 1.3x",
       rentHint: "Mod închiriere: 40% lead-uri pierdute (chiriașii se mișcă mai rapid), boost 1.5x",
-      savedLeads: "Lead-uri salvate",
+      savedLeads: "Tranzacții salvate",
       perMonth: "/lună",
-      aiAdmin: "Admin AI"
+      aiAdmin: "Admin AI",
+      clients: "clienți"
     }
   }
 };
