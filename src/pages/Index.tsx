@@ -401,21 +401,22 @@ const translations = {
     },
     calculator: {
       title: "Calculate your profit with Laverol",
-      sub: "Enter your agency's real metrics and see the math of loss and growth.",
+      sub: "Even 5 saved night leads per month fully pay for the system.",
       leads: "Leads per month",
       comm: "Average commission",
       rentPrice: "Rent price",
       conv: "Current conversion (%)",
       gain: "Extra Profit:",
-      loss: "Current Loss:",
+      loss: "You're losing now:",
       roi: "Payback",
       sale: "Sale",
       rent: "Rent",
       saleHint: "Sale mode: 30% night leads lost, 1.3x conversion boost",
       rentHint: "Rent mode: 40% leads lost (renters move faster), 1.5x boost",
-      savedLeads: "Leads saved",
+      savedLeads: "Deals saved",
       perMonth: "/mo",
-      aiAdmin: "AI Admin"
+      aiAdmin: "AI Admin",
+      clients: "clients"
     }
   },
   RO: {
