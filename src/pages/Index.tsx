@@ -712,7 +712,7 @@ const Index = () => {
             {/* Tier 3: Omni Matrix */}
             <div className="bg-violet-950/30 backdrop-blur-xl border border-violet-500/30 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/60 hover:shadow-[0_0_25px_rgba(139,92,246,0.2)]">
               <h3 className="text-xl font-semibold text-white mb-2">{t.pricing.tier3Name}</h3>
-              <div className="text-3xl font-bold text-white mb-6">{t.pricing.tier3Price} <span className="text-lg text-zinc-500 font-normal">{t.pricing.tier3Freq}</span></div>
+              <div className="text-3xl font-bold text-white mb-6 whitespace-nowrap">{t.pricing.tier3Price} <span className="text-lg text-zinc-500 font-normal">{t.pricing.tier3Freq}</span></div>
               <ul className="space-y-3 mb-8 flex-1">
                 {[t.pricing.tier3F1, t.pricing.tier3F2, t.pricing.tier3F3, t.pricing.tier3F4].map((f, i) => (
                   <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
