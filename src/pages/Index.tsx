@@ -1003,6 +1003,97 @@ const Index = () => {
       </section>
 
 
+      {/* The 5-Second Journey */}
+      <section ref={journeyRef} className={`py-24 px-6 relative transition-all duration-700 ${journeyVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.journey.title}</h2>
+          
+          {/* Pipeline */}
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-cyan-500/20 via-cyan-400/60 to-cyan-500/20"></div>
+            <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-cyan-500/0 via-cyan-400/40 to-cyan-500/0 blur-sm"></div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {t.journey.steps.map((step, i) => (
+                <div key={i} className="flex flex-col items-center text-center group">
+                  {/* Glowing dot */}
+                  <div className="relative mb-6">
+                    <div className="w-10 h-10 rounded-full bg-cyan-500/20 border-2 border-cyan-400 flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.5)]">
+                      <span className="text-cyan-400 font-bold text-sm">{i + 1}</span>
+                    </div>
+                    <div className="absolute inset-0 bg-cyan-400/30 rounded-full blur-md animate-pulse"></div>
+                  </div>
+                  
+                  {/* Card */}
+                  <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 w-full transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]">
+                    <div className="text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">{step.time}</div>
+                    <h3 className="text-white font-semibold mb-1">{step.label}</h3>
+                    <p className="text-zinc-400 text-sm">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Control & Transparency — Dashboard Preview */}
+      <section ref={dashRef} className={`py-24 px-6 relative transition-all duration-700 ${dashVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-4">{t.dashboard.title}</h2>
+          <p className="text-zinc-400 text-lg text-center max-w-2xl mx-auto mb-16">{t.dashboard.subtitle}</p>
+
+          {/* Dashboard Mockup */}
+          <div className="animate-[float_6s_ease-in-out_infinite] relative">
+            {/* Glow behind */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-cyan-500/15 blur-[80px] rounded-full pointer-events-none"></div>
+            
+            <div className="relative bg-white/5 backdrop-blur-xl border border-white/15 rounded-2xl p-6 md:p-8 shadow-[0_0_60px_-15px_rgba(0,200,255,0.2)]">
+              {/* Title bar */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500/60"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500/60"></div>
+                    <div className="w-3 h-3 rounded-full bg-emerald-500/60"></div>
+                  </div>
+                  <span className="text-zinc-400 text-sm font-medium ml-2">{t.dashboard.managerDashboard}</span>
+                </div>
+                <div className="text-zinc-500 text-xs">laverol.ai/dashboard</div>
+              </div>
+
+              {/* 3 Stat Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Stat 1 — Conversion */}
+                <div className="bg-black/40 border border-emerald-500/20 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]">
+                  <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">{t.dashboard.stat1Label}</div>
+                  <div className="text-emerald-400 text-3xl font-bold">{t.dashboard.stat1Value}</div>
+                </div>
+
+                {/* Stat 2 — Time */}
+                <div className="bg-black/40 border border-white/10 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/30 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]">
+                  <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">{t.dashboard.stat2Label}</div>
+                  <div className="text-white text-3xl font-bold">{t.dashboard.stat2Value}</div>
+                </div>
+
+                {/* Stat 3 — Status */}
+                <div className="bg-black/40 border border-cyan-500/20 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+                  <div className="text-zinc-500 text-xs uppercase tracking-wider mb-2">{t.dashboard.stat3Label}</div>
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                    </span>
+                    <span className="text-cyan-400 text-3xl font-bold">{t.dashboard.stat3Value}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive FAQ Section */}
       <section ref={faqRef} className={`py-24 px-6 relative transition-all duration-700 ${faqVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-3xl">
