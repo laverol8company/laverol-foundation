@@ -796,20 +796,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Case Study Banner */}
-      <section ref={caseRef} className={`px-6 relative transition-all duration-700 ${caseVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <div className="container mx-auto max-w-6xl">
-          <div className="bg-gradient-to-r from-cyan-900/30 to-violet-900/30 border-y border-white/10 py-12 px-8 rounded-2xl my-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-cyan-500/5 animate-pulse rounded-2xl"></div>
-            <h2 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-4 relative z-10 drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-              {t.caseStudy.title}
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto relative z-10">
-              {t.caseStudy.text}
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Interactive FAQ Section */}
       <section ref={faqRef} className={`py-24 px-6 relative transition-all duration-700 ${faqVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
