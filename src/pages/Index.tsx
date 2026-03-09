@@ -61,15 +61,45 @@ const translations = {
     },
     features: {
       title: "Один AI-мозок. Всі ваші канали.",
-      f1Title: "Омніканальне захоплення",
-      f1Desc: "Instagram, WhatsApp, Site",
-      f2Title: "AI-Кваліфікація",
-      f2Desc: "Аналіз бюджету та потреб інвестора",
-      f3Title: "Синхронізація з CRM",
-      f3Desc: "Автоматичне створення угод без помилок",
-      f4Title: "Календар та покази",
-      f4Desc: "Миттєве бронювання зустрічей"
     },
+    deepDive: [
+      {
+        tab: "Омніканальне захоплення",
+        icon: "Smartphone",
+        howTitle: "Як це працює",
+        how: "Збір лідів з Instagram, WhatsApp, Telegram та сайту в єдине вікно 24/7.",
+        mathTitle: "Маркетинговий важіль",
+        math: "Якщо ви витрачаєте $1,000 на рекламу, а менеджери пропускають 30% нічних лідів — ви втрачаєте $300 щомісяця. Laverol рятує ці $300, окупаючи себе ще до першої угоди.",
+        profit: "$300/міс економії"
+      },
+      {
+        tab: "AI-Кваліфікація",
+        icon: "Brain",
+        howTitle: "Як це працює",
+        how: "Система ставить 4 критичні питання: Бюджет, Термін, Локація, Кількість кімнат.",
+        mathTitle: "Економія часу",
+        math: "Брокер витрачає 20 хв на пусті розмови з нецільовими лідами. При 100 лідах — це 33 години на місяць. Laverol відсіює \"туристів\", даючи брокеру тільки тих, хто готовий купувати.",
+        profit: ">$1,500/міс вартість часу"
+      },
+      {
+        tab: "Синхронізація з CRM",
+        icon: "Database",
+        howTitle: "Як це працює",
+        how: "Миттєве створення картки клієнта в amoCRM/Bitrix24 з усіма тегами та історією листування.",
+        mathTitle: "Цифрова дисципліна",
+        math: "15% лідів губляться через те, що менеджер не вніс їх у базу. При середній комісії $5,000 — це пряма втрата величезних грошей. Laverol вносить 100% лідів без помилок.",
+        profit: "0% втрачених лідів"
+      },
+      {
+        tab: "Календар та покази",
+        icon: "Calendar",
+        howTitle: "Як це працює",
+        how: "AI бачить вільні вікна брокерів та сам пропонує клієнту час для зустрічі або зуму.",
+        mathTitle: "Швидкість угоди",
+        math: "Клієнт найбільш \"гарячий\" у перші 10 хвилин. Можливість записатися на перегляд миттєво підвищує ймовірність угоди на 25%.",
+        profit: "+25% конверсія"
+      }
+    ],
     ecoJustify: {
       title: "Економіка: Люди проти Системи",
       subtitle: "Чому інвестиція в Laverol окупується в перший же місяць",
@@ -192,15 +222,45 @@ const translations = {
     },
     features: {
       title: "One AI brain. All your channels.",
-      f1Title: "Omnichannel capture",
-      f1Desc: "Instagram, WhatsApp, Site",
-      f2Title: "AI Qualification",
-      f2Desc: "Analysis of budget and investor needs",
-      f3Title: "CRM Synchronization",
-      f3Desc: "Automatic deal creation without errors",
-      f4Title: "Calendar & Viewings",
-      f4Desc: "Instant meeting booking"
     },
+    deepDive: [
+      {
+        tab: "Omnichannel Capture",
+        icon: "Smartphone",
+        howTitle: "How it works",
+        how: "Collecting leads from Instagram, WhatsApp, Telegram and your website into a single window 24/7.",
+        mathTitle: "Marketing Leverage",
+        math: "If you spend $1,000 on ads and managers miss 30% of night leads — you lose $300/month. Laverol saves that $300, paying for itself before the first deal.",
+        profit: "$300/mo saved"
+      },
+      {
+        tab: "AI Qualification",
+        icon: "Brain",
+        howTitle: "How it works",
+        how: "The system asks 4 critical questions: Budget, Timeline, Location, Number of rooms.",
+        mathTitle: "Time Savings",
+        math: "A broker spends 20 min on empty conversations with unqualified leads. At 100 leads — that's 33 hours/month. Laverol filters out \"tourists\", giving the broker only ready buyers.",
+        profit: ">$1,500/mo time value"
+      },
+      {
+        tab: "CRM Synchronization",
+        icon: "Database",
+        howTitle: "How it works",
+        how: "Instant client card creation in amoCRM/Bitrix24 with all tags and conversation history.",
+        mathTitle: "Digital Discipline",
+        math: "15% of leads are lost because managers don't add them to the database. At an average commission of $5,000 — that's a direct loss. Laverol adds 100% of leads without errors.",
+        profit: "0% leads lost"
+      },
+      {
+        tab: "Calendar & Viewings",
+        icon: "Calendar",
+        howTitle: "How it works",
+        how: "AI sees brokers' available slots and proposes meeting or Zoom time to the client.",
+        mathTitle: "Deal Speed",
+        math: "A client is most \"hot\" in the first 10 minutes. Instant booking increases deal probability by 25%.",
+        profit: "+25% conversion"
+      }
+    ],
     ecoJustify: {
       title: "Economics: Humans vs System",
       subtitle: "Why investing in Laverol pays for itself in the first month",
@@ -323,15 +383,45 @@ const translations = {
     },
     features: {
       title: "Un creier AI. Toate canalele tale.",
-      f1Title: "Captură omnicanal",
-      f1Desc: "Instagram, WhatsApp, Site",
-      f2Title: "Calificare AI",
-      f2Desc: "Analiza bugetului și a nevoilor investitorului",
-      f3Title: "Sincronizare CRM",
-      f3Desc: "Creare automată a tranzacțiilor fără erori",
-      f4Title: "Calendar & Vizionări",
-      f4Desc: "Programare instantanee a întâlnirilor"
     },
+    deepDive: [
+      {
+        tab: "Captură Omnicanal",
+        icon: "Smartphone",
+        howTitle: "Cum funcționează",
+        how: "Colectarea lead-urilor de pe Instagram, WhatsApp, Telegram și site în o singură fereastră 24/7.",
+        mathTitle: "Pârghie de Marketing",
+        math: "Dacă cheltuiți $1,000 pe reclame și managerii pierd 30% din lead-urile de noapte — pierdeți $300/lună. Laverol salvează acești $300.",
+        profit: "$300/lună economii"
+      },
+      {
+        tab: "Calificare AI",
+        icon: "Brain",
+        howTitle: "Cum funcționează",
+        how: "Sistemul pune 4 întrebări critice: Buget, Termen, Locație, Număr de camere.",
+        mathTitle: "Economie de Timp",
+        math: "Un broker petrece 20 min cu lead-uri necalificate. La 100 lead-uri — 33 ore/lună. Laverol filtrează \"turiștii\".",
+        profit: ">$1,500/lună timp salvat"
+      },
+      {
+        tab: "Sincronizare CRM",
+        icon: "Database",
+        howTitle: "Cum funcționează",
+        how: "Creare instantanee a cardului clientului în amoCRM/Bitrix24 cu toate etichetele și istoricul conversațiilor.",
+        mathTitle: "Disciplină Digitală",
+        math: "15% din lead-uri se pierd pentru că managerii nu le adaugă în bază. La un comision mediu de $5,000 — pierdere directă. Laverol adaugă 100% fără erori.",
+        profit: "0% lead-uri pierdute"
+      },
+      {
+        tab: "Calendar & Vizionări",
+        icon: "Calendar",
+        howTitle: "Cum funcționează",
+        how: "AI vede sloturile libere ale brokerilor și propune clientului timp de întâlnire sau Zoom.",
+        mathTitle: "Viteza Tranzacției",
+        math: "Clientul este cel mai \"fierbinte\" în primele 10 minute. Programarea instantanee crește probabilitatea tranzacției cu 25%.",
+        profit: "+25% conversie"
+      }
+    ],
     ecoJustify: {
       title: "Economie: Oameni vs Sistem",
       subtitle: "De ce investiția în Laverol se amortizează în prima lună",
