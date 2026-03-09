@@ -328,8 +328,8 @@ const translations = {
     journey: {
       title: "The 5-Second Lead Journey",
       steps: [
-        { time: "3:15 AM", label: "Capture", desc: "Lead messages on Instagram" },
-        { time: "5 sec", label: "Instant Response", desc: "Laverol sends property presentation" },
+        { time: "24/7", label: "Capture", desc: "Lead writes on the website or messenger" },
+        { time: "5 sec", label: "Instant Response", desc: "System sends property presentation" },
         { time: "2 min", label: "Qualification", desc: "AI identifies budget & timeline" },
         { time: "5 min", label: "Ready to Show", desc: "Deal in CRM, broker gets notified" }
       ]
