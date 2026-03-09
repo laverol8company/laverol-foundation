@@ -201,13 +201,13 @@ const translations = {
     },
     calculator: {
       title: "Розрахуйте свій прибуток з Laverol",
-      sub: "Побачте реальний фінансовий результат вашої автоматизації.",
+      sub: "Введіть або виберіть значення — побачте реальний фінансовий результат.",
       leads: "Ліди за місяць",
       comm: "Середня комісія",
       rentPrice: "Вартість оренди",
       conv: "Поточна конверсія (%)",
       gain: "Додатковий прибуток:",
-      loss: "Ви втрачаєте зараз:",
+      loss: "Упущена вигода:",
       roi: "Окупність",
       sale: "Продаж",
       rent: "Оренда",
@@ -219,9 +219,12 @@ const translations = {
       clients: "клієнтів",
       yourProfit: "Ваш прибуток з Laverol",
       growthLabel: "Це на",
-      growthSuffix: "більше, ніж без системи",
+      growthSuffix: "більше",
       currentResult: "Поточний результат",
-      paidOff: "Система окупила себе"
+      paidOff: "Система окупила себе",
+      inputLabel: "Налаштування показників",
+      copy: "Копіювати",
+      bookDemo: "Забронювати демо"
     }
   },
   EN: {
@@ -406,13 +409,13 @@ const translations = {
     },
     calculator: {
       title: "Calculate your profit with Laverol",
-      sub: "See the real financial impact of your automation.",
+      sub: "Enter or select values — see the real financial impact.",
       leads: "Leads per month",
       comm: "Average commission",
       rentPrice: "Rent price",
       conv: "Current conversion (%)",
       gain: "Extra Profit:",
-      loss: "You're losing now:",
+      loss: "Lost opportunity:",
       roi: "Payback",
       sale: "Sale",
       rent: "Rent",
@@ -424,9 +427,12 @@ const translations = {
       clients: "clients",
       yourProfit: "Your Profit with Laverol",
       growthLabel: "That's",
-      growthSuffix: "more than without the system",
+      growthSuffix: "more",
       currentResult: "Current result",
-      paidOff: "System paid for itself"
+      paidOff: "System paid for itself",
+      inputLabel: "Configure metrics",
+      copy: "Copy",
+      bookDemo: "Book a Demo"
     }
   },
   RO: {
@@ -611,27 +617,30 @@ const translations = {
     },
     calculator: {
       title: "Calculează-ți profitul cu Laverol",
-      sub: "Vezi impactul financiar real al automatizării tale.",
+      sub: "Introdu sau selectează valori — vezi impactul financiar real.",
       leads: "Lead-uri pe lună",
       comm: "Comision mediu",
       rentPrice: "Preț chirie",
       conv: "Conversie curentă (%)",
       gain: "Profit suplimentar:",
-      loss: "Pierzi acum:",
+      loss: "Oportunitate pierdută:",
       roi: "Amortizare",
       sale: "Vânzare",
       rent: "Închiriere",
       saleHint: "Mod vânzare: 30% lead-uri pierdute noaptea, boost conversie 1.3x",
-      rentHint: "Mod închiriere: 40% lead-uri pierdute (chiriașii se mișcă mai rapid), boost 1.5x",
+      rentHint: "Mod închiriere: 40% lead-uri pierdute, boost 1.5x",
       savedLeads: "Tranzacții salvate",
       perMonth: "/lună",
       aiAdmin: "Admin AI",
       clients: "clienți",
       yourProfit: "Profitul Tău cu Laverol",
       growthLabel: "Cu",
-      growthSuffix: "mai mult decât fără sistem",
+      growthSuffix: "mai mult",
       currentResult: "Rezultat curent",
-      paidOff: "Sistemul s-a amortizat"
+      paidOff: "Sistemul s-a amortizat",
+      inputLabel: "Configurare metrici",
+      copy: "Copiază",
+      bookDemo: "Rezervă Demo"
     }
   }
 };
