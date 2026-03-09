@@ -325,6 +325,26 @@ const translations = {
       title: "Case Studies: +42% Conversion in the First Month",
       text: "Average results for our clients after implementing Laverol AI. Zero missed night leads."
     },
+    journey: {
+      title: "The 5-Second Lead Journey",
+      steps: [
+        { time: "3:15 AM", label: "Capture", desc: "Lead messages on Instagram" },
+        { time: "5 sec", label: "Instant Response", desc: "Laverol sends property presentation" },
+        { time: "2 min", label: "Qualification", desc: "AI identifies budget & timeline" },
+        { time: "5 min", label: "Ready to Show", desc: "Deal in CRM, broker gets notified" }
+      ]
+    },
+    dashboard: {
+      title: "Control & Transparency",
+      subtitle: "Full control in your pocket. Manage AI logic and analyze every broker's performance in real time.",
+      managerDashboard: "Manager Dashboard",
+      stat1Label: "Night lead conversion",
+      stat1Value: "98%",
+      stat2Label: "Time saved",
+      stat2Value: "120+ hrs/mo",
+      stat3Label: "System status",
+      stat3Value: "Active 24/7"
+    },
     faq: {
       title: "Frequently Asked Questions",
       q1: "Will the AI make up non-existent apartments?",
@@ -485,6 +505,26 @@ const translations = {
     caseStudy: {
       title: "Studii de caz: +42% conversie în prima lună",
       text: "Rezultatele medii ale clienților noștri după implementarea Laverol AI. Zero lead-uri de noapte pierdute."
+    },
+    journey: {
+      title: "Călătoria Lead-ului în 5 Secunde",
+      steps: [
+        { time: "03:15 noaptea", label: "Captură", desc: "Lead-ul scrie pe Instagram" },
+        { time: "5 sec", label: "Răspuns Instant", desc: "Laverol trimite prezentarea proprietăților" },
+        { time: "2 min", label: "Calificare", desc: "AI identifică bugetul și termenele" },
+        { time: "5 min", label: "Gata de Vizionare", desc: "Tranzacție în CRM, brokerul primește notificare" }
+      ]
+    },
+    dashboard: {
+      title: "Control & Transparență",
+      subtitle: "Control complet în buzunarul tău. Gestionează logica AI și analizează performanța fiecărui broker în timp real.",
+      managerDashboard: "Panoul Managerului",
+      stat1Label: "Conversie lead-uri de noapte",
+      stat1Value: "98%",
+      stat2Label: "Timp economisit",
+      stat2Value: "120+ ore/lună",
+      stat3Label: "Starea sistemului",
+      stat3Value: "Activă 24/7"
     },
     faq: {
       title: "Întrebări frecvente",
