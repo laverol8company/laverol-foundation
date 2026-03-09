@@ -147,8 +147,8 @@ const translations = {
     journey: {
       title: "Подорож ліда за 5 секунд",
       steps: [
-        { time: "03:15 ночі", label: "Захоплення", desc: "Лід пише у Instagram" },
-        { time: "5 сек", label: "Миттєвий відгук", desc: "Laverol надсилає презентацію об'єктів" },
+        { time: "24/7", label: "Захоплення", desc: "Лід пише на сайт або у мессенджер" },
+        { time: "5 сек", label: "Миттєвий відгук", desc: "Система надсилає презентацію об'єктів" },
         { time: "2 хв", label: "Кваліфікація", desc: "AI виявляє бюджет та терміни" },
         { time: "5 хв", label: "Готовий показ", desc: "Угода в CRM, брокер отримує сповіщення" }
       ]
@@ -157,7 +157,7 @@ const translations = {
       title: "Контроль та прозорість",
       subtitle: "Повний контроль у вашій кишені. Керуйте логікою AI та аналізуйте ефективність кожного брокера в реальному часі.",
       managerDashboard: "Панель менеджера",
-      stat1Label: "Конверсія нічних лідів",
+      stat1Label: "КОНВЕРСІЯ НОВИХ ЛІДІВ",
       stat1Value: "98%",
       stat2Label: "Заощаджено часу",
       stat2Value: "120+ годин/міс",
@@ -328,8 +328,8 @@ const translations = {
     journey: {
       title: "The 5-Second Lead Journey",
       steps: [
-        { time: "3:15 AM", label: "Capture", desc: "Lead messages on Instagram" },
-        { time: "5 sec", label: "Instant Response", desc: "Laverol sends property presentation" },
+        { time: "24/7", label: "Capture", desc: "Lead writes on the website or messenger" },
+        { time: "5 sec", label: "Instant Response", desc: "System sends property presentation" },
         { time: "2 min", label: "Qualification", desc: "AI identifies budget & timeline" },
         { time: "5 min", label: "Ready to Show", desc: "Deal in CRM, broker gets notified" }
       ]
@@ -338,7 +338,7 @@ const translations = {
       title: "Control & Transparency",
       subtitle: "Full control in your pocket. Manage AI logic and analyze every broker's performance in real time.",
       managerDashboard: "Manager Dashboard",
-      stat1Label: "Night lead conversion",
+      stat1Label: "NEW LEAD CONVERSION",
       stat1Value: "98%",
       stat2Label: "Time saved",
       stat2Value: "120+ hrs/mo",
@@ -509,8 +509,8 @@ const translations = {
     journey: {
       title: "Călătoria Lead-ului în 5 Secunde",
       steps: [
-        { time: "03:15 noaptea", label: "Captură", desc: "Lead-ul scrie pe Instagram" },
-        { time: "5 sec", label: "Răspuns Instant", desc: "Laverol trimite prezentarea proprietăților" },
+        { time: "24/7", label: "Captură", desc: "Lead-ul scrie pe site sau în messenger" },
+        { time: "5 sec", label: "Răspuns Instant", desc: "Sistemul trimite prezentarea proprietăților" },
         { time: "2 min", label: "Calificare", desc: "AI identifică bugetul și termenele" },
         { time: "5 min", label: "Gata de Vizionare", desc: "Tranzacție în CRM, brokerul primește notificare" }
       ]
@@ -519,7 +519,7 @@ const translations = {
       title: "Control & Transparență",
       subtitle: "Control complet în buzunarul tău. Gestionează logica AI și analizează performanța fiecărui broker în timp real.",
       managerDashboard: "Panoul Managerului",
-      stat1Label: "Conversie lead-uri de noapte",
+      stat1Label: "CONVERSIE LEAD-URI NOI",
       stat1Value: "98%",
       stat2Label: "Timp economisit",
       stat2Value: "120+ ore/lună",
