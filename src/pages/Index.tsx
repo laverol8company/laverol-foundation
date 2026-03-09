@@ -23,12 +23,15 @@ const translations = {
     chat: {
       complex: "ЖК \"Новопечерські Липки\"",
       console: "Laverol AI Console",
-      status: "Active",
-      msgUser: "Доброго вечора. Чи є в наявності 2-кімнатні квартири від 70м²?",
-      msgAi: "Добрий вечір! Так, у нас є 3 варіанти 2-кімнатних квартир площею від 72м² до 85м². Ціни починаються від $120,000. Бажаєте записатися на перегляд завтра?",
-      statTime: "Response Time",
-      statLeads: "Leads Today",
-      statConv: "Conversion"
+      status: "Online",
+      msgUser: "Привіт! Шукаю 2к квартиру з видом на Дніпро, бюджет до $150K. Є варіанти?",
+      msgAi: "Вітаю! 🏙️ Знайшла 4 квартири під ваш запит. Топ-варіант: 78м², 12 поверх, панорамні вікна на Дніпро — $142,000. Вільний слот на перегляд завтра о 14:00. Забронювати?",
+      statTime: "Відповідь",
+      statTimeVal: "1.2с",
+      statLeads: "Ліди сьогодні",
+      statLeadsVal: "142",
+      statConv: "Конверсія",
+      statConvVal: "+34%"
     },
     economics: {
       title: "Ваше агентство втрачає клієнтів у неробочий час.",
@@ -149,14 +152,17 @@ const translations = {
       feature3: "CRM Integration"
     },
     chat: {
-      complex: "Novopecherskie Lipki",
+      complex: "Riverside Towers",
       console: "Laverol AI Console",
-      status: "Active",
-      msgUser: "Good evening. Do you have 2-bedroom apartments from 70m²?",
-      msgAi: "Good evening! Yes, we have 3 options of 2-bedroom apartments ranging from 72m² to 85m². Prices start at $120,000. Would you like to schedule a viewing tomorrow?",
-      statTime: "Response Time",
+      status: "Online",
+      msgUser: "Hi! Looking for a 2-bed apartment with river view, budget up to $150K. Any options?",
+      msgAi: "Welcome! 🏙️ Found 4 apartments matching your request. Top pick: 78m², 12th floor, panoramic river view — $142,000. Free slot for viewing tomorrow at 2 PM. Shall I book it?",
+      statTime: "Response",
+      statTimeVal: "1.2s",
       statLeads: "Leads Today",
-      statConv: "Conversion"
+      statLeadsVal: "142",
+      statConv: "Conversion",
+      statConvVal: "+34%"
     },
     economics: {
       title: "Your agency loses clients outside working hours.",
@@ -277,14 +283,17 @@ const translations = {
       feature3: "Integrare CRM"
     },
     chat: {
-      complex: "Complexul Rezidențial",
+      complex: "Complexul Riverside",
       console: "Laverol AI Console",
-      status: "Active",
-      msgUser: "Bună seara. Aveți apartamente cu 2 camere de la 70m²?",
-      msgAi: "Bună seara! Da, avem 3 variante de apartamente cu 2 camere cu suprafețe între 72m² și 85m². Prețurile încep de la 120.000$. Doriți să programați o vizionare pentru mâine?",
-      statTime: "Timp Răspuns",
+      status: "Online",
+      msgUser: "Bună! Caut apartament 2 camere cu vedere la râu, buget până la 150K$. Există opțiuni?",
+      msgAi: "Bine ați venit! 🏙️ Am găsit 4 apartamente conform cererii. Top: 78m², etaj 12, panoramă spre râu — 142.000$. Slot liber pentru vizionare mâine la 14:00. Rezerv?",
+      statTime: "Răspuns",
+      statTimeVal: "1.2s",
       statLeads: "Lead-uri Azi",
-      statConv: "Conversie"
+      statLeadsVal: "142",
+      statConv: "Conversie",
+      statConvVal: "+34%"
     },
     economics: {
       title: "Agenția ta pierde clienți în afara orelor de lucru.",
