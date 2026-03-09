@@ -413,7 +413,7 @@ const Index = () => {
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <a href="#" className="text-2xl font-bold text-cyan-400 tracking-tight">
-              Laverol
+              Laverol solutions
             </a>
             <div className="hidden md:flex items-center gap-1 text-sm font-medium">
               <a href="#how-it-works" className="px-4 py-2 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 transition-all duration-200">{t.nav.howItWorks}</a>
