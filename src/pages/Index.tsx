@@ -522,6 +522,53 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Economic Justification Section */}
+      <section className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
+            {t.ecoJustify.title}
+          </h2>
+          <p className="text-gray-400 text-center text-lg mb-16">{t.ecoJustify.subtitle}</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative">
+            {/* Human Card */}
+            <div className="bg-white/5 border border-red-500/20 rounded-2xl p-8 relative">
+              <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.humanTitle}</h3>
+              <ul className="space-y-4">
+                {[t.ecoJustify.humanPoint1, t.ecoJustify.humanPoint2, t.ecoJustify.humanPoint3].map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 text-zinc-300">
+                    <XCircle className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-red-400 text-xl font-bold mt-6">{t.ecoJustify.humanTotal}</p>
+            </div>
+
+            {/* AI Card */}
+            <div className="bg-white/5 border border-cyan-500/40 shadow-[0_0_20px_rgba(34,211,238,0.1)] rounded-2xl p-8 scale-105 z-10 relative">
+              <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.aiTitle}</h3>
+              <ul className="space-y-4">
+                {[t.ecoJustify.aiPoint1, t.ecoJustify.aiPoint2, t.ecoJustify.aiPoint3].map((point, i) => (
+                  <li key={i} className="flex items-start gap-3 text-zinc-300">
+                    <CheckCircle2 className="w-5 h-5 text-cyan-400 mt-0.5 shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-cyan-400 text-2xl font-bold mt-6">{t.ecoJustify.aiTotal}</p>
+            </div>
+          </div>
+
+          {/* Savings Badge */}
+          <div className="flex justify-center mt-[-20px] relative z-20">
+            <span className="bg-emerald-500 text-black px-6 py-2 rounded-full font-bold shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+              {t.ecoJustify.ecoBadge}
+            </span>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-24 px-6 relative">
         <div className="container mx-auto max-w-6xl">
