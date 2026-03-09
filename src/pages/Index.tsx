@@ -1,4 +1,4 @@
-import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar } from "lucide-react";
+import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server } from "lucide-react";
 
 const Index = () => {
   return (
@@ -243,6 +243,69 @@ const Index = () => {
           </div>
         </div>
       </section>
+      {/* Security & Guarantee Section */}
+      <section className="py-24 px-6 relative bg-black">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">Криптографічна безпека та гарантії</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {/* Tech Cards */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center">
+              <Shield className="w-8 h-8 text-cyan-400" />
+              <span className="text-white font-medium">100% GDPR Compliance</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center">
+              <Lock className="w-8 h-8 text-cyan-400" />
+              <span className="text-white font-medium">AES-256 Шифрування</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 text-center">
+              <Server className="w-8 h-8 text-cyan-400" />
+              <span className="text-white font-medium">Ізольовані сервери</span>
+            </div>
+          </div>
+
+          {/* Founders' Letter */}
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 text-center">
+            <p className="text-xl md:text-2xl text-zinc-300 leading-relaxed mb-8 max-w-4xl mx-auto italic">
+              "Ми не продаємо вам 'ще одного чат-бота'. Ми впроваджуємо цифрову дисципліну у ваш бізнес. Якщо за 30 днів система Laverol не окупить себе — ми повернемо гроші без питань."
+            </p>
+            <div className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 font-medium text-lg">
+              Керуючі партнери Laverol
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-5xl">
+          <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-900/20 via-black to-black border border-white/10 rounded-3xl p-12 md:p-20 text-center flex flex-col items-center">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
+              Готові до еволюції продажів?
+            </h2>
+            <p className="text-xl text-zinc-400 mb-10 max-w-2xl">
+              Забронюйте 15-хвилинний дзвінок. Ми покажемо систему Laverol на прикладі ваших об'єктів.
+            </p>
+            <button className="px-10 py-5 rounded-xl bg-cyan-400 text-black font-semibold text-xl hover:scale-105 transition-transform duration-200 shadow-[0_0_30px_-5px_rgba(34,211,238,0.4)]">
+              Забронювати Демо
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Minimalist Footer */}
+      <footer className="bg-black border-t border-white/10 py-8 px-6">
+        <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-zinc-500 text-sm">
+            © 2026 Laverol AI. Усі права захищено.
+          </div>
+          <div className="flex items-center gap-4 text-sm text-zinc-500">
+            <a href="#" className="hover:text-white transition-colors">Політика конфіденційності</a>
+            <span>|</span>
+            <a href="#" className="hover:text-white transition-colors">Умови використання</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
