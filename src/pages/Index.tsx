@@ -637,7 +637,7 @@ const Index = () => {
             </div>
 
             {/* AI Card */}
-            <div className="bg-white/5 border border-cyan-500/40 shadow-[0_0_20px_rgba(34,211,238,0.1)] rounded-2xl p-8 scale-105 z-10 relative transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(34,211,238,0.2)]">
+            <div className="bg-white/5 border border-cyan-500/40 shadow-[0_0_20px_rgba(34,211,238,0.1)] rounded-2xl p-8 z-10 relative h-full transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/60 hover:shadow-[0_0_25px_rgba(34,211,238,0.2)]">
               <h3 className="text-xl font-semibold text-white mb-6">{t.ecoJustify.aiTitle}</h3>
               <ul className="space-y-4">
                 {[t.ecoJustify.aiPoint1, t.ecoJustify.aiPoint2, t.ecoJustify.aiPoint3].map((point, i) => (
