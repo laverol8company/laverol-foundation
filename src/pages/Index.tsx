@@ -652,7 +652,7 @@ const Index = () => {
           </div>
 
           {/* Savings Badge */}
-          <div className="flex justify-center mt-[-20px] relative z-20">
+          <div className="flex justify-center mt-6 relative z-20">
             <span className="bg-emerald-500 text-black px-6 py-2 rounded-full font-bold shadow-[0_0_15px_rgba(16,185,129,0.4)]">
               {t.ecoJustify.ecoBadge}
             </span>
