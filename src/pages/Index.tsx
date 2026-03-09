@@ -623,7 +623,7 @@ const Index = () => {
       </main>
 
       {/* Cost of Inaction Section */}
-      <section id="economics" className="py-24 px-6 relative">
+      <section id="economics" ref={econRef} className={`py-24 px-6 relative transition-all duration-700 ${econVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.economics.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
