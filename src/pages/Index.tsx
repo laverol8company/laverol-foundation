@@ -667,7 +667,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
             
             {/* Tier 1: Core Capture */}
-            <div className="bg-cyan-950/30 backdrop-blur-xl border border-cyan-500/20 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-[0_0_25px_rgba(34,211,238,0.15)]">
+            <div className="bg-blue-950/40 backdrop-blur-xl border border-blue-500/30 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)]">
               <h3 className="text-xl font-semibold text-white mb-2">{t.pricing.tier1Name}</h3>
               <div className="text-3xl font-bold text-white mb-6">{t.pricing.tier1Price}</div>
               <ul className="space-y-3 mb-8 flex-1">
