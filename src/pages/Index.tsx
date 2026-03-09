@@ -724,7 +724,7 @@ const Index = () => {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 px-6 relative">
+      <section id="pricing" ref={priceRef} className={`py-24 px-6 relative transition-all duration-700 ${priceVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.pricing.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
