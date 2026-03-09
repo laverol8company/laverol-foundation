@@ -1012,7 +1012,7 @@ const Index = () => {
       </section>
 
       {/* Profit Calculator Section */}
-      <ProfitCalculator t={t} />
+      <ProfitCalculator t={t} onBookDemo={() => setIsModalOpen(true)} />
 
       {/* Pricing Section */}
       <section id="pricing" ref={priceRef} className={`py-24 px-6 relative transition-all duration-700 ${priceVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
