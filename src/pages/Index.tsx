@@ -393,6 +393,7 @@ type Language = 'UA' | 'EN' | 'RO';
 const Index = () => {
   const [language, setLanguage] = useState<Language>('UA');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   
   const t = translations[language];
 
@@ -728,6 +729,59 @@ const Index = () => {
               </button>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study Banner */}
+      <section className="px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          <div className="bg-gradient-to-r from-cyan-900/30 to-violet-900/30 border-y border-white/10 py-12 px-8 rounded-2xl my-12 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-cyan-500/5 animate-pulse rounded-2xl"></div>
+            <h2 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-4 relative z-10 drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+              {t.caseStudy.title}
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto relative z-10">
+              {t.caseStudy.text}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive FAQ Section */}
+      <section className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.faq.title}</h2>
+          <div className="space-y-4">
+            {[
+              { q: t.faq.q1, a: t.faq.a1 },
+              { q: t.faq.q2, a: t.faq.a2 },
+              { q: t.faq.q3, a: t.faq.a3 }
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white/5 border border-white/10 rounded-xl cursor-pointer transition-all duration-300 hover:border-cyan-500/50"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                >
+                  <span className="text-white font-medium pr-4">{item.q}</span>
+                  {openFaq === i ? (
+                    <ChevronUp className="w-5 h-5 text-cyan-400 shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-zinc-500 shrink-0" />
+                  )}
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaq === i ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="px-5 pb-5 text-zinc-400 leading-relaxed">{item.a}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
