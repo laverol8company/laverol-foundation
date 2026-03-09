@@ -201,7 +201,7 @@ const translations = {
     },
     calculator: {
       title: "Розрахуйте свій прибуток з Laverol",
-      sub: "Навіть 5 врятованих нічних лідів на місяць повністю окупають систему.",
+      sub: "Побачте реальний фінансовий результат вашої автоматизації.",
       leads: "Ліди за місяць",
       comm: "Середня комісія",
       rentPrice: "Вартість оренди",
@@ -216,7 +216,12 @@ const translations = {
       savedLeads: "Врятовано угод",
       perMonth: "/міс",
       aiAdmin: "AI-адміністратор",
-      clients: "клієнтів"
+      clients: "клієнтів",
+      yourProfit: "Ваш прибуток з Laverol",
+      growthLabel: "Це на",
+      growthSuffix: "більше, ніж без системи",
+      currentResult: "Поточний результат",
+      paidOff: "Система окупила себе"
     }
   },
   EN: {
@@ -401,7 +406,7 @@ const translations = {
     },
     calculator: {
       title: "Calculate your profit with Laverol",
-      sub: "Even 5 saved night leads per month fully pay for the system.",
+      sub: "See the real financial impact of your automation.",
       leads: "Leads per month",
       comm: "Average commission",
       rentPrice: "Rent price",
@@ -416,7 +421,12 @@ const translations = {
       savedLeads: "Deals saved",
       perMonth: "/mo",
       aiAdmin: "AI Admin",
-      clients: "clients"
+      clients: "clients",
+      yourProfit: "Your Profit with Laverol",
+      growthLabel: "That's",
+      growthSuffix: "more than without the system",
+      currentResult: "Current result",
+      paidOff: "System paid for itself"
     }
   },
   RO: {
@@ -601,7 +611,7 @@ const translations = {
     },
     calculator: {
       title: "Calculează-ți profitul cu Laverol",
-      sub: "Chiar și 5 lead-uri de noapte salvate pe lună plătesc complet sistemul.",
+      sub: "Vezi impactul financiar real al automatizării tale.",
       leads: "Lead-uri pe lună",
       comm: "Comision mediu",
       rentPrice: "Preț chirie",
@@ -616,7 +626,12 @@ const translations = {
       savedLeads: "Tranzacții salvate",
       perMonth: "/lună",
       aiAdmin: "Admin AI",
-      clients: "clienți"
+      clients: "clienți",
+      yourProfit: "Profitul Tău cu Laverol",
+      growthLabel: "Cu",
+      growthSuffix: "mai mult decât fără sistem",
+      currentResult: "Rezultat curent",
+      paidOff: "Sistemul s-a amortizat"
     }
   }
 };
