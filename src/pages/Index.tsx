@@ -201,7 +201,7 @@ const translations = {
     },
     calculator: {
       title: "Розрахуйте свій прибуток з Laverol",
-      sub: "Навіть 5 врятованих нічних лідів на місяць повністю окупають систему.",
+      sub: "Побачте реальний фінансовий результат вашої автоматизації.",
       leads: "Ліди за місяць",
       comm: "Середня комісія",
       rentPrice: "Вартість оренди",
@@ -216,7 +216,12 @@ const translations = {
       savedLeads: "Врятовано угод",
       perMonth: "/міс",
       aiAdmin: "AI-адміністратор",
-      clients: "клієнтів"
+      clients: "клієнтів",
+      yourProfit: "Ваш прибуток з Laverol",
+      growthLabel: "Це на",
+      growthSuffix: "більше, ніж без системи",
+      currentResult: "Поточний результат",
+      paidOff: "Система окупила себе"
     }
   },
   EN: {
