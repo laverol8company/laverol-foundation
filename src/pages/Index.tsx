@@ -652,7 +652,7 @@ const Index = () => {
       </section>
 
       {/* System Features Section */}
-      <section id="how-it-works" className="py-24 px-6 relative bg-zinc-950/50">
+      <section id="how-it-works" ref={featRef} className={`py-24 px-6 relative bg-zinc-950/50 transition-all duration-700 ${featVis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.features.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
