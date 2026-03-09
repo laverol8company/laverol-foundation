@@ -1,4 +1,4 @@
-import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar } from "lucide-react";
 
 const Index = () => {
   return (
@@ -149,6 +149,100 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      {/* Cost of Inaction Section */}
+      <section id="economics" className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">Ваше агентство втрачає гроші щоночі.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* The Problem */}
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 transition-colors duration-300 hover:border-red-500/50 flex flex-col items-start gap-6 group">
+              <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center group-hover:bg-red-500/20 transition-colors">
+                <TrendingDown className="w-6 h-6 text-red-500" />
+              </div>
+              <p className="text-xl text-zinc-300 leading-relaxed">
+                <strong className="text-white">30% заявок</strong> приходять у неробочий час. В середньому це <strong className="text-red-400">$4,500 втраченої комісії</strong> щомісяця.
+              </p>
+            </div>
+            
+            {/* The Solution */}
+            <div className="bg-white/5 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-8 shadow-[0_0_30px_-10px_rgba(34,211,238,0.1)] flex flex-col items-start gap-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full"></div>
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center relative z-10">
+                <TrendingUp className="w-6 h-6 text-cyan-400" />
+              </div>
+              <p className="text-xl text-zinc-300 leading-relaxed relative z-10">
+                <strong className="text-white">Laverol AI-асистент.</strong> Швидкість відповіді 5 секунд. 0 лікарняних. Економія до <strong className="text-cyan-400">$44,400 на рік.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* System Features Section */}
+      <section id="how-it-works" className="py-24 px-6 relative bg-zinc-950/50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">Один AI-мозок. Всі ваші канали.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Smartphone, title: "Омніканальне захоплення", desc: "Instagram, WhatsApp, Site" },
+              { icon: Brain, title: "AI-Кваліфікація", desc: "Аналіз бюджету та потреб інвестора" },
+              { icon: Database, title: "Синхронізація з CRM", desc: "Автоматичне створення угод без помилок" },
+              { icon: Calendar, title: "Календар та покази", desc: "Миттєве бронювання зустрічей" }
+            ].map((feature, i) => (
+              <div key={i} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-cyan-500/30 transition-colors group">
+                <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <feature.icon className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                  <p className="text-sm text-zinc-400">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">Прозорі тарифи</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+            
+            {/* Base Capture */}
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col">
+              <h3 className="text-xl font-semibold text-white mb-2">Base Capture</h3>
+              <div className="text-3xl font-bold text-white mb-6">$699 <span className="text-lg text-zinc-500 font-normal">разово</span></div>
+              <button className="w-full py-3 rounded-xl border border-cyan-500 text-cyan-400 font-medium hover:bg-cyan-500/10 transition-colors">
+                Обрати тариф
+              </button>
+            </div>
+
+            {/* Smart Agent (Featured) */}
+            <div className="bg-white/5 backdrop-blur-xl border border-cyan-400 rounded-2xl p-8 flex flex-col relative shadow-[0_0_20px_rgba(34,211,238,0.2)] md:-translate-y-4">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-cyan-500 text-black text-xs font-bold uppercase tracking-wider rounded-full whitespace-nowrap">
+                Найпопулярніший
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Smart Agent</h3>
+              <div className="text-3xl font-bold text-white mb-6">$2,299 <span className="text-lg text-zinc-500 font-normal">+ $200/міс</span></div>
+              <button className="w-full py-3 rounded-xl bg-cyan-400 text-black font-semibold hover:bg-cyan-300 transition-colors">
+                Обрати тариф
+              </button>
+            </div>
+
+            {/* Pro Eco */}
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col">
+              <h3 className="text-xl font-semibold text-white mb-2">Pro Eco</h3>
+              <div className="text-3xl font-bold text-white mb-6">$4,999 <span className="text-lg text-zinc-500 font-normal">+ $500/міс</span></div>
+              <button className="w-full py-3 rounded-xl border border-cyan-500 text-cyan-400 font-medium hover:bg-cyan-500/10 transition-colors">
+                Обрати тариф
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
