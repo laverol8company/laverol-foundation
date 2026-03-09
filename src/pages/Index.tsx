@@ -1,4 +1,4 @@
-import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X, XCircle } from "lucide-react";
+import { ArrowRight, Globe, MessageSquare, Building2, CheckCircle2, TrendingDown, TrendingUp, Smartphone, Brain, Database, Calendar, Shield, Lock, Server, X, XCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 const translations = {
@@ -90,6 +90,19 @@ const translations = {
       tier3F2: "Преміум-сайт під ключ",
       tier3F3: "Кастомне навчання AI",
       tier3F4: "Виділений сервер"
+    },
+    caseStudy: {
+      title: "Кейси: +42% до конверсії в перший місяць",
+      text: "Середній результат наших клієнтів після впровадження Laverol AI. Жодного втраченого нічного ліда."
+    },
+    faq: {
+      title: "Часті запитання",
+      q1: "Чи буде AI вигадувати неіснуючі квартири?",
+      a1: "Ні. Система працює суворо по вашій базі об'єктів (XML/API) і не фантазує. Якщо квартири немає — вона запропонує альтернативу.",
+      q2: "Скільки часу займає впровадження?",
+      a2: "Від 3 до 7 днів. Ми самі підключаємо ваші месенджери та CRM, ви отримуєте готовий інструмент.",
+      q3: "Чи потрібно мені змінювати мою CRM?",
+      a3: "Ні, Laverol безшовно інтегрується з amoCRM, Bitrix24, Zoho та іншими популярними системами."
     },
     security: {
       title: "Криптографічна безпека та гарантії",
@@ -206,6 +219,19 @@ const translations = {
       tier3F3: "Custom AI training",
       tier3F4: "Dedicated server"
     },
+    caseStudy: {
+      title: "Case Studies: +42% Conversion in the First Month",
+      text: "Average results for our clients after implementing Laverol AI. Zero missed night leads."
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+      q1: "Will the AI make up non-existent apartments?",
+      a1: "No. The system works strictly based on your property database (XML/API) and does not hallucinate. If an apartment doesn't exist, it will suggest an alternative.",
+      q2: "How long does implementation take?",
+      a2: "3 to 7 days. We connect your messengers and CRM ourselves; you receive a ready-to-use tool.",
+      q3: "Do I need to change my CRM?",
+      a3: "No, Laverol seamlessly integrates with amoCRM, Bitrix24, Zoho, and other popular systems."
+    },
     security: {
       title: "Cryptographic Security & Guarantees",
       t1: "100% GDPR Compliance",
@@ -321,6 +347,19 @@ const translations = {
       tier3F3: "Antrenament AI personalizat",
       tier3F4: "Server dedicat"
     },
+    caseStudy: {
+      title: "Studii de caz: +42% conversie în prima lună",
+      text: "Rezultatele medii ale clienților noștri după implementarea Laverol AI. Zero lead-uri de noapte pierdute."
+    },
+    faq: {
+      title: "Întrebări frecvente",
+      q1: "Va inventa AI apartamente inexistente?",
+      a1: "Nu. Sistemul funcționează strict pe baza bazei de date a proprietăților (XML/API) și nu halucinează. Dacă un apartament nu există, va sugera o alternativă.",
+      q2: "Cât durează implementarea?",
+      a2: "De la 3 la 7 zile. Noi conectăm mesageria și CRM-ul; primești un instrument gata de utilizare.",
+      q3: "Trebuie să îmi schimb CRM-ul?",
+      a3: "Nu, Laverol se integrează perfect cu amoCRM, Bitrix24, Zoho și alte sisteme populare."
+    },
     security: {
       title: "Securitate Criptografică & Garanții",
       t1: "100% Conformitate GDPR",
@@ -354,6 +393,7 @@ type Language = 'UA' | 'EN' | 'RO';
 const Index = () => {
   const [language, setLanguage] = useState<Language>('UA');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   
   const t = translations[language];
 
@@ -689,6 +729,59 @@ const Index = () => {
               </button>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study Banner */}
+      <section className="px-6 relative">
+        <div className="container mx-auto max-w-6xl">
+          <div className="bg-gradient-to-r from-cyan-900/30 to-violet-900/30 border-y border-white/10 py-12 px-8 rounded-2xl my-12 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-cyan-500/5 animate-pulse rounded-2xl"></div>
+            <h2 className="text-3xl md:text-4xl font-bold text-cyan-400 mb-4 relative z-10 drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+              {t.caseStudy.title}
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto relative z-10">
+              {t.caseStudy.text}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive FAQ Section */}
+      <section className="py-24 px-6 relative">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">{t.faq.title}</h2>
+          <div className="space-y-4">
+            {[
+              { q: t.faq.q1, a: t.faq.a1 },
+              { q: t.faq.q2, a: t.faq.a2 },
+              { q: t.faq.q3, a: t.faq.a3 }
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white/5 border border-white/10 rounded-xl cursor-pointer transition-all duration-300 hover:border-cyan-500/50"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                >
+                  <span className="text-white font-medium pr-4">{item.q}</span>
+                  {openFaq === i ? (
+                    <ChevronUp className="w-5 h-5 text-cyan-400 shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-zinc-500 shrink-0" />
+                  )}
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaq === i ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="px-5 pb-5 text-zinc-400 leading-relaxed">{item.a}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
