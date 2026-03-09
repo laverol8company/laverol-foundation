@@ -519,7 +519,7 @@ const translations = {
       title: "Control & Transparență",
       subtitle: "Control complet în buzunarul tău. Gestionează logica AI și analizează performanța fiecărui broker în timp real.",
       managerDashboard: "Panoul Managerului",
-      stat1Label: "Conversie lead-uri de noapte",
+      stat1Label: "CONVERSIE LEAD-URI NOI",
       stat1Value: "98%",
       stat2Label: "Timp economisit",
       stat2Value: "120+ ore/lună",
