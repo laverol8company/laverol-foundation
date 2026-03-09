@@ -23,12 +23,15 @@ const translations = {
     chat: {
       complex: "ЖК \"Новопечерські Липки\"",
       console: "Laverol AI Console",
-      status: "Active",
-      msgUser: "Доброго вечора. Чи є в наявності 2-кімнатні квартири від 70м²?",
-      msgAi: "Добрий вечір! Так, у нас є 3 варіанти 2-кімнатних квартир площею від 72м² до 85м². Ціни починаються від $120,000. Бажаєте записатися на перегляд завтра?",
-      statTime: "Response Time",
-      statLeads: "Leads Today",
-      statConv: "Conversion"
+      status: "Online",
+      msgUser: "Привіт! Шукаю 2к квартиру з видом на Дніпро, бюджет до $150K. Є варіанти?",
+      msgAi: "Вітаю! 🏙️ Знайшла 4 квартири під ваш запит. Топ-варіант: 78м², 12 поверх, панорамні вікна на Дніпро — $142,000. Вільний слот на перегляд завтра о 14:00. Забронювати?",
+      statTime: "Відповідь",
+      statTimeVal: "1.2с",
+      statLeads: "Ліди сьогодні",
+      statLeadsVal: "142",
+      statConv: "Конверсія",
+      statConvVal: "+34%"
     },
     economics: {
       title: "Ваше агентство втрачає клієнтів у неробочий час.",
@@ -149,14 +152,17 @@ const translations = {
       feature3: "CRM Integration"
     },
     chat: {
-      complex: "Novopecherskie Lipki",
+      complex: "Riverside Towers",
       console: "Laverol AI Console",
-      status: "Active",
-      msgUser: "Good evening. Do you have 2-bedroom apartments from 70m²?",
-      msgAi: "Good evening! Yes, we have 3 options of 2-bedroom apartments ranging from 72m² to 85m². Prices start at $120,000. Would you like to schedule a viewing tomorrow?",
-      statTime: "Response Time",
+      status: "Online",
+      msgUser: "Hi! Looking for a 2-bed apartment with river view, budget up to $150K. Any options?",
+      msgAi: "Welcome! 🏙️ Found 4 apartments matching your request. Top pick: 78m², 12th floor, panoramic river view — $142,000. Free slot for viewing tomorrow at 2 PM. Shall I book it?",
+      statTime: "Response",
+      statTimeVal: "1.2s",
       statLeads: "Leads Today",
-      statConv: "Conversion"
+      statLeadsVal: "142",
+      statConv: "Conversion",
+      statConvVal: "+34%"
     },
     economics: {
       title: "Your agency loses clients outside working hours.",
@@ -277,14 +283,17 @@ const translations = {
       feature3: "Integrare CRM"
     },
     chat: {
-      complex: "Complexul Rezidențial",
+      complex: "Complexul Riverside",
       console: "Laverol AI Console",
-      status: "Active",
-      msgUser: "Bună seara. Aveți apartamente cu 2 camere de la 70m²?",
-      msgAi: "Bună seara! Da, avem 3 variante de apartamente cu 2 camere cu suprafețe între 72m² și 85m². Prețurile încep de la 120.000$. Doriți să programați o vizionare pentru mâine?",
-      statTime: "Timp Răspuns",
+      status: "Online",
+      msgUser: "Bună! Caut apartament 2 camere cu vedere la râu, buget până la 150K$. Există opțiuni?",
+      msgAi: "Bine ați venit! 🏙️ Am găsit 4 apartamente conform cererii. Top: 78m², etaj 12, panoramă spre râu — 142.000$. Slot liber pentru vizionare mâine la 14:00. Rezerv?",
+      statTime: "Răspuns",
+      statTimeVal: "1.2s",
       statLeads: "Lead-uri Azi",
-      statConv: "Conversie"
+      statLeadsVal: "142",
+      statConv: "Conversie",
+      statConvVal: "+34%"
     },
     economics: {
       title: "Agenția ta pierde clienți în afara orelor de lucru.",
@@ -493,62 +502,69 @@ const Index = () => {
             <div className="flex-1 w-full max-w-xl">
               <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square">
                 {/* Glow effects */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-cyan-500/20 blur-[100px] rounded-full"></div>
-                <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 bg-violet-500/20 blur-[80px] rounded-full"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-cyan-500/25 blur-[120px] rounded-full animate-pulse"></div>
+                <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 bg-violet-500/25 blur-[100px] rounded-full"></div>
+                <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-emerald-500/15 blur-[80px] rounded-full"></div>
                 
                 {/* Glass Card */}
-                <div className="relative w-full h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 flex flex-col shadow-2xl">
+                <div className="relative w-full h-full bg-gradient-to-br from-white/10 via-white/5 to-white/[0.02] backdrop-blur-xl border border-white/15 rounded-3xl p-6 flex flex-col shadow-[0_0_60px_-15px_rgba(0,200,255,0.3),0_0_30px_-10px_rgba(139,92,246,0.2)]">
+                  {/* Decorative corner accents */}
+                  <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-cyan-400/30 rounded-tl-3xl"></div>
+                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-violet-400/30 rounded-br-3xl"></div>
+                  
                   {/* Card Header */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
                         <Building2 className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <div className="text-white font-medium">{t.chat.complex}</div>
+                        <div className="text-white font-semibold text-sm">{t.chat.complex}</div>
                         <div className="text-zinc-500 text-xs">{t.chat.console}</div>
                       </div>
                     </div>
-                    <div className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium flex items-center gap-1.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400"></div>
+                    <div className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></div>
                       {t.chat.status}
                     </div>
                   </div>
 
                   {/* Chat Mockup */}
                   <div className="flex-1 flex flex-col gap-4">
-                    <div className="flex items-end gap-2">
-                      <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                        <MessageSquare className="w-4 h-4 text-zinc-400" />
+                    {/* User message */}
+                    <div className="flex items-end gap-2.5">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10 flex items-center justify-center shrink-0 shadow-lg">
+                        <MessageSquare className="w-3.5 h-3.5 text-zinc-300" />
                       </div>
-                      <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-none px-4 py-3 text-sm text-zinc-300 max-w-[80%]">
+                      <div className="bg-white/[0.07] border border-white/10 rounded-2xl rounded-bl-sm px-4 py-3 text-sm text-zinc-200 max-w-[85%] leading-relaxed">
                         {t.chat.msgUser}
                       </div>
                     </div>
                     
-                    <div className="flex items-end gap-2 flex-row-reverse">
-                      <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center shrink-0">
-                        <span className="text-cyan-400 text-xs font-bold">L</span>
+                    {/* AI message */}
+                    <div className="flex items-end gap-2.5 flex-row-reverse">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/30">
+                        <span className="text-white text-xs font-bold">L</span>
                       </div>
-                      <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-2xl rounded-br-none px-4 py-3 text-sm text-cyan-50 max-w-[80%]">
+                      <div className="bg-gradient-to-br from-cyan-500/15 to-violet-500/10 border border-cyan-500/20 rounded-2xl rounded-br-sm px-4 py-3 text-sm text-white/90 max-w-[85%] leading-relaxed">
                         {t.chat.msgAi}
                       </div>
                     </div>
                   </div>
 
                   {/* Stats Footer */}
-                  <div className="mt-auto pt-6 border-t border-white/10 grid grid-cols-3 gap-4">
-                    <div>
-                      <div className="text-zinc-500 text-xs mb-1">{t.chat.statTime}</div>
-                      <div className="text-cyan-400 font-semibold">1.2s</div>
+                  <div className="mt-auto pt-5 border-t border-white/10 grid grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <div className="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">{t.chat.statTime}</div>
+                      <div className="text-cyan-400 font-bold text-lg">{t.chat.statTimeVal}</div>
                     </div>
-                    <div>
-                      <div className="text-zinc-500 text-xs mb-1">{t.chat.statLeads}</div>
-                      <div className="text-white font-semibold">142</div>
+                    <div className="text-center border-x border-white/5">
+                      <div className="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">{t.chat.statLeads}</div>
+                      <div className="text-white font-bold text-lg">{t.chat.statLeadsVal}</div>
                     </div>
-                    <div>
-                      <div className="text-zinc-500 text-xs mb-1">{t.chat.statConv}</div>
-                      <div className="text-violet-400 font-semibold">+34%</div>
+                    <div className="text-center">
+                      <div className="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">{t.chat.statConv}</div>
+                      <div className="text-emerald-400 font-bold text-lg">{t.chat.statConvVal}</div>
                     </div>
                   </div>
                 </div>
