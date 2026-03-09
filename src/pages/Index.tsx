@@ -806,16 +806,6 @@ const Index = () => {
               <span className="text-white font-medium">{t.security.t3}</span>
             </div>
           </div>
-
-          {/* Founders' Letter */}
-          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 text-center">
-            <p className="text-xl md:text-2xl text-zinc-300 leading-relaxed mb-8 max-w-4xl mx-auto italic">
-              {t.security.quote}
-            </p>
-            <div className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-200 font-medium text-lg">
-              {t.security.sign}
-            </div>
-          </div>
         </div>
       </section>
 
