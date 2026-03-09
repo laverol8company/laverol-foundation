@@ -247,6 +247,21 @@ const translations = {
       f4Title: "Calendar & Vizionări",
       f4Desc: "Programare instantanee a întâlnirilor"
     },
+    ecoJustify: {
+      title: "Economie: Oameni vs Sistem",
+      subtitle: "De ce investiția în Laverol se amortizează în prima lună",
+      humanTitle: "Echipă de vânzări (3 persoane)",
+      humanPoint1: "Salariu: ~$3.000/lună",
+      humanPoint2: "Taxe și spațiu de birou",
+      humanPoint3: "Dorm, se îmbolnăvesc, se epuizează",
+      humanTotal: "Cost: ~$46.800 / an",
+      aiTitle: "Sistemul nostru AI",
+      aiPoint1: "Plată unică pentru implementare",
+      aiPoint2: "0 taxe, 0 zile de concediu medical",
+      aiPoint3: "Răspunde în 5 secunde, 24/7",
+      aiTotal: "Cost: de la $699 (O singură dată)",
+      ecoBadge: "Se amortizează în prima lună"
+    },
     pricing: {
       title: "Prețuri Transparente",
       btn: "Alege Planul",
