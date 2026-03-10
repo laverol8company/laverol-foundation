@@ -782,71 +782,71 @@ const Index = () => {
 
             {/* Visual Abstract UI Card */}
             <div className="flex-1 w-full max-w-xl">
-              <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square">
+              <div className="relative w-full" style={{ minHeight: '420px' }}>
                 {/* Glow effects */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-cyan-500/25 blur-[120px] rounded-full animate-pulse"></div>
-                <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 bg-violet-500/25 blur-[100px] rounded-full"></div>
-                <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-emerald-500/15 blur-[80px] rounded-full"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-cyan-500/25 blur-[120px] rounded-full animate-pulse pointer-events-none"></div>
+                <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 bg-violet-500/25 blur-[100px] rounded-full pointer-events-none"></div>
+                <div className="absolute bottom-1/4 left-1/4 w-1/3 h-1/3 bg-emerald-500/15 blur-[80px] rounded-full pointer-events-none"></div>
                 
                 {/* Glass Card */}
-                <div className="relative w-full h-full bg-gradient-to-br from-white/10 via-white/5 to-white/[0.02] backdrop-blur-xl border border-white/15 rounded-3xl p-6 flex flex-col shadow-[0_0_60px_-15px_rgba(0,200,255,0.3),0_0_30px_-10px_rgba(139,92,246,0.2)]">
+                <div className="relative w-full bg-gradient-to-br from-white/10 via-white/5 to-white/[0.02] backdrop-blur-xl border border-white/15 rounded-3xl p-4 md:p-6 flex flex-col shadow-[0_0_60px_-15px_rgba(0,200,255,0.3),0_0_30px_-10px_rgba(139,92,246,0.2)]">
                   {/* Decorative corner accents */}
-                  <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-cyan-400/30 rounded-tl-3xl"></div>
-                  <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-violet-400/30 rounded-br-3xl"></div>
+                  <div className="absolute top-0 left-0 w-16 h-16 md:w-20 md:h-20 border-t-2 border-l-2 border-cyan-400/30 rounded-tl-3xl pointer-events-none"></div>
+                  <div className="absolute bottom-0 right-0 w-16 h-16 md:w-20 md:h-20 border-b-2 border-r-2 border-violet-400/30 rounded-br-3xl pointer-events-none"></div>
                   
                   {/* Card Header */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
-                    <div className="flex items-center gap-3">
-                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-500 flex items-center justify-center shadow-lg shadow-cyan-500/25">
-                        <Building2 className="w-5 h-5 text-white" />
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3 md:pb-4 md:mb-4">
+                    <div className="flex items-center gap-2 md:gap-3 min-w-0">
+                      <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-500 to-violet-500 flex items-center justify-center shadow-lg shadow-cyan-500/25 shrink-0">
+                        <Building2 className="w-4 h-4 md:w-5 md:h-5 text-white" />
                       </div>
-                      <div>
-                        <div className="text-white font-semibold text-sm">{t.chat.complex}</div>
-                        <div className="text-zinc-500 text-xs">{t.chat.console}</div>
+                      <div className="min-w-0">
+                        <div className="text-white font-semibold text-xs md:text-sm truncate">{t.chat.complex}</div>
+                        <div className="text-zinc-500 text-[10px] md:text-xs truncate">{t.chat.console}</div>
                       </div>
                     </div>
-                    <div className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-xs font-semibold flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></div>
+                    <div className="px-2 py-1 md:px-3 md:py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[10px] md:text-xs font-semibold flex items-center gap-1.5 shrink-0 ml-2">
+                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></div>
                       {t.chat.status}
                     </div>
                   </div>
 
                   {/* Chat Mockup */}
-                  <div className="flex-1 flex flex-col gap-3 overflow-hidden min-h-0">
+                  <div className="flex flex-col gap-2.5 md:gap-3">
                     {/* User message */}
-                    <div className="flex items-end gap-2 min-w-0">
-                      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10 flex items-center justify-center shrink-0 shadow-lg">
+                    <div className="flex items-start gap-2 min-w-0">
+                      <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10 flex items-center justify-center shrink-0 shadow-lg mt-0.5">
                         <MessageSquare className="w-3 h-3 md:w-3.5 md:h-3.5 text-zinc-300" />
                       </div>
-                      <div className="bg-white/[0.07] border border-white/10 rounded-2xl rounded-bl-sm px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-zinc-200 max-w-[80%] leading-relaxed break-words overflow-hidden">
+                      <div className="bg-white/[0.07] border border-white/10 rounded-2xl rounded-bl-sm px-3 py-2 text-[11px] md:text-sm text-zinc-200 max-w-[78%] leading-relaxed break-words">
                         {t.chat.msgUser}
                       </div>
                     </div>
                     
                     {/* AI message */}
-                    <div className="flex items-end gap-2 flex-row-reverse min-w-0">
-                      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/30">
-                        <span className="text-white text-[10px] md:text-xs font-bold">L</span>
+                    <div className="flex items-start gap-2 flex-row-reverse min-w-0">
+                      <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center shrink-0 shadow-lg shadow-cyan-500/30 mt-0.5">
+                        <span className="text-white text-[9px] md:text-xs font-bold">L</span>
                       </div>
-                      <div className="bg-gradient-to-br from-cyan-500/15 to-violet-500/10 border border-cyan-500/20 rounded-2xl rounded-br-sm px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm text-white/90 max-w-[80%] leading-relaxed break-words overflow-hidden">
+                      <div className="bg-gradient-to-br from-cyan-500/15 to-violet-500/10 border border-cyan-500/20 rounded-2xl rounded-br-sm px-3 py-2 text-[11px] md:text-sm text-white/90 max-w-[78%] leading-relaxed break-words">
                         {t.chat.msgAi}
                       </div>
                     </div>
                   </div>
 
                   {/* Stats Footer */}
-                  <div className="mt-auto pt-5 border-t border-white/10 grid grid-cols-3 gap-4">
+                  <div className="mt-4 md:mt-5 pt-3 md:pt-4 border-t border-white/10 grid grid-cols-3 gap-2 md:gap-4">
                     <div className="text-center">
-                      <div className="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">{t.chat.statTime}</div>
-                      <div className="text-cyan-400 font-bold text-lg">{t.chat.statTimeVal}</div>
+                      <div className="text-zinc-500 text-[9px] md:text-[10px] uppercase tracking-wider mb-0.5 md:mb-1">{t.chat.statTime}</div>
+                      <div className="text-cyan-400 font-bold text-sm md:text-lg">{t.chat.statTimeVal}</div>
                     </div>
                     <div className="text-center border-x border-white/5">
-                      <div className="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">{t.chat.statLeads}</div>
-                      <div className="text-white font-bold text-lg">{t.chat.statLeadsVal}</div>
+                      <div className="text-zinc-500 text-[9px] md:text-[10px] uppercase tracking-wider mb-0.5 md:mb-1">{t.chat.statLeads}</div>
+                      <div className="text-white font-bold text-sm md:text-lg">{t.chat.statLeadsVal}</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">{t.chat.statConv}</div>
-                      <div className="text-emerald-400 font-bold text-lg">{t.chat.statConvVal}</div>
+                      <div className="text-zinc-500 text-[9px] md:text-[10px] uppercase tracking-wider mb-0.5 md:mb-1">{t.chat.statConv}</div>
+                      <div className="text-emerald-400 font-bold text-sm md:text-lg">{t.chat.statConvVal}</div>
                     </div>
                   </div>
                 </div>
