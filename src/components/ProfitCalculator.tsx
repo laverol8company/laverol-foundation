@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Slider } from "@/components/ui/slider";
-import { TrendingUp, AlertTriangle, Users, Bot, Zap, Copy, Phone } from "lucide-react";
+import { TrendingUp, AlertTriangle, Users, Bot, Copy, Phone, ArrowRight } from "lucide-react";
 
 interface ProfitCalculatorProps {
   t: any;
@@ -70,8 +70,8 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
   const [mode, setMode] = useState<'Sale' | 'Rent'>('Sale');
   const [currency, setCurrency] = useState<'$' | '₴'>('$');
   const [leads, setLeads] = useState(50);
+  const [currentDeals, setCurrentDeals] = useState(3);
   const [price, setPrice] = useState(5000);
-  const [conv, setConv] = useState(3);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -88,6 +88,11 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
     setPrice(p => currency === '$' ? Math.round(p / UAH) : p * UAH);
   }, [currency]);
 
+  // Clamp deals to leads
+  useEffect(() => {
+    if (currentDeals > leads) setCurrentDeals(leads);
+  }, [leads, currentDeals]);
+
   useEffect(() => {
     const fn = (e: MouseEvent) => {
       if (!containerRef.current) return;
@@ -99,37 +104,41 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
     return () => el?.removeEventListener('mousemove', fn);
   }, []);
 
-  // Math
+  // ── Core Logic ──
   const base = currency === '$' ? price : price / UAH;
-  const nightRate = mode === 'Sale' ? 0.3 : 0.4;
-  const boost = mode === 'Sale' ? 1.3 : 1.5;
+  const currentConv = leads > 0 ? (currentDeals / leads) * 100 : 0;
+  const nightTraffic = leads * 0.3;
+  const boostMultiplier = mode === 'Sale' ? 1.3 : 1.5;
   const commRate = mode === 'Sale' ? 1 : 0.5;
-  const currentProfit = Math.round(leads * (conv / 100) * base * commRate);
-  const savedDeals = Math.ceil(leads * nightRate * (conv / 100));
-  const extraProfit = Math.round(savedDeals * base * commRate * boost);
-  const totalProfit = currentProfit + extraProfit;
-  const nightLoss = Math.round(leads * nightRate * (conv / 100) * base * commRate);
-  const roi = extraProfit > 0 ? Math.max(0, extraProfit / 2299).toFixed(1) : "0";
-  const growthPct = currentProfit > 0 ? Math.round((extraProfit / currentProfit) * 100) : 0;
+  const savedDeals = Math.ceil(nightTraffic * (currentConv / 100) * boostMultiplier);
+  const totalFutureDeals = currentDeals + savedDeals;
+  const netGain = Math.round(savedDeals * base * commRate);
+  const currentProfit = Math.round(currentDeals * base * commRate);
+  const totalProfit = currentProfit + netGain;
+  const nightLoss = Math.round(nightTraffic * (currentConv / 100) * base * commRate);
+  const roi = netGain > 0 ? Math.max(0, netGain / 2299).toFixed(1) : "0";
+  const growthPct = currentProfit > 0 ? Math.round((netGain / currentProfit) * 100) : 0;
   const barRatio = totalProfit > 0 ? Math.round((currentProfit / totalProfit) * 100) : 50;
 
   const toD = (v: number) => currency === '$' ? v : v * UAH;
 
   useEffect(() => {
-    if (extraProfit > prevExtra.current) {
+    if (netGain > prevExtra.current) {
       setParticles(true);
       const timer = setTimeout(() => setParticles(false), 2500);
-      prevExtra.current = extraProfit;
+      prevExtra.current = netGain;
       return () => clearTimeout(timer);
     }
-    prevExtra.current = extraProfit;
-  }, [extraProfit]);
+    prevExtra.current = netGain;
+  }, [netGain]);
 
   const aTotal = useAnimatedCounter(toD(totalProfit));
-  const aExtra = useAnimatedCounter(toD(extraProfit));
+  const aExtra = useAnimatedCounter(toD(netGain));
   const aLoss = useAnimatedCounter(toD(nightLoss));
   const aSaved = useAnimatedCounter(savedDeals);
   const aGrowth = useAnimatedCounter(growthPct);
+  const aTotalDeals = useAnimatedCounter(totalFutureDeals);
+  const aCurrentDealsAnim = useAnimatedCounter(currentDeals);
 
   const fmt = (v: number) => {
     const s = currency;
@@ -141,6 +150,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
   const pMin = mode === 'Sale' ? (currency === '$' ? 500 : 20000) : (currency === '$' ? 200 : 8000);
   const pMax = mode === 'Sale' ? (currency === '$' ? 20000 : 820000) : (currency === '$' ? 3000 : 123000);
   const pStep = mode === 'Sale' ? (currency === '$' ? 100 : 4100) : (currency === '$' ? 50 : 2050);
+  const dealsMax = Math.min(100, leads);
 
   const copyResult = () => {
     const text = `${t.calculator.yourProfit}: ${fmt(toD(totalProfit))}${t.calculator.perMonth} | ${t.calculator.growthLabel} +${growthPct}% ${t.calculator.growthSuffix}`;
@@ -151,7 +161,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
 
   return (
     <section ref={containerRef} className="py-12 md:py-20 px-4 md:px-6 relative bg-zinc-950/50 border-t border-white/5 overflow-hidden">
-      {/* Mouse spotlight - desktop only */}
+      {/* Mouse spotlight */}
       <div className="absolute inset-0 pointer-events-none opacity-50 hidden md:block"
         style={{ background: `radial-gradient(500px circle at ${mousePos.x}px ${mousePos.y}px, rgba(34,211,238,0.07), transparent 40%)` }} />
 
@@ -161,7 +171,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
         </h2>
         <p className="text-zinc-500 text-center text-xs md:text-sm mb-5 md:mb-8">{t.calculator.sub}</p>
 
-        {/* Controls Header - compact on mobile */}
+        {/* Toggles */}
         <div className="flex flex-wrap justify-center items-center gap-2 md:gap-3 mb-5 md:mb-8">
           <div className="bg-white/5 border border-white/10 rounded-full p-0.5 md:p-1 flex gap-0.5">
             {(['Sale', 'Rent'] as const).map(m => (
@@ -191,7 +201,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           {/* LEFT: Inputs */}
-          <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 md:p-6 transition-all duration-300 hover:border-cyan-500/20 space-y-4 md:space-y-5">
+          <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl px-4 py-3 md:p-6 transition-all duration-300 hover:border-cyan-500/20 space-y-4 md:space-y-5 order-2 lg:order-1">
             <div className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-wider font-medium">{t.calculator.inputLabel}</div>
 
             {/* Leads */}
@@ -205,6 +215,17 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
               <Slider value={[leads]} onValueChange={v => setLeads(v[0])} min={5} max={1000} step={5} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
             </div>
 
+            {/* Current Deals */}
+            <div className="space-y-1.5">
+              <div className="flex justify-between items-center gap-2">
+                <label className="text-zinc-400 text-xs md:text-sm flex items-center gap-1.5 shrink-0">
+                  <TrendingUp className="w-3 h-3 md:w-3.5 md:h-3.5 text-violet-400" /> {t.calculator.deals}
+                </label>
+                <NumInput value={currentDeals} onChange={setCurrentDeals} min={0} max={dealsMax} step={1} suffix={t.calculator.perMonth} />
+              </div>
+              <Slider value={[currentDeals]} onValueChange={v => setCurrentDeals(v[0])} min={0} max={dealsMax} step={1} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
+            </div>
+
             {/* Price */}
             <div className="space-y-1.5">
               <div className="flex justify-between items-center gap-2">
@@ -214,23 +235,14 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
               <Slider value={[price]} onValueChange={v => setPrice(v[0])} min={pMin} max={pMax} step={pStep} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
             </div>
 
-            {/* Conv */}
-            <div className="space-y-1.5">
-              <div className="flex justify-between items-center gap-2">
-                <label className="text-zinc-400 text-xs md:text-sm shrink-0">{t.calculator.conv}</label>
-                <NumInput value={conv} onChange={setConv} min={1} max={mode === 'Sale' ? 15 : 25} step={1} suffix="%" />
-              </div>
-              <Slider value={[conv]} onValueChange={v => setConv(v[0])} min={1} max={mode === 'Sale' ? 15 : 25} step={1} className="w-full [&_[role=slider]]:h-5 [&_[role=slider]]:w-5 md:[&_[role=slider]]:h-4 md:[&_[role=slider]]:w-4 [&_[data-orientation=horizontal]]:h-1.5" />
-            </div>
-
             <div className={`p-2.5 md:p-3 rounded-lg border text-[11px] md:text-xs ${mode === 'Sale' ? 'bg-violet-500/10 border-violet-500/20 text-violet-300' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'}`}>
               {mode === 'Sale' ? t.calculator.saleHint : t.calculator.rentHint}
             </div>
           </div>
 
-          {/* RIGHT: Results */}
-          <div className="flex flex-col gap-3 md:gap-4">
-            {/* Hero Profit - always first */}
+          {/* RIGHT: Results — on mobile appears FIRST */}
+          <div className="flex flex-col gap-3 md:gap-4 order-1 lg:order-2">
+            {/* MAIN: Total Profit */}
             <div className="bg-emerald-500/10 border-2 border-emerald-500/30 rounded-2xl px-4 py-4 md:p-6 relative overflow-hidden transition-all duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_40px_rgba(16,185,129,0.15)] group">
               <ProfitParticles active={particles} />
               <div className="absolute -right-16 -top-16 w-48 h-48 bg-emerald-500/15 blur-[70px] rounded-full group-hover:bg-emerald-500/25 transition-all duration-700" />
@@ -240,7 +252,7 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
                   <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-emerald-400 animate-pulse" />
                   <span className="text-emerald-400/70 font-medium text-xs md:text-sm uppercase tracking-wide">{t.calculator.yourProfit}</span>
                 </div>
-                <div className="text-2xl md:text-4xl lg:text-6xl font-black text-emerald-400 drop-shadow-[0_0_25px_rgba(16,185,129,0.5)] mb-1">
+                <div className="text-2xl md:text-4xl lg:text-5xl font-black text-emerald-400 drop-shadow-[0_0_25px_rgba(16,185,129,0.5)] mb-1">
                   {fmt(aTotal)}
                   <span className="text-sm md:text-lg text-emerald-400/50 font-medium ml-1">{t.calculator.perMonth}</span>
                 </div>
@@ -269,42 +281,57 @@ export function ProfitCalculator({ t, onBookDemo }: ProfitCalculatorProps) {
                 </div>
               </div>
 
-              {/* SVG Wave bg */}
+              {/* SVG Wave */}
               <div className="absolute bottom-0 left-0 w-full h-10 md:h-12 opacity-20 pointer-events-none">
                 <svg viewBox="0 0 100 20" preserveAspectRatio="none" className="w-full h-full">
                   <defs><linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#8b5cf6"/><stop offset="100%" stopColor="#22d3ee"/></linearGradient></defs>
-                  <path d={`M0,20 Q25,${Math.max(2, 20 - (extraProfit / 15000) * 14)} 50,${Math.max(2, 16 - (extraProfit / 15000) * 10)} T100,${Math.max(2, 12 - (extraProfit / 15000) * 6)}`} fill="none" stroke="url(#wg)" strokeWidth="1.2" className="transition-all duration-500"/>
+                  <path d={`M0,20 Q25,${Math.max(2, 20 - (netGain / 15000) * 14)} 50,${Math.max(2, 16 - (netGain / 15000) * 10)} T100,${Math.max(2, 12 - (netGain / 15000) * 6)}`} fill="none" stroke="url(#wg)" strokeWidth="1.2" className="transition-all duration-500"/>
                 </svg>
               </div>
             </div>
 
-            {/* 2x2 Mini cards grid */}
+            {/* Bento Grid: Growth + Loss + Saved + ROI */}
             <div className="grid grid-cols-2 gap-2 md:gap-3">
+              {/* GROWTH CARD */}
               <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-cyan-500/40">
-                <div className="text-cyan-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1"><Users className="w-2.5 h-2.5 md:w-3 md:h-3"/>{t.calculator.savedLeads}</div>
-                <div className="text-base md:text-xl font-bold text-cyan-400">+{aSaved} {t.calculator.clients}</div>
+                <div className="text-cyan-400/70 text-[10px] md:text-xs font-medium mb-1 md:mb-2">{t.calculator.growthDeals}</div>
+                <div className="flex items-center gap-1.5 md:gap-2">
+                  <span className="text-base md:text-xl font-bold text-zinc-400">{aCurrentDealsAnim}</span>
+                  <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-cyan-400" />
+                  <span className="text-base md:text-xl font-bold text-cyan-400">{aTotalDeals}</span>
+                </div>
+                <div className="text-[9px] md:text-[10px] text-zinc-600 mt-0.5">{t.calculator.dealsArrow}</div>
               </div>
+
+              {/* LOSS CARD */}
               <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-rose-500/40">
-                <div className="text-rose-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1"><AlertTriangle className="w-2.5 h-2.5 md:w-3 md:h-3"/>{t.calculator.loss}</div>
+                <div className="text-rose-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1">
+                  <AlertTriangle className="w-2.5 h-2.5 md:w-3 md:h-3" />{t.calculator.loss}
+                </div>
                 <div className="text-base md:text-xl font-bold text-rose-400">{fmt(aLoss)}{t.calculator.perMonth}</div>
               </div>
+
+              {/* SAVED DEALS */}
+              <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-violet-500/40">
+                <div className="text-violet-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1">
+                  <Bot className="w-2.5 h-2.5 md:w-3 md:h-3" />{t.calculator.savedLeads}
+                </div>
+                <div className="text-base md:text-xl font-bold text-violet-400">+{aSaved} {t.calculator.clients}</div>
+              </div>
+
+              {/* ROI */}
               <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-violet-500/40">
                 <div className="text-violet-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1">ROI</div>
                 <div className="text-base md:text-xl font-bold text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.4)]">{roi}x</div>
               </div>
-              <div className="bg-violet-500/10 border border-violet-500/20 rounded-xl px-3 py-2.5 md:p-4 transition-all duration-300 hover:border-violet-500/40">
-                <div className="text-violet-400/70 text-[10px] md:text-xs font-medium mb-0.5 md:mb-1 flex items-center gap-1"><Bot className="w-2.5 h-2.5 md:w-3 md:h-3"/>{t.calculator.aiAdmin}</div>
-                <div className="text-base md:text-xl font-bold text-violet-400 flex items-center gap-1">
-                  24/7
-                  <span className="relative flex h-2 w-2 ml-0.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                </div>
-              </div>
             </div>
 
-            {/* Actions row */}
+            {/* Loss explanation */}
+            <div className="bg-rose-500/5 border border-rose-500/10 rounded-xl px-3 py-2 md:px-4 md:py-2.5">
+              <p className="text-rose-400/60 text-[10px] md:text-xs leading-relaxed">{t.calculator.lossExplain}</p>
+            </div>
+
+            {/* Actions */}
             <div className="flex gap-2 md:gap-3">
               <button onClick={copyResult}
                 className="bg-white/5 border border-white/10 rounded-xl px-3 md:px-4 py-2.5 flex items-center gap-2 text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-xs md:text-sm shrink-0">
