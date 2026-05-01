@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          bonus_code: string | null
+          business_name: string | null
+          business_type: string | null
+          concierge_answers: Json | null
+          contact: string | null
+          created_at: string
+          id: string
+          language: string | null
+          name: string | null
+          need: string | null
+          recommendation: string | null
+          source: string
+          user_agent: string | null
+          website_or_social: string | null
+        }
+        Insert: {
+          bonus_code?: string | null
+          business_name?: string | null
+          business_type?: string | null
+          concierge_answers?: Json | null
+          contact?: string | null
+          created_at?: string
+          id?: string
+          language?: string | null
+          name?: string | null
+          need?: string | null
+          recommendation?: string | null
+          source?: string
+          user_agent?: string | null
+          website_or_social?: string | null
+        }
+        Update: {
+          bonus_code?: string | null
+          business_name?: string | null
+          business_type?: string | null
+          concierge_answers?: Json | null
+          contact?: string | null
+          created_at?: string
+          id?: string
+          language?: string | null
+          name?: string | null
+          need?: string | null
+          recommendation?: string | null
+          source?: string
+          user_agent?: string | null
+          website_or_social?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
