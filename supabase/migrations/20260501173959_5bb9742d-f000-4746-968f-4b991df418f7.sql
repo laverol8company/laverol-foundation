@@ -1,0 +1,1 @@
+revoke all on function public.validate_lead() from public, anon, authenticated;

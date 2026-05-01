@@ -2,45 +2,156 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Laverol Systems — dark premium dashboard design system */
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 222 47% 4%;
+    --foreground: 210 20% 98%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 100%;
+    --card: 222 40% 7%;
+    --card-foreground: 210 20% 98%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 222 40% 7%;
+    --popover-foreground: 210 20% 98%;
 
-    --primary: 192 100% 50%; /* cyan-400 */
-    --primary-foreground: 0 0% 0%;
+    /* Brand: calm electric blue */
+    --primary: 210 100% 62%;
+    --primary-foreground: 222 47% 6%;
+    --primary-glow: 200 100% 70%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 100%;
+    /* Soft secondary surface */
+    --secondary: 222 30% 12%;
+    --secondary-foreground: 210 20% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 222 25% 14%;
+    --muted-foreground: 215 16% 65%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 200 100% 70%;
+    --accent-foreground: 222 47% 6%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 192 100% 50%;
+    --success: 152 70% 50%;
 
-    --radius: 0.5rem;
+    --border: 220 20% 18%;
+    --input: 220 20% 14%;
+    --ring: 210 100% 62%;
+
+    --radius: 0.875rem;
+
+    /* Gradients */
+    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(210 100% 50% / 0.18), transparent 70%),
+                     radial-gradient(ellipse 50% 40% at 80% 30%, hsl(200 100% 60% / 0.10), transparent 70%),
+                     radial-gradient(ellipse 60% 50% at 10% 60%, hsl(260 80% 55% / 0.08), transparent 70%);
+    --gradient-card: linear-gradient(180deg, hsl(222 40% 9% / 0.7), hsl(222 40% 6% / 0.7));
+    --gradient-border: linear-gradient(135deg, hsl(210 100% 70% / 0.4), hsl(210 100% 70% / 0.05));
+    --gradient-text: linear-gradient(135deg, hsl(210 100% 75%), hsl(200 100% 80%));
+
+    /* Shadows */
+    --shadow-glow: 0 0 60px hsl(210 100% 60% / 0.18);
+    --shadow-card: 0 10px 30px -10px hsl(222 60% 2% / 0.6), 0 1px 0 hsl(210 30% 100% / 0.04) inset;
+    --shadow-elevated: 0 20px 60px -20px hsl(222 80% 0% / 0.8), 0 0 0 1px hsl(210 30% 100% / 0.05) inset;
+
+    /* Motion */
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection { background: hsl(var(--primary) / 0.3); }
+}
+
+@layer components {
+  /* Glass card */
+  .glass {
+    background: var(--gradient-card);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-card);
+  }
+  .glass-strong {
+    background: linear-gradient(180deg, hsl(222 40% 11% / 0.85), hsl(222 40% 7% / 0.85));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Premium gradient text */
+  .text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Subtle grid background */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 80%);
+  }
+
+  /* Hero ambient glows */
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+
+  /* Hover lift */
+  .lift {
+    transition: transform 0.3s var(--transition-smooth), border-color 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+    border-color: hsl(var(--primary) / 0.35);
+    box-shadow: 0 20px 50px -20px hsl(var(--primary) / 0.25);
+  }
+
+  /* Soft glow ring on focus/hover */
+  .ring-glow:hover { box-shadow: var(--shadow-glow); }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Animated gradient orb */
+  .orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(1.05); }
+  }
+  .drift { animation: drift 14s ease-in-out infinite; }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  .pulse-soft { animation: pulse-soft 2.5s ease-in-out infinite; }
+
+  @keyframes flow {
+    0% { stroke-dashoffset: 24; }
+    100% { stroke-dashoffset: 0; }
+  }
+  .flow-line { stroke-dasharray: 6 6; animation: flow 1.2s linear infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drift, .pulse-soft, .flow-line { animation: none !important; }
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
 }
