@@ -437,6 +437,7 @@ export const t = {
       confirm: "Cererea ta a fost trimisă.\nVom analiza răspunsurile și pregătim o direcție mai relevantă înainte de apel.",
     },
   },
-} as const;
+};
 
-export type Dict = typeof t.EN;
+export type Dict = (typeof t)["EN"];
+

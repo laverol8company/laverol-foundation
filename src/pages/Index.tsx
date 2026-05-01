@@ -325,7 +325,7 @@ function SectionHead({ title, sub, center = true }: { title: string; sub?: strin
 }
 
 /* ================= HERO DASHBOARD ================= */
-function HeroDashboard({ d }: { d: typeof t.EN }) {
+function HeroDashboard({ d }: { d: Dict }) {
   return (
     <div className="relative">
       <div className="glass-strong rounded-2xl p-5 sm:p-6 relative overflow-hidden">
@@ -379,7 +379,7 @@ function HeroDashboard({ d }: { d: typeof t.EN }) {
 }
 
 /* ================= GOAL ================= */
-function GoalSection({ d }: { d: typeof t.EN }) {
+function GoalSection({ d }: { d: Dict }) {
   const [selected, setSelected] = useState<string | null>(null);
   const sel = d.goal.options.find(o => o.id === selected);
 
@@ -422,7 +422,7 @@ function GoalSection({ d }: { d: typeof t.EN }) {
 }
 
 /* ================= COMPARE ================= */
-function CompareSection({ d }: { d: typeof t.EN }) {
+function CompareSection({ d }: { d: Dict }) {
   const [tab, setTab] = useState<"site" | "system">("system");
   return (
     <section className="py-20 md:py-28">
@@ -475,7 +475,7 @@ function CompareSection({ d }: { d: typeof t.EN }) {
 }
 
 /* ================= MAP ================= */
-function MapSection({ d, onCta }: { d: typeof t.EN; onCta: () => void }) {
+function MapSection({ d, onCta }: { d: Dict; onCta: () => void }) {
   const [active, setActive] = useState(0);
   const Icons = [Search, Globe, Bot, Send];
   return (
@@ -549,7 +549,7 @@ function MapSection({ d, onCta }: { d: typeof t.EN; onCta: () => void }) {
 }
 
 /* ================= INDUSTRIES ================= */
-function IndustriesSection({ d, onCta }: { d: typeof t.EN; onCta: () => void }) {
+function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
   const [tab, setTab] = useState(0);
   const Icons = [Wrench, Building2, Store, Gem];
   return (
@@ -617,7 +617,7 @@ function IndustriesSection({ d, onCta }: { d: typeof t.EN; onCta: () => void }) 
 }
 
 /* ================= CONTACT ================= */
-function ContactSection({ d, lang }: { d: typeof t.EN; lang: Lang }) {
+function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
   const [form, setForm] = useState({ name: "", btype: "", site: "", need: d.form.needs[0], contact: "" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
