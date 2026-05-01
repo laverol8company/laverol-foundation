@@ -401,7 +401,7 @@ export const t = {
       sub: "Împărtășește câteva detalii și sugerăm cel mai bun punct de start.",
       name: "Nume", btype: "Tip afacere", site: "Site sau Instagram (dacă există)", need: "De ce ai nevoie?", contact: "Contact (Telegram / WhatsApp / Email)",
       send: "Trimite cererea",
-      micro: "Nu ești sigur? Alege „Nu sunt sigur" și sugerăm cel mai bun start.",
+      micro: 'Nu ești sigur? Alege „Nu sunt sigur" și sugerăm cel mai bun start.',
       done: "Cererea ta a fost trimisă.",
       doneSub: "Vom analiza afacerea, site-ul sau ideea ta și vom sugera pasul următor.",
       doneHint: "Poți trimite și site-ul sau Instagram-ul tău pentru o analiză mai precisă.",
