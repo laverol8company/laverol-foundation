@@ -115,7 +115,17 @@ export function LaverolConcierge({ lang }: Props) {
       {open && (
         <div className="fixed inset-0 z-50 flex sm:items-end sm:justify-end">
           <div className="absolute inset-0 bg-background/70 backdrop-blur-sm animate-fade-in" onClick={() => setOpen(false)} />
-          <div className="relative glass-strong w-full sm:w-[400px] sm:m-6 sm:rounded-2xl rounded-t-2xl mt-auto sm:mt-0 max-h-[92vh] sm:max-h-[80vh] flex flex-col animate-slide-up overflow-hidden">
+          {/* Panel: uniform clean glass — no gradient top overlay */}
+          <div
+            className="relative w-full sm:w-[400px] sm:m-6 sm:rounded-2xl rounded-t-2xl mt-auto sm:mt-0 max-h-[92vh] sm:max-h-[80vh] flex flex-col animate-slide-up overflow-hidden"
+            style={{
+              background: "hsl(0 0% 8% / 0.97)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              border: "1px solid hsl(0 0% 100% / 0.07)",
+              boxShadow: "0 -8px 40px hsl(0 0% 0% / 0.5), 0 0 0 1px hsl(0 0% 100% / 0.05) inset",
+            }}
+          >
             {/* Header */}
             <div className="flex items-start justify-between p-5 border-b border-border/60">
               <div className="flex items-center gap-3 min-w-0">

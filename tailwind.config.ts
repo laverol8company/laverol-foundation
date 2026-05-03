@@ -13,6 +13,11 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Sora', 'sans-serif'],
+        tech: ['"Space Grotesk"', 'sans-serif'],
+      },
+      fontSize: {
+        '2xs': ['0.65rem', { lineHeight: '1rem' }],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -20,6 +25,15 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        platinum: "hsl(var(--platinum) / <alpha-value>)",
+        charcoal: "hsl(var(--charcoal) / <alpha-value>)",
+        ambient: {
+          ice:     "hsl(var(--ambient-ice)     / <alpha-value>)",
+          violet:  "hsl(var(--ambient-violet)  / <alpha-value>)",
+          magenta: "hsl(var(--ambient-magenta) / <alpha-value>)",
+          emerald: "hsl(var(--ambient-emerald) / <alpha-value>)",
+          amber:   "hsl(var(--ambient-amber)   / <alpha-value>)",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

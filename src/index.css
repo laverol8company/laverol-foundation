@@ -2,89 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Laverol Systems — dark premium dashboard design system */
+/* =========================================================
+   Premium Dark Automotive — Design System
+   BMW / Mercedes ambient salon aesthetic
+   ========================================================= */
+
 @layer base {
   :root {
-    --background: 222 47% 4%;
-    --foreground: 210 20% 98%;
+    /* ---- Base Palette ---- */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 40% 7%;
-    --card-foreground: 210 20% 98%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 40% 7%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Brand: calm electric blue */
+    --platinum: 0 0% 78%;
+    --charcoal: 0 0% 9%;
+
+    /* ---- Brand: calm electric blue ---- */
     --primary: 210 100% 62%;
     --primary-foreground: 222 47% 6%;
     --primary-glow: 200 100% 70%;
 
-    /* Soft secondary surface */
-    --secondary: 222 30% 12%;
-    --secondary-foreground: 210 20% 98%;
+    /* ---- Surfaces ---- */
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 222 25% 14%;
-    --muted-foreground: 215 16% 65%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 200 100% 70%;
+    --accent: 200 95% 65%;
     --accent-foreground: 222 47% 6%;
 
+    /* ---- State ---- */
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
+    --success: 160 60% 50%;
 
-    --success: 152 70% 50%;
-
-    --border: 220 20% 18%;
-    --input: 220 20% 14%;
+    /* ---- Structure ---- */
+    --border: 0 0% 14%;
+    --input: 0 0% 11%;
     --ring: 210 100% 62%;
-
     --radius: 0.875rem;
 
-    /* Gradients */
-    --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(210 100% 50% / 0.18), transparent 70%),
-                     radial-gradient(ellipse 50% 40% at 80% 30%, hsl(200 100% 60% / 0.10), transparent 70%),
-                     radial-gradient(ellipse 60% 50% at 10% 60%, hsl(260 80% 55% / 0.08), transparent 70%);
-    --gradient-card: linear-gradient(180deg, hsl(222 40% 9% / 0.7), hsl(222 40% 6% / 0.7));
-    --gradient-border: linear-gradient(135deg, hsl(210 100% 70% / 0.4), hsl(210 100% 70% / 0.05));
-    --gradient-text: linear-gradient(135deg, hsl(210 100% 75%), hsl(200 100% 80%));
+    /* ---- Ambient Lighting Accents ---- */
+    --ambient-ice: 200 95% 65%;
+    --ambient-violet: 270 70% 65%;
+    --ambient-magenta: 320 65% 60%;
+    --ambient-emerald: 160 60% 50%;
+    --ambient-amber: 38 90% 60%;
 
-    /* Shadows */
-    --shadow-glow: 0 0 60px hsl(210 100% 60% / 0.18);
-    --shadow-card: 0 10px 30px -10px hsl(222 60% 2% / 0.6), 0 1px 0 hsl(210 30% 100% / 0.04) inset;
-    --shadow-elevated: 0 20px 60px -20px hsl(222 80% 0% / 0.8), 0 0 0 1px hsl(210 30% 100% / 0.05) inset;
+    /* ---- Gradients ---- */
+    --gradient-hero:
+      radial-gradient(ellipse at 30% 20%, hsl(var(--ambient-ice) / 0.18), transparent 55%),
+      radial-gradient(ellipse at 75% 60%, hsl(var(--ambient-violet) / 0.12), transparent 55%),
+      radial-gradient(ellipse at 50% 100%, hsl(var(--ambient-magenta) / 0.07), transparent 55%);
 
-    /* Motion */
+    --gradient-card: linear-gradient(
+      180deg,
+      hsl(0 0% 100% / 0.04),
+      hsl(0 0% 100% / 0.01)
+    );
+    --gradient-border: linear-gradient(135deg, hsl(var(--ambient-ice) / 0.4), hsl(var(--ambient-ice) / 0.05));
+    --gradient-text: linear-gradient(135deg, hsl(var(--ambient-ice)), hsl(var(--ambient-violet)));
+
+    /* ---- Shadows & Glows ---- */
+    --shadow-glow: 0 0 60px hsl(var(--ambient-ice) / 0.22);
+    --shadow-card:
+      0 8px 32px -8px hsl(0 0% 0% / 0.5),
+      0 1px 0 hsl(0 0% 100% / 0.05) inset;
+    --shadow-elevated:
+      0 20px 60px -20px hsl(0 0% 0% / 0.8),
+      0 0 0 1px hsl(0 0% 100% / 0.06) inset;
+
+    /* ---- Motion ---- */
     --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
+/* =========================================================
+   Global Resets & Base Styles
+   ========================================================= */
 @layer base {
-  * { @apply border-border; }
-  html { scroll-behavior: smooth; }
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Safe area support for notched devices */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Sora', ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
+    min-height: 100dvh;
   }
-  ::selection { background: hsl(var(--primary) / 0.3); }
+
+  /* Display headings — Sora, ultra-tight tracking */
+  h1, h2, h3, h4 {
+    font-family: 'Sora', sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  /* Technical labels — Space Grotesk */
+  .label-tech {
+    font-family: 'Space Grotesk', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    font-size: 0.7rem;
+  }
+
+  ::selection {
+    background: hsl(var(--ambient-ice) / 0.25);
+    color: hsl(var(--foreground));
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 999px;
+  }
 }
 
+/* =========================================================
+   Component Classes
+   ========================================================= */
 @layer components {
-  /* Glass card */
+
+  /* ---- Glassmorphism Cards ---- */
+  .glass-card {
+    background: var(--gradient-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(0 0% 100% / 0.06);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Legacy compat aliases */
   .glass {
     background: var(--gradient-card);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid hsl(var(--border));
+    border: 1px solid hsl(0 0% 100% / 0.06);
     box-shadow: var(--shadow-card);
   }
+
   .glass-strong {
-    background: linear-gradient(180deg, hsl(222 40% 11% / 0.85), hsl(222 40% 7% / 0.85));
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border));
+    background: linear-gradient(
+      180deg,
+      hsl(0 0% 10% / 0.90),
+      hsl(0 0% 6% / 0.95)
+    );
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsl(0 0% 100% / 0.07);
     box-shadow: var(--shadow-elevated);
   }
 
-  /* Premium gradient text */
+  /* ---- Gradient Text ---- */
   .text-gradient {
     background: var(--gradient-text);
     -webkit-background-clip: text;
@@ -92,66 +180,114 @@
     color: transparent;
   }
 
-  /* Subtle grid background */
-  .bg-grid {
-    background-image:
-      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 80%);
-  }
-
-  /* Hero ambient glows */
+  /* ---- Hero ambient background ---- */
   .bg-hero {
     background: var(--gradient-hero);
   }
 
-  /* Hover lift */
+  /* ---- Subtle grid ---- */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 40%, transparent 80%);
+  }
+
+  /* ---- Hover lift ---- */
   .lift {
     transition: transform 0.3s var(--transition-smooth), border-color 0.3s var(--transition-smooth), box-shadow 0.3s var(--transition-smooth);
   }
+
   .lift:hover {
-    transform: translateY(-3px);
-    border-color: hsl(var(--primary) / 0.35);
-    box-shadow: 0 20px 50px -20px hsl(var(--primary) / 0.25);
+    transform: translateY(-2px);
+    border-color: hsl(var(--ambient-ice) / 0.3);
+    box-shadow: 0 16px 48px -16px hsl(var(--ambient-ice) / 0.2);
   }
 
-  /* Soft glow ring on focus/hover */
-  .ring-glow:hover { box-shadow: var(--shadow-glow); }
+  /* ---- Glow ring ---- */
+  .ring-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
 
-  /* Reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
-  .reveal.in { opacity: 1; transform: none; }
+  /* ---- Ice glow button effect ---- */
+  .glow-ice {
+    box-shadow: 0 0 30px hsl(var(--ambient-ice) / 0.4);
+  }
 
-  /* Animated gradient orb */
+  /* ---- Reveal on scroll ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---- Animated gradient orb ---- */
   .orb {
     position: absolute;
     border-radius: 9999px;
     filter: blur(80px);
-    opacity: 0.6;
+    opacity: 0.5;
     pointer-events: none;
   }
 
+  /* ---- Animations ---- */
   @keyframes drift {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(20px, -20px) scale(1.05); }
+    50%       { transform: translate(20px, -20px) scale(1.05); }
   }
-  .drift { animation: drift 14s ease-in-out infinite; }
+
+  .drift {
+    animation: drift 14s ease-in-out infinite;
+  }
 
   @keyframes pulse-soft {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+    0%, 100% { opacity: 0.55; }
+    50%       { opacity: 1; }
   }
-  .pulse-soft { animation: pulse-soft 2.5s ease-in-out infinite; }
+
+  .pulse-soft {
+    animation: pulse-soft 2.5s ease-in-out infinite;
+  }
 
   @keyframes flow {
-    0% { stroke-dashoffset: 24; }
+    0%   { stroke-dashoffset: 24; }
     100% { stroke-dashoffset: 0; }
   }
-  .flow-line { stroke-dasharray: 6 6; animation: flow 1.2s linear infinite; }
 
+  .flow-line {
+    stroke-dasharray: 6 6;
+    animation: flow 1.2s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+  }
+
+  .shimmer {
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* ---- Safe-area-aware sticky bottom bar ---- */
+  .sticky-bottom-bar {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+  }
+
+  /* ---- Reduced motion ---- */
   @media (prefers-reduced-motion: reduce) {
-    .drift, .pulse-soft, .flow-line { animation: none !important; }
-    .reveal { opacity: 1; transform: none; transition: none; }
+    .drift, .pulse-soft, .flow-line, .shimmer {
+      animation: none !important;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 }

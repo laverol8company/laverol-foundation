@@ -118,9 +118,9 @@ export default function Index() {
       {/* HERO */}
       <section id="hero" className="relative pt-28 pb-16 md:pt-36 md:pb-28 overflow-hidden">
         <div className="absolute inset-0 bg-hero pointer-events-none" />
-        <div className="absolute inset-0 bg-grid pointer-events-none opacity-40" />
-        <div className="absolute -top-32 left-1/3 h-[400px] w-[400px] orb bg-primary/30 drift hidden md:block" />
-        <div className="absolute top-40 right-10 h-[300px] w-[300px] orb bg-accent/20 drift hidden md:block" style={{ animationDelay: "3s" }} />
+        <div className="absolute inset-0 bg-grid pointer-events-none opacity-30" />
+        <div className="absolute -top-32 left-1/3 h-[400px] w-[400px] orb bg-ambient-ice/20 drift hidden md:block" />
+        <div className="absolute top-40 right-10 h-[300px] w-[300px] orb bg-ambient-violet/15 drift hidden md:block" style={{ animationDelay: "3s" }} />
 
         <div className="container relative">
           <div className="grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center">
@@ -301,9 +301,12 @@ export default function Index() {
         </div>
       </footer>
 
-      {/* Sticky mobile CTA */}
-      <div className="md:hidden fixed bottom-0 inset-x-0 z-20 p-3 bg-gradient-to-t from-background via-background/95 to-transparent pointer-events-none">
-        <Button onClick={() => scrollTo("contact")} className="w-full pointer-events-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_hsl(var(--primary)/0.5)] h-12">
+      {/* Sticky mobile CTA — safe-area aware so browser chrome never hides it */}
+      <div className="md:hidden fixed bottom-0 inset-x-0 z-20 sticky-bottom-bar bg-gradient-to-t from-background via-background/95 to-transparent pointer-events-none pt-6">
+        <Button
+          onClick={() => scrollTo("contact")}
+          className="w-full pointer-events-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_hsl(var(--ambient-ice)/0.5)] h-12 glow-ice"
+        >
           {d.nav.cta} <ArrowRight className="h-4 w-4" />
         </Button>
       </div>
