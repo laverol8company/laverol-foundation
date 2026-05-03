@@ -139,7 +139,7 @@ export default function Index() {
                   <Button size="lg" onClick={() => scrollTo("contact")} className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_hsl(var(--primary)/0.4)] h-12">
                     {d.hero.cta1} <ArrowRight className="h-4 w-4" />
                   </Button>
-                  <Button size="lg" variant="outline" onClick={() => scrollTo("build")} className="border-border bg-secondary/40 hover:bg-secondary h-12">
+                  <Button size="lg" variant="outline" onClick={() => scrollTo("build")} className="border-border bg-transparent hover:bg-transparent hover:border-ambient-ice hover:shadow-[0_0_20px_hsl(var(--ambient-ice)/0.3)] hover:scale-[1.02] transition-all h-12 text-foreground">
                     {d.hero.cta2}
                   </Button>
                 </div>
