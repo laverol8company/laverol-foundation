@@ -253,6 +253,9 @@ export default function Index() {
         </div>
       </section>
 
+      {/* CAR SHOWCASE */}
+      <CarShowcase d={d} />
+
       {/* NOT SURE */}
       <section className="py-16">
         <div className="container">
@@ -357,6 +360,61 @@ function SectionHead({ title, sub, center = true }: { title: string; sub?: strin
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">{title}</h2>
       {sub && <p className="text-muted-foreground leading-relaxed">{sub}</p>}
     </div>
+  );
+}
+
+/* ================= CAR SHOWCASE ================= */
+function CarShowcase({ d }: { d: Dict }) {
+  const [cars, setCars] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      const { data, error } = await supabase.from("cars").select("*").limit(6);
+      if (!error && data) setCars(data);
+      setLoading(false);
+    };
+    fetchCars();
+  }, []);
+
+  if (loading && cars.length === 0) return null;
+  if (!loading && cars.length === 0) return null;
+
+  return (
+    <section className="py-20 md:py-28 bg-secondary/10">
+      <div className="container">
+        <Reveal><SectionHead title="Наш автопарк" sub="Ознакомьтесь с доступными автомобилями в нашем салоне" /></Reveal>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {cars.map((car) => (
+            <Reveal key={car.id}>
+              <div className="glass rounded-2xl overflow-hidden h-full flex flex-col lift border border-border/40">
+                <div className="aspect-[16/10] relative overflow-hidden bg-muted">
+                  {car.images?.[0] ? (
+                    <img src={car.images[0]} alt={car.make} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">Нет фото</div>
+                  )}
+                  <div className="absolute top-3 left-3 px-2 py-1 rounded-md bg-background/80 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider">
+                    {car.year} г.
+                  </div>
+                </div>
+                <div className="p-5 flex-1 flex flex-col">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-bold">{car.make} {car.model}</h3>
+                    <div className="text-primary font-bold text-lg">${car.price.toLocaleString()}</div>
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">{car.description}</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border/40">
+                    <div className="text-xs text-muted-foreground">Пробег: <span className="text-foreground font-medium">{car.mileage.toLocaleString()} км</span></div>
+                    <Button variant="ghost" size="sm" className="h-8 text-xs">Подробнее</Button>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
