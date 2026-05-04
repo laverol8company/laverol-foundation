@@ -41,6 +41,10 @@ const Logo = () => (
 export default function Index() {
   const [lang, setLang] = useState<Lang>("EN");
   const [menuOpen, setMenuOpen] = useState(false);
+  // Инициализируем выбранный пакет из URL-параметра ?package=
+  const [selectedPkg, setSelectedPkg] = useState<string>(
+    () => new URLSearchParams(window.location.search).get("package") || "pkg_unknown"
+  );
   const d = t[lang];
 
   useEffect(() => {
@@ -49,8 +53,13 @@ export default function Index() {
     else if (browser.startsWith("ro")) setLang("RO");
   }, []);
 
-  const scrollTo = (id: string) => {
+  const scrollTo = (id: string, pkgId?: string) => {
     setMenuOpen(false);
+    if (pkgId) {
+      setSelectedPkg(pkgId);
+      // Пишем в URL без перезагрузки страницы — для аналитики и прямых ссылок
+      window.history.pushState({}, "", `?package=${pkgId}`);
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -234,7 +243,7 @@ export default function Index() {
                       </li>
                     ))}
                   </ul>
-                  <Button onClick={() => scrollTo("contact")} variant="outline" size="sm" className="w-full border-border hover:border-primary/50 hover:bg-primary/5">
+                  <Button onClick={() => scrollTo("contact", o.id)} variant="outline" size="sm" className="w-full border-border hover:border-primary/50 hover:bg-primary/5">
                     {d.options.cta} <ChevronRight className="h-4 w-4" />
                   </Button>
                 </div>
@@ -265,7 +274,7 @@ export default function Index() {
       </section>
 
       {/* CONTACT FORM */}
-      <ContactSection d={d} lang={lang} />
+      <ContactSection d={d} lang={lang} preselected={selectedPkg} />
 
       {/* FOOTER */}
       <footer className="border-t border-border/60 py-12 mt-10">
@@ -620,10 +629,15 @@ function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
 }
 
 /* ================= CONTACT ================= */
-function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
-  const [form, setForm] = useState({ name: "", btype: "", site: "", need: d.form.needs[0], contact: "" });
+function ContactSection({ d, lang, preselected }: { d: Dict; lang: Lang; preselected: string }) {
+  const [form, setForm] = useState({ name: "", btype: "", site: "", need: preselected, contact: "" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+
+  // Синхронизируем выбранный пакет, если пользователь кликнул по другой карточке
+  useEffect(() => {
+    setForm(f => ({ ...f, need: preselected }));
+  }, [preselected]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -632,12 +646,14 @@ function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
       return;
     }
     setSubmitting(true);
+    // Маппим языконезависимый ID обратно в читаемый label для сохранения в БД
+    const needLabel = d.form.needs.find(n => n.id === form.need)?.label ?? form.need;
     const { error } = await supabase.from("leads").insert({
       source: "contact_form",
       name: form.name || null,
       business_type: form.btype || null,
       website_or_social: form.site || null,
-      need: form.need,
+      need: needLabel,
       contact: form.contact,
       language: lang,
       user_agent: navigator.userAgent.slice(0, 500),
@@ -700,11 +716,11 @@ function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
                     </div>
                     <Field label={d.form.need}>
                       <select value={form.need} onChange={e => setForm({...form, need: e.target.value})} className="input-field">
-                        {d.form.needs.map(n => <option key={n} value={n}>{n}</option>)}
+                        {d.form.needs.map(n => <option key={n.id} value={n.id}>{n.label}</option>)}
                       </select>
                     </Field>
                   </div>
-                  <Button type="submit" size="lg" disabled={submitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-13 shadow-[0_0_30px_hsl(var(--primary)/0.45)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.6)] transition-shadow">
+                  <Button type="submit" size="lg" disabled={submitting} className="w-full h-14 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_hsl(var(--primary)/0.45)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.6)] active:scale-[0.98] transition-all duration-200">
                     {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <>{d.form.send} <ArrowRight className="h-4 w-4" /></>}
                   </Button>
                 </form>

@@ -1,5 +1,5 @@
 # Project Rules
 
-1. **Security & Coding Standards**: Always refer to `table.pdf` and `Secure Vibe Coding White Paper.pdf` in the root directory for base protection and secure coding guidelines. Ensure all implementations strictly follow these documents.
-2. **Language**: Always provide answers and explanations to the user in Russian.
+1. **Language (CRITICAL)**: ВСЕГДА отвечай, пиши комментарии и объяснения исключительно на русском языке (Russian). Это строгое и неизменное правило.
+2. **Security & Coding Standards**: Always refer to `table.pdf` and `Secure Vibe Coding White Paper.pdf` in the root directory for base protection and secure coding guidelines. Ensure all implementations strictly follow these documents.
 3. **Design System**: Use the "Premium Dark Automotive" design system (Sora, Space Grotesk, ambient colors, glassmorphism) as configured in `tailwind.config.ts` and `index.css`.

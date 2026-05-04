@@ -100,10 +100,10 @@ export const t = {
       sub: "Почніть із сетапу, який реально потрібен вашому бізнесу. Можна почати просто й розширити пізніше.",
       cta: "Розпочати цей сетап",
       items: [
-        { title: "Website Start", text: "Для бізнесів, яким потрібен чистий кастомний сайт і контактна форма.", incl: ["Кастомний сайт", "Чітка структура", "Контактна форма", "Mobile-friendly дизайн"] },
-        { title: "Lead Website", text: "Для бізнесів, яким потрібен сайт із фокусом на заявки.", incl: ["Кастомний сайт або лендинг", "Сильна CTA-структура", "Форма заявки", "Сповіщення про ліди"] },
-        { title: "Website + Bot", text: "Для бізнесів, які хочуть відповідати й збирати заявки швидше.", incl: ["Сайт або лендинг", "Smart-бот", "Короткий потік кваліфікації", "Сповіщення"] },
-        { title: "Full Setup", text: "Для бізнесів, яким потрібен сайт, бот і обробка лідів разом.", incl: ["Сайт", "Smart-бот", "CRM / Telegram / email-потік", "Базова аналітика", "Проста автоматизація"] },
+        { id: "pkg_web_start", title: "Website Start", text: "Для бізнесів, яким потрібен чистий кастомний сайт і контактна форма.", incl: ["Кастомний сайт", "Чітка структура", "Контактна форма", "Mobile-friendly дизайн"] },
+        { id: "pkg_lead_web", title: "Lead Website", text: "Для бізнесів, яким потрібен сайт із фокусом на заявки.", incl: ["Кастомний сайт або лендинг", "Сильна CTA-структура", "Форма заявки", "Сповіщення про ліди"] },
+        { id: "pkg_web_bot", title: "Website + Bot", text: "Для бізнесів, які хочуть відповідати й збирати заявки швидше.", incl: ["Сайт або лендинг", "Smart-бот", "Короткий потік кваліфікації", "Сповіщення"] },
+        { id: "pkg_full", title: "Full Setup", text: "Для бізнесів, яким потрібен сайт, бот і обробка лідів разом.", incl: ["Сайт", "Smart-бот", "CRM / Telegram / email-потік", "Базова аналітика", "Проста автоматизація"] },
       ],
     },
     unsure: {
@@ -124,7 +124,13 @@ export const t = {
       done: "Вашу заявку надіслано.",
       doneSub: "Ми переглянемо ваш бізнес, сайт чи ідею і запропонуємо найлогічніший наступний крок.",
       doneHint: "Ви також можете надіслати ваш сайт або Instagram, щоб ревʼю було точнішим.",
-      needs: ["Сайт", "Лендинг", "Smart-бот", "Сайт + бот", "Full setup", "Не знаю / Потрібна консультація"],
+      needs: [
+        { id: "pkg_web_start", label: "Website Start" },
+        { id: "pkg_lead_web", label: "Lead Website" },
+        { id: "pkg_web_bot", label: "Website + Bot" },
+        { id: "pkg_full", label: "Full Setup" },
+        { id: "pkg_unknown", label: "Не знаю / Потрібна консультація" },
+      ],
     },
     footer: {
       desc: "Кастомні сайти, smart-боти та lead-системи для бізнесів, яким потрібно більше заявок і швидша обробка.",
@@ -249,10 +255,10 @@ export const t = {
       sub: "Start with the setup your business actually needs. You can keep it simple and expand later.",
       cta: "Start this setup",
       items: [
-        { title: "Website Start", text: "For businesses that need a clean custom website and contact form.", incl: ["Custom website", "Clear structure", "Contact form", "Mobile-friendly design"] },
-        { title: "Lead Website", text: "For businesses that need a website focused on inquiries.", incl: ["Custom website or landing page", "Strong CTA structure", "Request form", "Lead notifications"] },
-        { title: "Website + Bot", text: "For businesses that want to answer questions and collect requests faster.", incl: ["Website or landing page", "Smart bot", "Short qualification flow", "Notifications"] },
-        { title: "Full Setup", text: "For businesses that need website, bot and lead handling together.", incl: ["Website", "Smart bot", "CRM / Telegram / email flow", "Basic analytics", "Simple automation"] },
+        { id: "pkg_web_start", title: "Website Start", text: "For businesses that need a clean custom website and contact form.", incl: ["Custom website", "Clear structure", "Contact form", "Mobile-friendly design"] },
+        { id: "pkg_lead_web", title: "Lead Website", text: "For businesses that need a website focused on inquiries.", incl: ["Custom website or landing page", "Strong CTA structure", "Request form", "Lead notifications"] },
+        { id: "pkg_web_bot", title: "Website + Bot", text: "For businesses that want to answer questions and collect requests faster.", incl: ["Website or landing page", "Smart bot", "Short qualification flow", "Notifications"] },
+        { id: "pkg_full", title: "Full Setup", text: "For businesses that need website, bot and lead handling together.", incl: ["Website", "Smart bot", "CRM / Telegram / email flow", "Basic analytics", "Simple automation"] },
       ],
     },
     unsure: {
@@ -269,7 +275,13 @@ export const t = {
       done: "Your request has been sent.",
       doneSub: "We'll review your business, website or idea and suggest the most logical next step.",
       doneHint: "You can also send your current website or Instagram to make the review more accurate.",
-      needs: ["Website", "Landing page", "Smart bot", "Website + bot", "Full setup", "Not sure / Need consultation"],
+      needs: [
+        { id: "pkg_web_start", label: "Website Start" },
+        { id: "pkg_lead_web", label: "Lead Website" },
+        { id: "pkg_web_bot", label: "Website + Bot" },
+        { id: "pkg_full", label: "Full Setup" },
+        { id: "pkg_unknown", label: "Not sure / Need consultation" },
+      ],
     },
     footer: {
       desc: "Custom websites, smart bots and lead systems for businesses that want more inquiries and faster client handling.",
@@ -385,10 +397,10 @@ export const t = {
       sub: "Începe cu setup-ul de care afacerea ta are cu adevărat nevoie. Poți extinde mai târziu.",
       cta: "Începe acest setup",
       items: [
-        { title: "Website Start", text: "Pentru afaceri care au nevoie de un site custom curat și formular de contact.", incl: ["Site custom", "Structură clară", "Formular de contact", "Design mobile-friendly"] },
-        { title: "Lead Website", text: "Pentru afaceri care au nevoie de un site focusat pe cereri.", incl: ["Site sau landing", "Structură CTA puternică", "Formular cerere", "Notificări lead-uri"] },
-        { title: "Website + Bot", text: "Pentru afaceri care vor să răspundă mai rapid.", incl: ["Site sau landing", "Smart bot", "Flux scurt de calificare", "Notificări"] },
-        { title: "Full Setup", text: "Pentru afaceri care au nevoie de site, bot și gestionare lead-uri împreună.", incl: ["Site", "Smart bot", "Flux CRM / Telegram / email", "Analitice de bază", "Automatizare simplă"] },
+        { id: "pkg_web_start", title: "Website Start", text: "Pentru afaceri care au nevoie de un site custom curat și formular de contact.", incl: ["Site custom", "Structură clară", "Formular de contact", "Design mobile-friendly"] },
+        { id: "pkg_lead_web", title: "Lead Website", text: "Pentru afaceri care au nevoie de un site focusat pe cereri.", incl: ["Site sau landing", "Structură CTA puternică", "Formular cerere", "Notificări lead-uri"] },
+        { id: "pkg_web_bot", title: "Website + Bot", text: "Pentru afaceri care vor să răspundă mai rapid.", incl: ["Site sau landing", "Smart bot", "Flux scurt de calificare", "Notificări"] },
+        { id: "pkg_full", title: "Full Setup", text: "Pentru afaceri care au nevoie de site, bot și gestionare lead-uri împreună.", incl: ["Site", "Smart bot", "Flux CRM / Telegram / email", "Analitice de bază", "Automatizare simplă"] },
       ],
     },
     unsure: {
@@ -405,7 +417,13 @@ export const t = {
       done: "Cererea ta a fost trimisă.",
       doneSub: "Vom analiza afacerea, site-ul sau ideea ta și vom sugera pasul următor.",
       doneHint: "Poți trimite și site-ul sau Instagram-ul tău pentru o analiză mai precisă.",
-      needs: ["Site", "Landing page", "Smart bot", "Site + bot", "Full setup", "Nu sunt sigur / Am nevoie de consultanță"],
+      needs: [
+        { id: "pkg_web_start", label: "Website Start" },
+        { id: "pkg_lead_web", label: "Lead Website" },
+        { id: "pkg_web_bot", label: "Website + Bot" },
+        { id: "pkg_full", label: "Full Setup" },
+        { id: "pkg_unknown", label: "Nu sunt sigur / Am nevoie de consultanță" },
+      ],
     },
     footer: {
       desc: "Site-uri custom, smart bots și sisteme de lead-uri pentru afaceri care vor mai multe cereri și gestionare mai rapidă.",
