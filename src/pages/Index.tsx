@@ -668,28 +668,43 @@ function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
                   <p className="text-xs text-muted-foreground/70">{d.form.doneHint}</p>
                 </div>
               ) : (
-                <form onSubmit={submit} className="space-y-4">
-                  <Field label={d.form.name}>
-                    <input value={form.name} onChange={e => setForm({...form, name: e.target.value})} maxLength={200} className="input-field" />
-                  </Field>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field label={d.form.btype}>
-                      <input value={form.btype} onChange={e => setForm({...form, btype: e.target.value})} maxLength={200} className="input-field" />
+                <form onSubmit={submit} className="space-y-6">
+                  {/* Block 1: Contact Data */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-px flex-1 bg-border/60" />
+                      <span className="text-[10px] uppercase tracking-widest text-primary/60 font-medium">Contact</span>
+                      <div className="h-px flex-1 bg-border/60" />
+                    </div>
+                    <Field label={d.form.name}>
+                      <input value={form.name} onChange={e => setForm({...form, name: e.target.value})} maxLength={200} className="input-field" />
                     </Field>
-                    <Field label={d.form.site}>
-                      <input value={form.site} onChange={e => setForm({...form, site: e.target.value})} maxLength={500} placeholder="@instagram / yoursite.com" className="input-field" />
+                    <Field label={d.form.contact} required>
+                      <input value={form.contact} onChange={e => setForm({...form, contact: e.target.value})} maxLength={500} required placeholder="@telegram / +380... / email@..." className="input-field" />
                     </Field>
                   </div>
-                  <Field label={d.form.need}>
-                    <select value={form.need} onChange={e => setForm({...form, need: e.target.value})} className="input-field">
-                      {d.form.needs.map(n => <option key={n} value={n}>{n}</option>)}
-                    </select>
-                  </Field>
-                  <Field label={d.form.contact} required>
-                    <input value={form.contact} onChange={e => setForm({...form, contact: e.target.value})} maxLength={500} required placeholder="@telegram / +380... / email@..." className="input-field" />
-                  </Field>
-                  <p className="text-xs text-muted-foreground">{d.form.micro}</p>
-                  <Button type="submit" size="lg" disabled={submitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-12">
+                  {/* Block 2: Project Info */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-px flex-1 bg-border/60" />
+                      <span className="text-[10px] uppercase tracking-widest text-primary/60 font-medium">Project</span>
+                      <div className="h-px flex-1 bg-border/60" />
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <Field label={d.form.btype}>
+                        <input value={form.btype} onChange={e => setForm({...form, btype: e.target.value})} maxLength={200} className="input-field" />
+                      </Field>
+                      <Field label={d.form.site}>
+                        <input value={form.site} onChange={e => setForm({...form, site: e.target.value})} maxLength={500} placeholder="@instagram / yoursite.com" className="input-field" />
+                      </Field>
+                    </div>
+                    <Field label={d.form.need}>
+                      <select value={form.need} onChange={e => setForm({...form, need: e.target.value})} className="input-field">
+                        {d.form.needs.map(n => <option key={n} value={n}>{n}</option>)}
+                      </select>
+                    </Field>
+                  </div>
+                  <Button type="submit" size="lg" disabled={submitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-13 shadow-[0_0_30px_hsl(var(--primary)/0.45)] hover:shadow-[0_0_40px_hsl(var(--primary)/0.6)] transition-shadow">
                     {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <>{d.form.send} <ArrowRight className="h-4 w-4" /></>}
                   </Button>
                 </form>
@@ -698,8 +713,9 @@ function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
           </Reveal>
         </div>
       </div>
-      <style>{`.input-field { width: 100%; background: hsl(var(--secondary) / 0.4); border: 1px solid hsl(var(--border)); border-radius: 0.625rem; padding: 0.7rem 0.875rem; font-size: 0.875rem; outline: none; transition: border-color .2s; color: hsl(var(--foreground)); }
-.input-field:focus { border-color: hsl(var(--primary) / 0.6); }`}</style>
+      <style>{`.input-field { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.18); border-radius: 0.625rem; padding: 0.7rem 0.875rem; font-size: 0.875rem; outline: none; transition: border-color .2s, background .2s, box-shadow .2s; color: hsl(var(--foreground)); }
+.input-field:focus { border-color: hsl(var(--primary) / 0.7); background: rgba(255,255,255,0.08); box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12); }
+.input-field option { background: hsl(var(--background)); color: hsl(var(--foreground)); }`}</style>
     </section>
   );
 }
@@ -707,7 +723,7 @@ function ContactSection({ d, lang }: { d: Dict; lang: Lang }) {
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="text-xs uppercase tracking-wider text-muted-foreground mb-1.5 block">
+      <span className="text-xs uppercase tracking-wider mb-1.5 block font-medium" style={{ color: 'hsl(0 0% 78%)' }}>
         {label}{required && <span className="text-primary"> *</span>}
       </span>
       {children}

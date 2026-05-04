@@ -96,20 +96,7 @@ export function LaverolConcierge({ lang }: Props) {
 
   return (
     <>
-      {/* Floating button */}
-      {!open && (
-        <button
-          onClick={() => setOpen(true)}
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 group glass-strong rounded-full pl-4 pr-5 py-3 flex items-center gap-2.5 lift hover:border-primary/40"
-          aria-label={c.btn}
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inset-0 rounded-full bg-primary opacity-60 pulse-soft" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
-          </span>
-          <span className="text-sm font-medium">{c.btn}</span>
-        </button>
-      )}
+
 
       {/* Overlay + panel */}
       {open && (

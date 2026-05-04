@@ -124,7 +124,7 @@ export const t = {
       done: "Вашу заявку надіслано.",
       doneSub: "Ми переглянемо ваш бізнес, сайт чи ідею і запропонуємо найлогічніший наступний крок.",
       doneHint: "Ви також можете надіслати ваш сайт або Instagram, щоб ревʼю було точнішим.",
-      needs: ["Сайт", "Лендинг", "Smart-бот", "Сайт + бот", "Full setup", "Не знаю"],
+      needs: ["Сайт", "Лендинг", "Smart-бот", "Сайт + бот", "Full setup", "Не знаю / Потрібна консультація"],
     },
     footer: {
       desc: "Кастомні сайти, smart-боти та lead-системи для бізнесів, яким потрібно більше заявок і швидша обробка.",
@@ -269,7 +269,7 @@ export const t = {
       done: "Your request has been sent.",
       doneSub: "We'll review your business, website or idea and suggest the most logical next step.",
       doneHint: "You can also send your current website or Instagram to make the review more accurate.",
-      needs: ["Website", "Landing page", "Smart bot", "Website + bot", "Full setup", "Not sure"],
+      needs: ["Website", "Landing page", "Smart bot", "Website + bot", "Full setup", "Not sure / Need consultation"],
     },
     footer: {
       desc: "Custom websites, smart bots and lead systems for businesses that want more inquiries and faster client handling.",
@@ -405,7 +405,7 @@ export const t = {
       done: "Cererea ta a fost trimisă.",
       doneSub: "Vom analiza afacerea, site-ul sau ideea ta și vom sugera pasul următor.",
       doneHint: "Poți trimite și site-ul sau Instagram-ul tău pentru o analiză mai precisă.",
-      needs: ["Site", "Landing page", "Smart bot", "Site + bot", "Full setup", "Nu sunt sigur"],
+      needs: ["Site", "Landing page", "Smart bot", "Site + bot", "Full setup", "Nu sunt sigur / Am nevoie de consultanță"],
     },
     footer: {
       desc: "Site-uri custom, smart bots și sisteme de lead-uri pentru afaceri care vor mai multe cereri și gestionare mai rapidă.",
