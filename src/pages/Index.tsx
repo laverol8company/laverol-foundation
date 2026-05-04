@@ -305,8 +305,8 @@ export default function Index() {
               <div className="grid grid-cols-2 gap-3 mt-4">
                 {/* Telegram */}
                 <a href="https://t.me/laverol_company" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-2 glass rounded-xl p-3 hover:border-primary/40 transition-all hover:shadow-[0_0_16px_hsl(var(--primary)/0.2)]">
-                  <div className="relative overflow-hidden rounded-lg w-full aspect-square">
-                    <img src="/qr-telegram.png" alt="Telegram QR" className="w-full h-full object-cover object-center scale-[1.18]" />
+                  <div className="rounded-lg overflow-hidden w-full aspect-square bg-white flex items-center justify-center">
+                    <img src="/qr-telegram.png" alt="Telegram QR" className="w-full h-full object-contain p-1.5" />
                   </div>
                   <div className="flex items-center gap-1.5">
                     <svg className="h-3.5 w-3.5 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.286c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.935z"/></svg>
