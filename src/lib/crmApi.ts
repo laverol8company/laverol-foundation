@@ -1,7 +1,10 @@
 import { supabase } from './supabase';
 import { Lead, LeadStatus, Contact } from '../types/crm';
 
+const hasSupabase = !!import.meta.env.VITE_SUPABASE_ANON_KEY;
+
 export const fetchLeads = async (): Promise<Lead[]> => {
+  if (!hasSupabase) return [];
   const { data, error } = await supabase
     .from('Leads_Finder')
     .select('*')
@@ -16,6 +19,7 @@ export const fetchLeads = async (): Promise<Lead[]> => {
 };
 
 export const fetchArchivedLeads = async (): Promise<Lead[]> => {
+  if (!hasSupabase) return [];
   const { data, error } = await supabase
     .from('Leads_Finder')
     .select('*')
@@ -29,6 +33,7 @@ export const fetchArchivedLeads = async (): Promise<Lead[]> => {
 };
 
 export const fetchTrashedLeads = async (): Promise<Lead[]> => {
+  if (!hasSupabase) return [];
   // 30 days calculation
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -47,6 +52,7 @@ export const fetchTrashedLeads = async (): Promise<Lead[]> => {
 };
 
 export const fetchContactsByLeadId = async (leadId: string): Promise<Contact[]> => {
+  if (!hasSupabase) return [];
   const { data, error } = await supabase
     .from('contacts')
     .select('*')
@@ -60,6 +66,7 @@ export const fetchContactsByLeadId = async (leadId: string): Promise<Contact[]> 
 };
 
 export const updateLeadStatus = async (id: string, status: LeadStatus): Promise<void> => {
+  if (!hasSupabase) return;
   const { error } = await supabase
     .from('Leads_Finder')
     .update({ status })
@@ -71,6 +78,7 @@ export const updateLeadStatus = async (id: string, status: LeadStatus): Promise<
 };
 
 export const archiveLead = async (id: string): Promise<void> => {
+  if (!hasSupabase) return;
   const { error } = await supabase
     .from('Leads_Finder')
     .update({ is_archived: true, archived_at: new Date().toISOString() })
@@ -82,6 +90,7 @@ export const archiveLead = async (id: string): Promise<void> => {
 };
 
 export const restoreLeadFromArchive = async (id: string): Promise<void> => {
+  if (!hasSupabase) return;
   const { error } = await supabase
     .from('Leads_Finder')
     .update({ is_archived: false, archived_at: null })
@@ -93,6 +102,7 @@ export const restoreLeadFromArchive = async (id: string): Promise<void> => {
 };
 
 export const trashLead = async (id: string): Promise<void> => {
+  if (!hasSupabase) return;
   const { error } = await supabase
     .from('Leads_Finder')
     .update({ is_trashed: true, trashed_at: new Date().toISOString() })
@@ -104,6 +114,7 @@ export const trashLead = async (id: string): Promise<void> => {
 };
 
 export const restoreLeadFromTrash = async (id: string): Promise<void> => {
+  if (!hasSupabase) return;
   const { error } = await supabase
     .from('Leads_Finder')
     .update({ is_trashed: false, trashed_at: null })
@@ -115,6 +126,7 @@ export const restoreLeadFromTrash = async (id: string): Promise<void> => {
 };
 
 export const permanentlyDeleteLead = async (id: string): Promise<void> => {
+  if (!hasSupabase) return;
   const { error } = await supabase
     .from('Leads_Finder')
     .delete()
