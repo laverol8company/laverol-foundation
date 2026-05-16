@@ -3,18 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { Lead } from '../../types/crm';
 import { fetchLeads } from '../../lib/crmApi';
 import { Search, Loader2 } from 'lucide-react';
-export default function LeadsTable() {
+
+export default function StorageView() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilter, setActiveFilter] = useState<'All' | 'hot' | 'warm' | 'cold'>('All');
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const data = await fetchLeads('new');
+        const data = await fetchLeads('contacted');
         setLeads(data);
       } catch (err) {
         console.error(err);
@@ -25,11 +25,9 @@ export default function LeadsTable() {
     loadData();
   }, []);
 
-  const filteredLeads = leads.filter((lead) => {
-    const matchesSearch = lead.business_name?.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesPriority = activeFilter === 'All' || lead.outreach_priority === activeFilter;
-    return matchesSearch && matchesPriority;
-  });
+  const filteredLeads = leads.filter((lead) =>
+    lead.business_name?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const getPriorityBadge = (priority: string | null) => {
     if (priority === 'hot') return <span className="px-2 py-1 bg-red-500/20 text-red-500 rounded-full text-xs font-bold">Hot 🔥</span>;
@@ -45,6 +43,14 @@ export default function LeadsTable() {
     return 'text-red-500 font-bold';
   };
 
+  const getDaysToDeletion = (updatedAt: string | null) => {
+    if (!updatedAt) return 90;
+    const updateDate = new Date(updatedAt);
+    const diffTime = Math.abs(new Date().getTime() - updateDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.max(0, 90 - diffDays);
+  };
+
   const formatDate = (dateStr: string | null) => {
     if (!dateStr) return '-';
     try {
@@ -57,23 +63,8 @@ export default function LeadsTable() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="flex space-x-2">
-          {['All', 'hot', 'warm', 'cold'].map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter as any)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeFilter === filter
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
-              }`}
-            >
-              {filter === 'All' ? 'Все' : filter === 'hot' ? 'Hot 🔥' : filter === 'warm' ? 'Warm 🌡' : 'Cold ❄️'}
-            </button>
-          ))}
-        </div>
-        
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl font-bold">Связанные лиды</h2>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
@@ -91,57 +82,54 @@ export default function LeadsTable() {
           <thead>
             <tr className="border-b border-border/50 bg-muted/50">
               <th className="p-4 font-medium text-muted-foreground">Название бизнеса</th>
-              <th className="p-4 font-medium text-muted-foreground">Website</th>
               <th className="p-4 font-medium text-muted-foreground">Телефон</th>
               <th className="p-4 font-medium text-muted-foreground">Приоритет</th>
               <th className="p-4 font-medium text-muted-foreground text-center">Score</th>
               <th className="p-4 font-medium text-muted-foreground">Статус</th>
-              <th className="p-4 font-medium text-muted-foreground">Обновлено</th>
+              <th className="p-4 font-medium text-muted-foreground text-right">Удаление через</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
               <tr>
-                <td colSpan={7} className="p-8 text-center">
+                <td colSpan={6} className="p-8 text-center">
                   <Loader2 className="w-8 h-8 animate-spin mx-auto text-primary" />
                 </td>
               </tr>
             ) : filteredLeads.length === 0 ? (
               <tr>
-                <td colSpan={7} className="p-8 text-center text-muted-foreground">
-                  Лиды не найдены
+                <td colSpan={6} className="p-8 text-center text-muted-foreground">
+                  Пусто
                 </td>
               </tr>
             ) : (
-              filteredLeads.map((lead) => (
-                <tr
-                  key={lead.id}
-                  onClick={() => navigate(`/admin/crm/${lead.id}`)}
-                  className="border-b border-border/50 hover:bg-muted/30 transition cursor-pointer"
-                >
-                  <td className="p-4 font-bold">{lead.business_name || 'Неизвестно'}</td>
-                  <td className="p-4" onClick={(e) => e.stopPropagation()}>
-                    {lead.website_url ? (
-                      <a href={lead.website_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                        {lead.website_url.replace(/^https?:\/\//, '')}
-                      </a>
-                    ) : '-'}
-                  </td>
-                  <td className="p-4 font-mono text-sm">{lead.phone || '-'}</td>
-                  <td className="p-4">{getPriorityBadge(lead.outreach_priority)}</td>
-                  <td className={`p-4 text-center text-lg ${getScoreColor(lead.score)}`}>
-                    {lead.score ?? '-'}
-                  </td>
-                  <td className="p-4">
-                    <span className="px-2 py-1 bg-gray-500/20 text-gray-400 rounded-full text-xs font-medium uppercase">
-                      New
-                    </span>
-                  </td>
-                  <td className="p-4 text-sm text-muted-foreground">
-                    {formatDate(lead.updated_at || lead.created_at)}
-                  </td>
-                </tr>
-              ))
+              filteredLeads.map((lead) => {
+                const daysLeft = getDaysToDeletion(lead.updated_at || lead.created_at);
+                return (
+                  <tr
+                    key={lead.id}
+                    onClick={() => navigate(`/admin/crm/${lead.id}`)}
+                    className="border-b border-border/50 hover:bg-muted/30 transition cursor-pointer"
+                  >
+                    <td className="p-4 font-bold">{lead.business_name || 'Неизвестно'}</td>
+                    <td className="p-4 font-mono text-sm">{lead.phone || '-'}</td>
+                    <td className="p-4">{getPriorityBadge(lead.outreach_priority)}</td>
+                    <td className={`p-4 text-center text-lg ${getScoreColor(lead.score)}`}>
+                      {lead.score ?? '-'}
+                    </td>
+                    <td className="p-4">
+                      <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-medium uppercase">
+                        Contacted
+                      </span>
+                    </td>
+                    <td className="p-4 text-right">
+                      <span className={`px-2 py-1 rounded-full text-xs font-bold ${daysLeft < 10 ? 'bg-red-500/20 text-red-500' : 'bg-orange-500/20 text-orange-500'}`}>
+                        {daysLeft} дней
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>

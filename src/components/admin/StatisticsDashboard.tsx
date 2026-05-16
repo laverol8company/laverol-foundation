@@ -1,11 +1,13 @@
 import { Lead } from '../../types/crm';
 import { Users, Flame, Send, Activity } from 'lucide-react';
+import { useCrmLang } from '../../contexts/CrmLangContext';
 
 interface StatsProps {
   leads: Lead[];
 }
 
 export default function StatisticsDashboard({ leads }: StatsProps) {
+  const { t } = useCrmLang();
   const totalLeads = leads.length;
   const hotLeads = leads.filter(l => l.is_hot).length;
   const outreachSent = leads.filter(l => l.status === 'outreach_sent').length;
@@ -22,7 +24,7 @@ export default function StatisticsDashboard({ leads }: StatsProps) {
           <Users className="w-6 h-6" />
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Total Active Leads</p>
+          <p className="text-sm text-muted-foreground">{t('totalActiveLeads')}</p>
           <p className="text-2xl font-bold">{totalLeads}</p>
         </div>
       </div>
@@ -32,7 +34,7 @@ export default function StatisticsDashboard({ leads }: StatsProps) {
           <Flame className="w-6 h-6" />
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">🔥 Hot Leads</p>
+          <p className="text-sm text-muted-foreground">{t('hotLeads')}</p>
           <p className="text-2xl font-bold">{hotLeads}</p>
         </div>
       </div>
@@ -42,7 +44,7 @@ export default function StatisticsDashboard({ leads }: StatsProps) {
           <Send className="w-6 h-6" />
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Outreach Sent</p>
+          <p className="text-sm text-muted-foreground">{t('outreachSent')}</p>
           <p className="text-2xl font-bold">{outreachSent}</p>
         </div>
       </div>
@@ -52,7 +54,7 @@ export default function StatisticsDashboard({ leads }: StatsProps) {
           <Activity className="w-6 h-6" />
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Average Score</p>
+          <p className="text-sm text-muted-foreground">{t('averageScore')}</p>
           <p className="text-2xl font-bold">avg: {avgScore}</p>
         </div>
       </div>

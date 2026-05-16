@@ -14,8 +14,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { useCrmLang } from '../../contexts/CrmLangContext';
 
 export default function TrashView() {
+  const { t } = useCrmLang();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -63,7 +65,7 @@ export default function TrashView() {
           <span>{error}</span>
         </div>
         <button onClick={loadData} className="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
-          <RefreshCw className="w-4 h-4 mr-2" /> Retry
+          <RefreshCw className="w-4 h-4 mr-2" /> {t('retry')}
         </button>
       </div>
     );
@@ -71,15 +73,15 @@ export default function TrashView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Trash (30 Days)</h2>
+      <h2 className="text-2xl font-bold">{t('trashTitle')}</h2>
       <div className="glass rounded-xl overflow-hidden border border-border/50">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="border-b border-border/50 bg-muted/50">
-              <th className="p-4 font-medium text-muted-foreground">Name</th>
-              <th className="p-4 font-medium text-muted-foreground">Contact</th>
-              <th className="p-4 font-medium text-muted-foreground">Trashed Date</th>
-              <th className="p-4 font-medium text-muted-foreground text-right">Actions</th>
+              <th className="p-4 font-medium text-muted-foreground">{t('name')}</th>
+              <th className="p-4 font-medium text-muted-foreground">{t('contact')}</th>
+              <th className="p-4 font-medium text-muted-foreground">{t('trashedDate')}</th>
+              <th className="p-4 font-medium text-muted-foreground text-right">{t('actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -102,14 +104,14 @@ export default function TrashView() {
                     <div className="bg-muted p-4 rounded-full mb-4">
                       <Trash2 className="w-8 h-8 opacity-50" />
                     </div>
-                    <p>Trash is empty.</p>
+                    <p>{t('trashEmpty')}</p>
                   </div>
                 </td>
               </tr>
             ) : (
               leads.map(lead => (
                 <tr key={lead.id} className="border-b border-border/50 hover:bg-muted/20 transition">
-                  <td className="p-4 font-medium">{lead.name || 'Unknown'}</td>
+                  <td className="p-4 font-medium">{lead.name || t('unknown')}</td>
                   <td className="p-4 text-sm">
                     {lead.phone && <div>{lead.phone}</div>}
                   </td>
@@ -117,28 +119,27 @@ export default function TrashView() {
                     {lead.trashed_at ? new Date(lead.trashed_at).toLocaleDateString() : ''}
                   </td>
                   <td className="p-4 text-right flex justify-end gap-2">
-                    <button onClick={() => handleRestore(lead.id)} className="flex items-center px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition text-sm" title="Restore">
-                      <Undo2 className="w-4 h-4 mr-2" /> Restore
+                    <button onClick={() => handleRestore(lead.id)} className="flex items-center px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition text-sm" title={t('restore')}>
+                      <Undo2 className="w-4 h-4 mr-2" /> {t('restore')}
                     </button>
                     
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <button className="p-1.5 bg-destructive text-destructive-foreground rounded-md hover:bg-red-600 transition" title="Delete Permanently">
+                        <button className="p-1.5 bg-destructive text-destructive-foreground rounded-md hover:bg-red-600 transition" title={t('delete')}>
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </AlertDialogTrigger>
                       <AlertDialogContent className="glass-strong">
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                          <AlertDialogTitle>{t('areYouSure')}</AlertDialogTitle>
                           <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete the lead
-                            "{lead.name}" and remove all related data from our servers.
+                            {t('deleteWarning').replace('{name}', lead.name || '')}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
                           <AlertDialogAction onClick={() => handleDelete(lead.id)} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-                            Delete
+                            {t('delete')}
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
