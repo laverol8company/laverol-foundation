@@ -1,27 +1,6 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
-let _supabase: SupabaseClient | null = null
-
-export function getSupabase(): SupabaseClient | null {
-  const url = import.meta.env.VITE_SUPABASE_URL
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY
-  
-  if (!url || !key || key === 'placeholder-key') {
-    console.warn('Supabase env vars not configured')
-    return null
-  }
-  
-  if (!_supabase) {
-    _supabase = createClient(url, key)
-  }
-  
-  return _supabase
-}
-
-export const supabase = new Proxy({} as SupabaseClient, {
-  get(_, prop) {
-    const client = getSupabase()
-    if (!client) return () => ({ data: null, error: new Error('Supabase not configured') })
-    return (client as any)[prop]
-  }
-})
+export const supabase = createClient(
+  'https://qezkerxxntfmqtdwykla.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFlemtlcnh4bnRmbXF0ZHd5a2xhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzNDQ0NzAsImV4cCI6MjA4MTkyMDQ3MH0.wgH9kZV3tI_SMQKGthNNabHZg9WFtTmKJ_nnt52PciM'
+)
