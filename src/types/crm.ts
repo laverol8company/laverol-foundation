@@ -1,4 +1,4 @@
-export type LeadStatus = 'new' | 'contacted' | 'deleted';
+export type LeadStatus = 'new' | 'contacted' | 'deleted' | 'analyzing' | 'qualified' | 'outreach_sent';
 
 export interface Lead {
   id: string;
