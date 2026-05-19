@@ -1,10 +1,12 @@
-export type LeadStatus = 'new' | 'contacted' | 'deleted';
+export type LeadStatus = 'new' | 'contacted' | 'deleted' | 'analyzing' | 'qualified' | 'outreach_sent';
 
 export interface Lead {
   id: string;
   created_at: string;
   updated_at: string | null;
-  
+  name?: string | null;
+  email?: string | null;
+
   business_name: string | null;
   website_url: string | null;
   google_place_id: string | null;

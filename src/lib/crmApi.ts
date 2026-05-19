@@ -56,3 +56,10 @@ export const fetchContactsByLeadId = async (leadId: string): Promise<Contact[]> 
   }
   return data || [];
 };
+
+
+export const fetchArchivedLeads = async (): Promise<Lead[]> => [];
+export const restoreLeadFromArchive = async (_id: string): Promise<void> => {};
+export const fetchTrashedLeads = async (): Promise<Lead[]> => [];
+export const restoreLeadFromTrash = async (_id: string): Promise<void> => {};
+export const permanentlyDeleteLead = async (_id: string): Promise<void> => {};
