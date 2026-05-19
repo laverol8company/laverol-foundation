@@ -82,7 +82,7 @@ export default function LeadDetailPage() {
         toast({
           title: "Скопировано",
           description: "Сообщение скопировано в буфер обмена",
-          icon: <CheckCircle2 className="w-5 h-5 text-green-500" />
+          // removed icon
         });
       }
 

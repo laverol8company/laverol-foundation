@@ -45,7 +45,8 @@ export const mockCrmData: Lead[] = [
     is_archived: false,
     archived_at: null,
     is_trashed: false,
-    trashed_at: null
+    trashed_at: null,
+    deleted_at: null
   },
   {
     id: '2',
@@ -89,7 +90,8 @@ export const mockCrmData: Lead[] = [
     is_archived: false,
     archived_at: null,
     is_trashed: false,
-    trashed_at: null
+    trashed_at: null,
+    deleted_at: null
   },
   {
     id: '3',
@@ -133,6 +135,7 @@ export const mockCrmData: Lead[] = [
     is_archived: false,
     archived_at: null,
     is_trashed: false,
-    trashed_at: null
+    trashed_at: null,
+    deleted_at: null
   }
 ];
