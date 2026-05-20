@@ -583,7 +583,7 @@ function HeroDashboard({ d }: { d: Dict }) {
 }
 
 /* ================= GOAL ================= */
-function GoalSection({ d }: { d: Dict }) {
+function GoalSection({ d, x }: { d: Dict; x: typeof extras["EN"] }) {
   const [selected, setSelected] = useState<string | null>(null);
   const sel = d.goal.options.find(o => o.id === selected);
   return (
@@ -616,7 +616,7 @@ function GoalSection({ d }: { d: Dict }) {
         {sel && (
           <div className="mt-8 max-w-2xl mx-auto animate-scale-in">
             <div className="card-surface p-6 md:p-8 border-primary/30">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-primary mb-2 font-semibold">{extras[(document.documentElement.lang === "uk" ? "UA" : document.documentElement.lang === "ro" ? "RO" : "EN") as Lang].goal.recLabel}</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-primary mb-2 font-semibold">{x.goal.recLabel}</div>
               <h3 className="text-xl md:text-2xl font-bold mb-3">{sel.recTitle}</h3>
               <p className="text-muted-foreground leading-relaxed mb-5">{sel.recText}</p>
               <Button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="bg-[hsl(var(--dark-base))] text-white">
