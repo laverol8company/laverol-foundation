@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, lazy, Suspense, type RefObject } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, ArrowUpRight, Globe, MessageSquare, Sparkles, Workflow, Bot, FileText,
@@ -6,11 +6,14 @@ import {
   CheckCircle2, Mail, Send, Wrench, Building2, Store, Gem, ArrowDown, TrendingUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LaverolConcierge } from "@/components/LaverolConcierge";
 import { t, type Lang, type Dict } from "@/i18n/laverol";
 import { extras } from "@/i18n/laverolExtras";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+
+const LaverolConcierge = lazy(() =>
+  import("@/components/LaverolConcierge").then((m) => ({ default: m.LaverolConcierge }))
+);
 
 function useReveal<T extends HTMLElement>(): [RefObject<T>, boolean] {
   const ref = useRef<T>(null);
@@ -60,6 +63,13 @@ export default function Index() {
     if (browser.startsWith("uk") || browser.startsWith("ru")) setLang("UA");
     else if (browser.startsWith("ro")) setLang("RO");
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang === "UA" ? "uk" : lang.toLowerCase();
+    document.title = x.meta.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute("content", x.meta.desc);
+  }, [lang, x.meta]);
 
   const scrollTo = (id: string, pkgId?: string) => {
     setMenuOpen(false);
@@ -136,11 +146,10 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Reveal>
               <div className="space-y-7">
-                <Eyebrow>Smart digital agency</Eyebrow>
+                <Eyebrow>{x.hero.eyebrow}</Eyebrow>
                 <h1 className="text-[38px] md:text-[44px] lg:text-[52px] leading-[1.05] font-extrabold tracking-tight">
-                  We build systems<br />
-                  <span className="text-gradient">that work</span><br />
-                  instead of you
+                  {x.hero.titleMain}<br />
+                  <span className="text-gradient">{x.hero.titleAccent}</span>
                 </h1>
                 <p className="text-[14px] leading-[1.75] text-muted-foreground max-w-[380px]">
                   {d.hero.sub}
