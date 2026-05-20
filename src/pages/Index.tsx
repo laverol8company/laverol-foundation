@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, lazy, Suspense, type RefObject } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight, ArrowUpRight, Globe, MessageSquare, Sparkles, Workflow, Bot, FileText,
@@ -6,11 +6,14 @@ import {
   CheckCircle2, Mail, Send, Wrench, Building2, Store, Gem, ArrowDown, TrendingUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LaverolConcierge } from "@/components/LaverolConcierge";
 import { t, type Lang, type Dict } from "@/i18n/laverol";
 import { extras } from "@/i18n/laverolExtras";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+
+const LaverolConcierge = lazy(() =>
+  import("@/components/LaverolConcierge").then((m) => ({ default: m.LaverolConcierge }))
+);
 
 function useReveal<T extends HTMLElement>(): [RefObject<T>, boolean] {
   const ref = useRef<T>(null);
@@ -60,6 +63,13 @@ export default function Index() {
     if (browser.startsWith("uk") || browser.startsWith("ru")) setLang("UA");
     else if (browser.startsWith("ro")) setLang("RO");
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang === "UA" ? "uk" : lang.toLowerCase();
+    document.title = x.meta.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute("content", x.meta.desc);
+  }, [lang, x.meta]);
 
   const scrollTo = (id: string, pkgId?: string) => {
     setMenuOpen(false);
@@ -136,11 +146,10 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <Reveal>
               <div className="space-y-7">
-                <Eyebrow>Smart digital agency</Eyebrow>
+                <Eyebrow>{x.hero.eyebrow}</Eyebrow>
                 <h1 className="text-[38px] md:text-[44px] lg:text-[52px] leading-[1.05] font-extrabold tracking-tight">
-                  We build systems<br />
-                  <span className="text-gradient">that work</span><br />
-                  instead of you
+                  {x.hero.titleMain}<br />
+                  <span className="text-gradient">{x.hero.titleAccent}</span>
                 </h1>
                 <p className="text-[14px] leading-[1.75] text-muted-foreground max-w-[380px]">
                   {d.hero.sub}
@@ -232,6 +241,26 @@ export default function Index() {
         </div>
       </section>
 
+      {/* STATS BAR */}
+      <section className="py-12 bg-[hsl(var(--dark-base))]">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 text-center">
+            {[
+              { num: "40+", label: x.stats.projects, color: "text-primary" },
+              { num: "8", label: x.stats.industries, color: "text-[hsl(var(--indigo))]" },
+              { num: "2 wks", label: x.stats.launch, color: "text-primary" },
+              { num: "×3.2", label: x.stats.leads, color: "text-white" },
+              { num: "24/7", label: x.stats.uptime, color: "text-primary" },
+            ].map((s, i) => (
+              <div key={i}>
+                <div className={`text-3xl md:text-4xl font-extrabold tracking-tight ${s.color}`}>{s.num}</div>
+                <div className="text-[11px] uppercase tracking-[0.15em] text-white/60 mt-1.5 font-semibold">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CASES */}
       <section id="cases" className="py-20 md:py-28">
         <div className="container">
@@ -266,7 +295,7 @@ export default function Index() {
       </section>
 
       {/* GOAL */}
-      <GoalSection d={d} />
+      <GoalSection d={d} x={x} />
 
       {/* COMPARE */}
       <CompareSection d={d} />
@@ -296,7 +325,7 @@ export default function Index() {
       </section>
 
       {/* INDUSTRIES */}
-      <IndustriesSection d={d} onCta={() => scrollTo("contact")} />
+      <IndustriesSection d={d} x={x} onCta={() => scrollTo("contact")} />
 
       {/* PROJECT OPTIONS / PRICING */}
       <section id="options" className="py-20 md:py-28 bg-muted/30">
@@ -437,19 +466,19 @@ export default function Index() {
             </div>
             <div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-4 font-semibold">{d.footer.contact}</div>
-              <a href="mailto:laverol.company@gmail.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition mb-4">
-                <Mail className="h-4 w-4" /> laverol.company@gmail.com
+              <a href="mailto:hello@laverol.co" className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition mb-4">
+                <Mail className="h-4 w-4" /> hello@laverol.co
               </a>
               <div className="grid grid-cols-2 gap-3">
                 <a href="https://t.me/laverol_company" target="_blank" rel="noopener" className="flex flex-col items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-3 transition">
                   <div className="rounded-lg overflow-hidden w-full aspect-square bg-white flex items-center justify-center">
-                    <img src="/qr-telegram.png" alt="Telegram QR" className="w-full h-full object-contain p-1.5" />
+                    <img src="/qr-telegram.png" alt="Telegram QR" loading="lazy" className="w-full h-full object-contain p-1.5" />
                   </div>
                   <span className="text-[11px] font-medium text-white/70">Telegram</span>
                 </a>
                 <a href="https://wa.me/380934086798" target="_blank" rel="noopener" className="flex flex-col items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-3 transition">
                   <div className="rounded-lg overflow-hidden w-full aspect-square bg-white flex items-center justify-center">
-                    <img src="/qr-whatsapp.png" alt="WhatsApp QR" className="w-full h-full object-contain p-1" />
+                    <img src="/qr-whatsapp.png" alt="WhatsApp QR" loading="lazy" className="w-full h-full object-contain p-1" />
                   </div>
                   <span className="text-[11px] font-medium text-white/70">WhatsApp</span>
                 </a>
@@ -474,7 +503,7 @@ export default function Index() {
       </div>
 
       {/* CONCIERGE */}
-      <LaverolConcierge lang={lang} />
+      <Suspense fallback={null}><LaverolConcierge lang={lang} /></Suspense>
     </div>
   );
 }
@@ -554,7 +583,7 @@ function HeroDashboard({ d }: { d: Dict }) {
 }
 
 /* ================= GOAL ================= */
-function GoalSection({ d }: { d: Dict }) {
+function GoalSection({ d, x }: { d: Dict; x: typeof extras["EN"] }) {
   const [selected, setSelected] = useState<string | null>(null);
   const sel = d.goal.options.find(o => o.id === selected);
   return (
@@ -587,7 +616,7 @@ function GoalSection({ d }: { d: Dict }) {
         {sel && (
           <div className="mt-8 max-w-2xl mx-auto animate-scale-in">
             <div className="card-surface p-6 md:p-8 border-primary/30">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-primary mb-2 font-semibold">Recommendation</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-primary mb-2 font-semibold">{x.goal.recLabel}</div>
               <h3 className="text-xl md:text-2xl font-bold mb-3">{sel.recTitle}</h3>
               <p className="text-muted-foreground leading-relaxed mb-5">{sel.recText}</p>
               <Button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="bg-[hsl(var(--dark-base))] text-white">
@@ -659,7 +688,7 @@ function CompareSection({ d }: { d: Dict }) {
 }
 
 /* ================= INDUSTRIES ================= */
-function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
+function IndustriesSection({ d, x, onCta }: { d: Dict; x: typeof extras["EN"]; onCta: () => void }) {
   const [tab, setTab] = useState(0);
   const Icons = [Wrench, Building2, Store, Gem];
   return (
@@ -688,7 +717,7 @@ function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
             <h3 className="text-2xl font-bold mb-3">{d.industries.items[tab].title}</h3>
             <p className="text-muted-foreground leading-relaxed mb-5">{d.industries.items[tab].text}</p>
             <div className="rounded-xl border border-border bg-muted/40 p-4 mb-6">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2 font-semibold">Common setup</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2 font-semibold">{x.industries.setupLabel}</div>
               <div className="text-sm font-mono text-foreground/80">{d.industries.items[tab].flow}</div>
             </div>
             <Button onClick={onCta} className="bg-[hsl(var(--dark-base))] text-white">
@@ -729,14 +758,18 @@ function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
 
 /* ================= CONTACT ================= */
 function ContactSection({ d, x, lang, preselected }: { d: Dict; x: typeof extras["EN"]; lang: Lang; preselected: string }) {
-  const [form, setForm] = useState({ need: preselected, contact: "", message: "" });
+  const [form, setForm] = useState({ need: preselected, contact: "", message: "", _hp: "" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
-  useEffect(() => { setForm(f => ({ ...f, need: preselected })); }, [preselected]);
+  useEffect(() => {
+    setForm(f => ({ ...f, need: preselected }));
+    if (preselected && preselected !== "pkg_unknown") setDone(false);
+  }, [preselected]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (form._hp) return; // honeypot triggered
     if (!form.contact.trim()) {
       toast({ title: d.form.contact, variant: "destructive" });
       return;
@@ -797,10 +830,20 @@ function ContactSection({ d, x, lang, preselected }: { d: Dict; x: typeof extras
                     <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-foreground/70 mb-1.5 block">{d.form.need}</span>
                     <textarea value={form.message} onChange={e => setForm({...form, message: e.target.value})} maxLength={1000} rows={4} placeholder="Tell us what you'd like to build…" className="contact-input resize-none" />
                   </label>
+                  <input
+                    type="text"
+                    name="company_website"
+                    value={form._hp}
+                    onChange={e => setForm({...form, _hp: e.target.value})}
+                    style={{ display: "none", position: "absolute", left: "-9999px" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <Button type="submit" size="lg" disabled={submitting} className="w-full h-13 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-base font-semibold shadow-[var(--shadow-teal)]">
                     {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <>{d.form.send} <ArrowUpRight className="h-4 w-4" /></>}
                   </Button>
-                  <p className="text-center text-xs text-muted-foreground">{x.reply}</p>
+                  <p className="text-center text-xs text-muted-foreground">{x.form.replyTime}</p>
                 </form>
               )}
             </div>
@@ -809,7 +852,7 @@ function ContactSection({ d, x, lang, preselected }: { d: Dict; x: typeof extras
           {!done && (
             <Reveal delay={200}>
               <a href="https://t.me/laverol_company" target="_blank" rel="noopener" className="mt-4 flex items-center justify-center gap-2 h-12 rounded-xl bg-[hsl(var(--dark-base))] text-white hover:opacity-90 transition font-semibold">
-                <Send className="h-4 w-4 text-primary" /> {x.writeDirect} <ArrowUpRight className="h-4 w-4" />
+                <Send className="h-4 w-4 text-primary" /> {x.form.telegramAlt} <ArrowUpRight className="h-4 w-4" />
               </a>
             </Reveal>
           )}
