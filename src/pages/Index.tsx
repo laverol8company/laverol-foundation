@@ -325,7 +325,7 @@ export default function Index() {
       </section>
 
       {/* INDUSTRIES */}
-      <IndustriesSection d={d} onCta={() => scrollTo("contact")} />
+      <IndustriesSection d={d} x={x} onCta={() => scrollTo("contact")} />
 
       {/* PROJECT OPTIONS / PRICING */}
       <section id="options" className="py-20 md:py-28 bg-muted/30">
