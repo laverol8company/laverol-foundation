@@ -758,14 +758,18 @@ function IndustriesSection({ d, x, onCta }: { d: Dict; x: typeof extras["EN"]; o
 
 /* ================= CONTACT ================= */
 function ContactSection({ d, x, lang, preselected }: { d: Dict; x: typeof extras["EN"]; lang: Lang; preselected: string }) {
-  const [form, setForm] = useState({ need: preselected, contact: "", message: "" });
+  const [form, setForm] = useState({ need: preselected, contact: "", message: "", _hp: "" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
-  useEffect(() => { setForm(f => ({ ...f, need: preselected })); }, [preselected]);
+  useEffect(() => {
+    setForm(f => ({ ...f, need: preselected }));
+    if (preselected && preselected !== "pkg_unknown") setDone(false);
+  }, [preselected]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (form._hp) return; // honeypot triggered
     if (!form.contact.trim()) {
       toast({ title: d.form.contact, variant: "destructive" });
       return;
@@ -826,10 +830,20 @@ function ContactSection({ d, x, lang, preselected }: { d: Dict; x: typeof extras
                     <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-foreground/70 mb-1.5 block">{d.form.need}</span>
                     <textarea value={form.message} onChange={e => setForm({...form, message: e.target.value})} maxLength={1000} rows={4} placeholder="Tell us what you'd like to build…" className="contact-input resize-none" />
                   </label>
+                  <input
+                    type="text"
+                    name="company_website"
+                    value={form._hp}
+                    onChange={e => setForm({...form, _hp: e.target.value})}
+                    style={{ display: "none", position: "absolute", left: "-9999px" }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <Button type="submit" size="lg" disabled={submitting} className="w-full h-13 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl text-base font-semibold shadow-[var(--shadow-teal)]">
                     {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : <>{d.form.send} <ArrowUpRight className="h-4 w-4" /></>}
                   </Button>
-                  <p className="text-center text-xs text-muted-foreground">{x.reply}</p>
+                  <p className="text-center text-xs text-muted-foreground">{x.form.replyTime}</p>
                 </form>
               )}
             </div>
@@ -838,7 +852,7 @@ function ContactSection({ d, x, lang, preselected }: { d: Dict; x: typeof extras
           {!done && (
             <Reveal delay={200}>
               <a href="https://t.me/laverol_company" target="_blank" rel="noopener" className="mt-4 flex items-center justify-center gap-2 h-12 rounded-xl bg-[hsl(var(--dark-base))] text-white hover:opacity-90 transition font-semibold">
-                <Send className="h-4 w-4 text-primary" /> {x.writeDirect} <ArrowUpRight className="h-4 w-4" />
+                <Send className="h-4 w-4 text-primary" /> {x.form.telegramAlt} <ArrowUpRight className="h-4 w-4" />
               </a>
             </Reveal>
           )}
