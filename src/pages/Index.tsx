@@ -295,7 +295,7 @@ export default function Index() {
       </section>
 
       {/* GOAL */}
-      <GoalSection d={d} />
+      <GoalSection d={d} x={x} />
 
       {/* COMPARE */}
       <CompareSection d={d} />
