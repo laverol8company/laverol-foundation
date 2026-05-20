@@ -1,4 +1,4 @@
-// Laverol Systems — extra section translations (trust, cases, team, testimonials, CTA strip)
+// Laverol Systems — extra section translations
 import type { Lang } from "./laverol";
 
 type Extras = {
@@ -20,6 +20,13 @@ type Extras = {
   reply: string;
   writeDirect: string;
   needHelp: string;
+  // --- new keys ---
+  meta: { title: string; desc: string };
+  hero: { eyebrow: string; titleMain: string; titleAccent: string };
+  goal: { recLabel: string };
+  industries: { setupLabel: string };
+  form: { replyTime: string; telegramAlt: string };
+  stats: { projects: string; industries: string; launch: string; leads: string; uptime: string };
 };
 
 export const extras: Record<Lang, Extras> = {
@@ -54,6 +61,12 @@ export const extras: Record<Lang, Extras> = {
     reply: "We usually reply within 2 hours",
     writeDirect: "Write directly on Telegram",
     needHelp: "Need help choosing? Use the concierge",
+    meta: { title: "Laverol Systems — Smart Websites, CRM & Bots", desc: "Laverol Systems builds custom websites, CRM systems and smart bots that automate sales and lead generation." },
+    hero: { eyebrow: "SMART DIGITAL AGENCY", titleMain: "Systems that work", titleAccent: "instead of you" },
+    goal: { recLabel: "Recommendation" },
+    industries: { setupLabel: "Common setup" },
+    form: { replyTime: "We usually reply within 2 hours", telegramAlt: "Or write directly on Telegram" },
+    stats: { projects: "Projects launched", industries: "Industries", launch: "Time to launch", leads: "Avg lead growth", uptime: "Bot uptime" },
   },
   UA: {
     trust: { label: "Нам довіряють" },
@@ -86,6 +99,12 @@ export const extras: Record<Lang, Extras> = {
     reply: "Зазвичай відповідаємо протягом 2 годин",
     writeDirect: "Написати напряму в Telegram",
     needHelp: "Не знаєте, що обрати? Скористайтесь concierge",
+    meta: { title: "Laverol Systems — Смарт-сайти, CRM та боти для бізнесу", desc: "Laverol Systems створює кастомні сайти, CRM-системи та смарт-боти що автоматизують продажі і заявки." },
+    hero: { eyebrow: "SMART DIGITAL AGENCY", titleMain: "Системи, які працюють", titleAccent: "замість вас" },
+    goal: { recLabel: "Рекомендація" },
+    industries: { setupLabel: "Типовий сетап" },
+    form: { replyTime: "Зазвичай відповідаємо протягом 2 годин", telegramAlt: "Або написати напряму в Telegram" },
+    stats: { projects: "Проєктів", industries: "Ніш", launch: "Старт", leads: "Ріст лідів", uptime: "Аптайм бота" },
   },
   RO: {
     trust: { label: "Au încredere în noi" },
@@ -118,5 +137,11 @@ export const extras: Record<Lang, Extras> = {
     reply: "Răspundem de obicei în 2 ore",
     writeDirect: "Scrie direct pe Telegram",
     needHelp: "Nu ești sigur? Folosește concierge",
+    meta: { title: "Laverol Systems — Site-uri Smart, CRM și Boți", desc: "Laverol Systems construiește site-uri custom, sisteme CRM și smart bots care automatizează vânzările." },
+    hero: { eyebrow: "SMART DIGITAL AGENCY", titleMain: "Sisteme care lucrează", titleAccent: "în locul tău" },
+    goal: { recLabel: "Recomandare" },
+    industries: { setupLabel: "Setup comun" },
+    form: { replyTime: "De obicei răspundem în 2 ore", telegramAlt: "Sau scrie direct pe Telegram" },
+    stats: { projects: "Proiecte", industries: "Industrii", launch: "Timp lansare", leads: "Creștere lead-uri", uptime: "Bot uptime" },
   },
 };
