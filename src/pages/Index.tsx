@@ -466,19 +466,19 @@ export default function Index() {
             </div>
             <div>
               <div className="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-4 font-semibold">{d.footer.contact}</div>
-              <a href="mailto:laverol.company@gmail.com" className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition mb-4">
-                <Mail className="h-4 w-4" /> laverol.company@gmail.com
+              <a href="mailto:hello@laverol.co" className="flex items-center gap-2 text-sm text-white/70 hover:text-primary transition mb-4">
+                <Mail className="h-4 w-4" /> hello@laverol.co
               </a>
               <div className="grid grid-cols-2 gap-3">
                 <a href="https://t.me/laverol_company" target="_blank" rel="noopener" className="flex flex-col items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-3 transition">
                   <div className="rounded-lg overflow-hidden w-full aspect-square bg-white flex items-center justify-center">
-                    <img src="/qr-telegram.png" alt="Telegram QR" className="w-full h-full object-contain p-1.5" />
+                    <img src="/qr-telegram.png" alt="Telegram QR" loading="lazy" className="w-full h-full object-contain p-1.5" />
                   </div>
                   <span className="text-[11px] font-medium text-white/70">Telegram</span>
                 </a>
                 <a href="https://wa.me/380934086798" target="_blank" rel="noopener" className="flex flex-col items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-3 transition">
                   <div className="rounded-lg overflow-hidden w-full aspect-square bg-white flex items-center justify-center">
-                    <img src="/qr-whatsapp.png" alt="WhatsApp QR" className="w-full h-full object-contain p-1" />
+                    <img src="/qr-whatsapp.png" alt="WhatsApp QR" loading="lazy" className="w-full h-full object-contain p-1" />
                   </div>
                   <span className="text-[11px] font-medium text-white/70">WhatsApp</span>
                 </a>
@@ -503,7 +503,7 @@ export default function Index() {
       </div>
 
       {/* CONCIERGE */}
-      <LaverolConcierge lang={lang} />
+      <Suspense fallback={null}><LaverolConcierge lang={lang} /></Suspense>
     </div>
   );
 }
