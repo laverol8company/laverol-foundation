@@ -688,7 +688,7 @@ function CompareSection({ d }: { d: Dict }) {
 }
 
 /* ================= INDUSTRIES ================= */
-function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
+function IndustriesSection({ d, x, onCta }: { d: Dict; x: typeof extras["EN"]; onCta: () => void }) {
   const [tab, setTab] = useState(0);
   const Icons = [Wrench, Building2, Store, Gem];
   return (
@@ -717,7 +717,7 @@ function IndustriesSection({ d, onCta }: { d: Dict; onCta: () => void }) {
             <h3 className="text-2xl font-bold mb-3">{d.industries.items[tab].title}</h3>
             <p className="text-muted-foreground leading-relaxed mb-5">{d.industries.items[tab].text}</p>
             <div className="rounded-xl border border-border bg-muted/40 p-4 mb-6">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2 font-semibold">Common setup</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2 font-semibold">{x.industries.setupLabel}</div>
               <div className="text-sm font-mono text-foreground/80">{d.industries.items[tab].flow}</div>
             </div>
             <Button onClick={onCta} className="bg-[hsl(var(--dark-base))] text-white">
