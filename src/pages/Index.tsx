@@ -241,6 +241,26 @@ export default function Index() {
         </div>
       </section>
 
+      {/* STATS BAR */}
+      <section className="py-12 bg-[hsl(var(--dark-base))]">
+        <div className="container">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-4 text-center">
+            {[
+              { num: "40+", label: x.stats.projects, color: "text-primary" },
+              { num: "8", label: x.stats.industries, color: "text-[hsl(var(--indigo))]" },
+              { num: "2 wks", label: x.stats.launch, color: "text-primary" },
+              { num: "×3.2", label: x.stats.leads, color: "text-white" },
+              { num: "24/7", label: x.stats.uptime, color: "text-primary" },
+            ].map((s, i) => (
+              <div key={i}>
+                <div className={`text-3xl md:text-4xl font-extrabold tracking-tight ${s.color}`}>{s.num}</div>
+                <div className="text-[11px] uppercase tracking-[0.15em] text-white/60 mt-1.5 font-semibold">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CASES */}
       <section id="cases" className="py-20 md:py-28">
         <div className="container">
@@ -596,7 +616,7 @@ function GoalSection({ d }: { d: Dict }) {
         {sel && (
           <div className="mt-8 max-w-2xl mx-auto animate-scale-in">
             <div className="card-surface p-6 md:p-8 border-primary/30">
-              <div className="text-[10px] uppercase tracking-[0.18em] text-primary mb-2 font-semibold">Recommendation</div>
+              <div className="text-[10px] uppercase tracking-[0.18em] text-primary mb-2 font-semibold">{extras[(document.documentElement.lang === "uk" ? "UA" : document.documentElement.lang === "ro" ? "RO" : "EN") as Lang].goal.recLabel}</div>
               <h3 className="text-xl md:text-2xl font-bold mb-3">{sel.recTitle}</h3>
               <p className="text-muted-foreground leading-relaxed mb-5">{sel.recText}</p>
               <Button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} className="bg-[hsl(var(--dark-base))] text-white">
